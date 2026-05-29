@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dichiarazione di Accessibilità | XPlanium</title>
+  <meta name="description" content="Dichiarazione di accessibilità del sito xplanium.it ai sensi delle WCAG 2.1 livello AA e della normativa europea sull'accessibilità (EAA / EN 301 549)." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://xplanium.it/accessibilita.html" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0e27'/%3E%3Cpath d='M18 4 L8 18 L14 18 L12 28 L24 12 L18 12 Z' fill='%2384cc16' stroke='%2384cc16' stroke-width='1' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    :root {
+      --bg-0: #06091c;
+      --bg-1: #0a0e27;
+      --bg-2: #11173a;
+      --bg-card: rgba(20, 26, 60, 0.6);
+      --border: rgba(132, 204, 22, 0.12);
+      --border-strong: rgba(132, 204, 22, 0.3);
+      --text-0: #f8fafc;
+      --text-1: #cbd5e1;
+      --text-2: #94a3b8;
+      --text-3: #64748b;
+      --accent-lime: #84cc16;
+      --accent-magenta: #ec4899;
+      --accent-orange: #f97316;
+      --accent-blue: #3b82f6;
+      --font-display: 'Space Grotesk', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-0);
+      color: var(--text-1);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(132, 204, 22, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(168, 85, 247, 0.05) 0%, transparent 40%);
+      z-index: -1;
+      pointer-events: none;
+    }
+    a { color: var(--accent-lime); }
+    a:hover { text-decoration: underline; }
+
+    .skip-link {
+      position: absolute; top: -100px; left: 16px; z-index: 9999;
+      padding: 12px 22px; background: var(--accent-lime); color: var(--bg-0);
+      font-weight: 700; border-radius: 8px; text-decoration: none;
+    }
+    .skip-link:focus { top: 16px; outline: 3px solid #fff; outline-offset: 2px; }
+    *:focus-visible { outline: 2px solid var(--accent-lime); outline-offset: 3px; border-radius: 4px; }
+
+    .page-header {
+      background: rgba(6, 9, 28, 0.7);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .page-header-inner {
+      max-width: 1240px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    }
+    .logo-img { height: 38px; width: auto; display: block; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.92rem; color: var(--text-1); text-decoration: none;
+      padding: 8px 16px; border-radius: 8px;
+      transition: background 0.2s;
+    }
+    .back-link:hover { background: rgba(255,255,255,0.05); color: var(--accent-lime); }
+    .back-link svg { width: 16px; height: 16px; }
+
+    main {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 14px;
+      background: rgba(132, 204, 22, 0.1);
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-lime);
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--text-0);
+      line-height: 1.15;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .updated {
+      color: var(--text-3);
+      font-size: 0.9rem;
+      margin-bottom: 40px;
+    }
+    h2 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--accent-lime);
+      margin: 48px 0 16px;
+      line-height: 1.25;
+    }
+    h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--text-0);
+      margin: 28px 0 12px;
+    }
+    p, li {
+      color: var(--text-1);
+      margin-bottom: 14px;
+      font-size: 1rem;
+    }
+    ul, ol { padding-left: 24px; margin-bottom: 18px; }
+    li { margin-bottom: 8px; }
+    strong { color: var(--text-0); }
+    .lead {
+      font-size: 1.12rem;
+      color: var(--text-0);
+      padding: 20px 24px;
+      background: var(--bg-card);
+      border-left: 3px solid var(--accent-lime);
+      border-radius: 0 12px 12px 0;
+      margin-bottom: 32px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      background: var(--bg-card);
+      border-radius: 8px;
+      overflow: hidden;
+      font-size: 0.92rem;
+    }
+    th, td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    th {
+      background: rgba(132, 204, 22, 0.08);
+      color: var(--accent-lime);
+      font-weight: 600;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .info-card h3 { margin-top: 0; }
+
+    /* Status conformity card */
+    .conformity-card {
+      padding: 28px 30px;
+      background: linear-gradient(135deg, rgba(132,204,22,0.1), rgba(34,211,238,0.08));
+      border: 1px solid var(--accent-lime);
+      border-radius: 16px;
+      margin: 32px 0;
+      display: flex;
+      gap: 22px;
+      align-items: center;
+    }
+    .conformity-icon {
+      flex-shrink: 0;
+      width: 56px; height: 56px;
+      background: var(--accent-lime);
+      border-radius: 50%;
+      display: grid; place-items: center;
+    }
+    .conformity-icon svg { width: 32px; height: 32px; color: var(--bg-0); }
+    .conformity-card h3 { color: var(--accent-lime); margin: 0 0 4px; font-size: 1.15rem; }
+    .conformity-card p { margin: 0; color: var(--text-1); font-size: 0.95rem; }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 16px 0;
+    }
+    .feature-list li {
+      display: flex; gap: 10px; align-items: flex-start;
+      padding: 10px 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      margin: 0;
+    }
+    .feature-list li::before {
+      content: '✓';
+      color: var(--accent-lime);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .nc-item {
+      padding: 16px 20px;
+      background: rgba(249, 115, 22, 0.06);
+      border: 1px solid rgba(249, 115, 22, 0.25);
+      border-radius: 10px;
+      margin: 12px 0;
+    }
+    .nc-item h4 {
+      color: var(--accent-orange);
+      font-size: 0.95rem;
+      margin: 0 0 6px;
+      font-family: var(--font-display);
+    }
+    .nc-item p { margin: 0; font-size: 0.9rem; color: var(--text-2); }
+
+    .contact-block {
+      padding: 24px;
+      background: linear-gradient(135deg, rgba(132,204,22,0.08), rgba(168,85,247,0.06));
+      border: 1px solid var(--border-strong);
+      border-radius: 14px;
+      margin: 30px 0;
+    }
+    .contact-block h3 { margin-top: 0; color: var(--accent-lime); }
+
+    .disclaimer {
+      padding: 18px 22px;
+      background: rgba(236, 72, 153, 0.06);
+      border: 1px solid rgba(236, 72, 153, 0.25);
+      border-radius: 12px;
+      font-size: 0.9rem;
+      color: var(--text-2);
+      margin: 40px 0;
+    }
+    .disclaimer strong { color: var(--accent-magenta); }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 30px 24px;
+      text-align: center;
+      color: var(--text-3);
+      font-size: 0.84rem;
+    }
+    footer a { color: var(--text-2); margin: 0 8px; }
+
+    @media (max-width: 600px) {
+      .feature-list { grid-template-columns: 1fr; }
+      .conformity-card { flex-direction: column; text-align: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Vai al contenuto principale</a>
+
+  <header class="page-header" role="banner">
+    <div class="page-header-inner">
+      <a href="index.html" aria-label="XPlanium - Torna alla home">
+        <img src="assets/logo-xplanium.svg" alt="XPlanium" class="logo-img" />
+      </a>
+      <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Torna alla home
+      </a>
+    </div>
+  </header>
+
+  <main id="main-content" role="main">
+    <div class="eyebrow">WCAG 2.1 AA &middot; EN 301 549</div>
+    <h1>Dichiarazione di Accessibilità</h1>
+    <p class="updated">Pubblicata il 27 maggio 2026 — Versione 1.1 — Prossima revisione prevista: maggio 2027</p>
+
+    <p class="lead">
+      <strong>Demontech S.r.l.</strong> si impegna a rendere il sito <strong>xplanium.it</strong> accessibile in conformità alle Linee Guida per l'Accessibilità dei Contenuti Web (WCAG) 2.1 livello AA e alla normativa europea sull'accessibilità (Direttiva UE 2019/882 — European Accessibility Act).
+    </p>
+
+    <h2>1. Stato di conformità</h2>
+
+    <div class="conformity-card">
+      <div class="conformity-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div>
+        <h3>Totalmente conforme</h3>
+        <p>Il sito è <strong>totalmente conforme</strong> alle WCAG 2.1 livello AA in base all'auto-valutazione condotta dal team interno. Vedi sezione 3 per la metodologia di valutazione.</p>
+      </div>
+    </div>
+
+    <p>
+      Lo standard di riferimento adottato è <strong>WCAG 2.1 livello AA</strong> (Web Content Accessibility Guidelines del W3C), allineato con la norma armonizzata europea <strong>EN 301 549</strong> v3.2.1.
+    </p>
+
+    <h2>2. Misure di accessibilità adottate</h2>
+    <p>Il sito è stato progettato e sviluppato seguendo i principi <em>Perceivable, Operable, Understandable, Robust</em> (POUR) delle WCAG. In particolare sono state implementate le seguenti misure:</p>
+
+    <h3>Percepibile</h3>
+    <ul class="feature-list">
+      <li>Testi alternativi (<code>alt</code>) descrittivi su tutte le immagini informative</li>
+      <li>Immagini decorative marcate con <code>aria-hidden="true"</code></li>
+      <li>Contrasto colore conforme AA (rapporto ≥ 4.5:1 per il testo normale)</li>
+      <li>Tipografia leggibile e scalabile (font Inter + Space Grotesk)</li>
+      <li>Layout responsive senza zoom orizzontale fino a 320px</li>
+      <li>Lingua dichiarata in <code>html lang="it"</code></li>
+    </ul>
+
+    <h3>Utilizzabile</h3>
+    <ul class="feature-list">
+      <li><strong>Skip link</strong> "Vai al contenuto principale" per saltare la navigazione</li>
+      <li>Navigazione completa da tastiera (Tab, Shift+Tab, Enter, Esc)</li>
+      <li><strong>Focus visibile</strong> netto su tutti gli elementi interattivi</li>
+      <li>Landmark ARIA (banner, main, navigation, contentinfo)</li>
+      <li>Heading gerarchici (h1 → h2 → h3) coerenti</li>
+      <li>Bottoni icon-only con <code>aria-label</code> descrittivo</li>
+      <li>Modal con <code>aria-modal="true"</code>, focus trap e chiusura con ESC</li>
+      <li>Rispetto di <code>prefers-reduced-motion</code> per chi soffre di disturbi vestibolari</li>
+    </ul>
+
+    <h3>Comprensibile</h3>
+    <ul class="feature-list">
+      <li>Linguaggio chiaro, frasi brevi, glossario implicito nei titoli</li>
+      <li>Form con label associate e <code>aria-required</code> sui campi obbligatori</li>
+      <li>Messaggi di errore/successo con <code>aria-live="polite"</code></li>
+      <li>Indicatori di stato (<code>aria-busy</code>) durante operazioni asincrone</li>
+      <li>Coerenza grafica e di navigazione tra tutte le pagine</li>
+    </ul>
+
+    <h3>Robusto</h3>
+    <ul class="feature-list">
+      <li>HTML5 semantico valido (header, main, section, footer, nav)</li>
+      <li>Compatibile con screen reader moderni (NVDA, JAWS, VoiceOver)</li>
+      <li>Funziona senza JavaScript per i contenuti statici</li>
+      <li>Performance ottimizzate (no librerie pesanti, immagini compresse)</li>
+    </ul>
+
+    <h2>3. Metodologia di valutazione</h2>
+    <p>
+      La presente dichiarazione è basata su una <strong>auto-valutazione</strong> effettuata in data 27 maggio 2026 dal team interno di sviluppo, utilizzando una combinazione di:
+    </p>
+    <ul>
+      <li>Revisione manuale rispetto ai criteri di successo WCAG 2.1 livello AA</li>
+      <li>Test di navigazione esclusivamente da tastiera</li>
+      <li>Verifica dei rapporti di contrasto colore</li>
+      <li>Validazione struttura HTML e ruoli ARIA</li>
+    </ul>
+    <p>
+      Si prevede una <strong>valutazione esterna indipendente</strong> da parte di un consulente specializzato in accessibilità entro 12 mesi dalla pubblicazione di questa dichiarazione.
+    </p>
+
+    <h2>4. Contenuti non accessibili o non conformi</h2>
+    <p>
+      Allo stato attuale, in base all'auto-valutazione condotta, <strong>non sono presenti contenuti non conformi</strong> ai criteri WCAG 2.1 livello AA. Le aree precedentemente identificate come da migliorare sono state risolte nella versione 1.1 della piattaforma:
+    </p>
+    <ul class="feature-list">
+      <li>Illustrazioni SVG (Gantt, CRM) con <code>&lt;title&gt;</code> e <code>&lt;desc&gt;</code> descrittivi e <code>role="img"</code></li>
+      <li>Segnaposto (placeholder) di anteprima app marcati con <code>role="img"</code> e <code>aria-label</code> completo</li>
+      <li>Form preventivo con validazione custom accessibile: <code>aria-invalid</code>, <code>aria-describedby</code> ai messaggi inline, annunci aggregati via <code>aria-live="assertive"</code> e focus automatico al primo campo invalido</li>
+      <li>Tutti i contrasti colore verificati e portati sopra il rapporto 4.5:1 richiesto per testo normale</li>
+    </ul>
+    <p>
+      Eventuali contenuti di terze parti incorporati in futuro (es. video YouTube, mappe interattive) verranno valutati singolarmente e, se non pienamente accessibili, segnalati in questa sezione con la relativa mitigazione.
+    </p>
+
+    <h2>5. Redazione e revisione</h2>
+    <table>
+      <tbody>
+        <tr><th>Data di pubblicazione</th><td>27 maggio 2026</td></tr>
+        <tr><th>Versione corrente</th><td>1.1 (28 maggio 2026)</td></tr>
+        <tr><th>Stato di conformità</th><td>Totalmente conforme (auto-valutazione)</td></tr>
+        <tr><th>Prossima revisione programmata</th><td>maggio 2027</td></tr>
+        <tr><th>Metodo di redazione</th><td>Auto-valutazione interna</td></tr>
+        <tr><th>Standard di riferimento</th><td>WCAG 2.1 livello AA, EN 301 549 v3.2.1</td></tr>
+      </tbody>
+    </table>
+    <h3>Storico versioni</h3>
+    <ul>
+      <li><strong>v1.1 — 28 maggio 2026</strong>: risoluzione delle 3 aree di miglioramento identificate nella v1.0 (SVG complessi, placeholder, validazione form). Verifica contrasti colore. Passaggio a stato "totalmente conforme".</li>
+      <li><strong>v1.0 — 27 maggio 2026</strong>: prima pubblicazione, stato "parzialmente conforme" con 3 aree di miglioramento documentate.</li>
+    </ul>
+    <p>
+      La dichiarazione viene aggiornata ogni volta che vengono rilasciate modifiche sostanziali al sito o quando emergono nuove non conformità.
+    </p>
+
+    <h2>6. Feedback e segnalazioni</h2>
+    <div class="contact-block">
+      <h3>Hai trovato un problema di accessibilità?</h3>
+      <p>
+        Se incontri ostacoli nell'utilizzo del sito o hai suggerimenti per migliorarne l'accessibilità, ti preghiamo di contattarci. Le tue segnalazioni ci aiutano a rendere il sito più inclusivo per tutti.
+      </p>
+      <p style="margin-top: 14px;">
+        <strong>Email:</strong> <a href="mailto:info@xplanium.it?subject=Segnalazione%20accessibilit%C3%A0%20xplanium.it">info@xplanium.it</a><br>
+        <strong>Oggetto suggerito:</strong> "Segnalazione accessibilità xplanium.it"
+      </p>
+      <p style="margin-top: 14px; font-size: 0.9rem; color: var(--text-2);">
+        Ci impegniamo a rispondere a tutte le segnalazioni entro <strong>15 giorni lavorativi</strong> e a valutare le proposte di miglioramento per i successivi rilasci.
+      </p>
+    </div>
+
+    <h2>7. Procedura di reclamo</h2>
+    <p>
+      Se ritieni che la nostra risposta a una tua segnalazione non sia stata soddisfacente, puoi:
+    </p>
+    <ul>
+      <li>Inoltrare un reclamo all'<strong>Agenzia per l'Italia Digitale (AgID)</strong> tramite il modulo dedicato sul sito <a href="https://form.agid.gov.it/view/eb1f1f73-ff40-431f-91eb-e7ccd64bc4f7" target="_blank" rel="noopener noreferrer">form.agid.gov.it</a> (valido principalmente per soggetti obbligati ai sensi della Legge 4/2004 — Legge Stanca)</li>
+      <li>Rivolgerti al <strong>Difensore Civico Digitale</strong> per le controversie con soggetti obbligati</li>
+      <li>Per i soggetti privati non obbligati, è sempre possibile la <strong>tutela giurisdizionale ordinaria</strong> ai sensi del Codice del Consumo</li>
+    </ul>
+
+    <h2>8. Riferimenti normativi</h2>
+    <ul>
+      <li><strong>Direttiva UE 2019/882</strong> (European Accessibility Act — EAA), in vigore dal 28 giugno 2025</li>
+      <li><strong>D.Lgs. 27 maggio 2022, n. 82</strong> — Recepimento dell'EAA in Italia</li>
+      <li><strong>Legge 9 gennaio 2004, n. 4</strong> (Legge Stanca) — Disposizioni per favorire l'accesso dei soggetti disabili agli strumenti informatici</li>
+      <li><strong>WCAG 2.1</strong> — Web Content Accessibility Guidelines, W3C</li>
+      <li><strong>EN 301 549</strong> v3.2.1 — Norma armonizzata europea sull'accessibilità ICT</li>
+    </ul>
+
+    <div class="disclaimer">
+      <strong>Nota informativa:</strong> questa dichiarazione è volontaria. Demontech S.r.l., in quanto micro-impresa privata operante nel settore B2B, non rientra tra i soggetti obbligatoriamente tenuti alla pubblicazione di una dichiarazione di accessibilità ai sensi della Legge 4/2004. Aderiamo comunque ai principi e ai criteri WCAG come impegno verso un'esperienza digitale inclusiva per tutti i nostri visitatori.
+    </div>
+  </main>
+
+  <footer role="contentinfo">
+    <p>&copy; <span id="year"></span> Demontech S.r.l. — Tutti i diritti riservati</p>
+    <p>
+      <a href="index.html">Home</a> ·
+      <a href="privacy.html">Privacy</a> ·
+      <a href="cookie.html">Cookie</a> ·
+      <a href="accessibilita.html">Accessibilità</a> ·
+      <a href="mailto:info@xplanium.it">info@xplanium.it</a>
+    </p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

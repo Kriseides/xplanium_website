@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy | XPlanium</title>
+  <meta name="description" content="Informativa privacy ai sensi del GDPR (Reg. UE 2016/679) — Demontech S.r.l., titolare del trattamento dei dati raccolti tramite xplanium.it" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://xplanium.it/privacy.html" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0e27'/%3E%3Cpath d='M18 4 L8 18 L14 18 L12 28 L24 12 L18 12 Z' fill='%2384cc16' stroke='%2384cc16' stroke-width='1' stroke-linejoin='round'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    :root {
+      --bg-0: #06091c;
+      --bg-1: #0a0e27;
+      --bg-2: #11173a;
+      --bg-card: rgba(20, 26, 60, 0.6);
+      --border: rgba(132, 204, 22, 0.12);
+      --border-strong: rgba(132, 204, 22, 0.3);
+      --text-0: #f8fafc;
+      --text-1: #cbd5e1;
+      --text-2: #94a3b8;
+      --text-3: #7a8a9b;
+      --accent-lime: #84cc16;
+      --accent-magenta: #ec4899;
+      --font-display: 'Space Grotesk', system-ui, sans-serif;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-0);
+      color: var(--text-1);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(132, 204, 22, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(168, 85, 247, 0.05) 0%, transparent 40%);
+      z-index: -1;
+      pointer-events: none;
+    }
+    a { color: var(--accent-lime); }
+    a:hover { text-decoration: underline; }
+
+    .skip-link {
+      position: absolute; top: -100px; left: 16px; z-index: 9999;
+      padding: 12px 22px; background: var(--accent-lime); color: var(--bg-0);
+      font-weight: 700; border-radius: 8px; text-decoration: none;
+    }
+    .skip-link:focus { top: 16px; outline: 3px solid #fff; outline-offset: 2px; }
+    *:focus-visible { outline: 2px solid var(--accent-lime); outline-offset: 3px; border-radius: 4px; }
+
+    .page-header {
+      background: rgba(6, 9, 28, 0.7);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .page-header-inner {
+      max-width: 1240px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    }
+    .logo-img { height: 38px; width: auto; display: block; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.92rem; color: var(--text-1); text-decoration: none;
+      padding: 8px 16px; border-radius: 8px;
+      transition: background 0.2s;
+    }
+    .back-link:hover { background: rgba(255,255,255,0.05); color: var(--accent-lime); }
+    .back-link svg { width: 16px; height: 16px; }
+
+    main {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 14px;
+      background: rgba(132, 204, 22, 0.1);
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-lime);
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--text-0);
+      line-height: 1.15;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .updated {
+      color: var(--text-3);
+      font-size: 0.9rem;
+      margin-bottom: 40px;
+    }
+    h2 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--accent-lime);
+      margin: 48px 0 16px;
+      line-height: 1.25;
+    }
+    h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--text-0);
+      margin: 28px 0 12px;
+    }
+    p, li {
+      color: var(--text-1);
+      margin-bottom: 14px;
+      font-size: 1rem;
+    }
+    ul, ol { padding-left: 24px; margin-bottom: 18px; }
+    li { margin-bottom: 8px; }
+    strong { color: var(--text-0); }
+    .lead {
+      font-size: 1.12rem;
+      color: var(--text-0);
+      padding: 20px 24px;
+      background: var(--bg-card);
+      border-left: 3px solid var(--accent-lime);
+      border-radius: 0 12px 12px 0;
+      margin-bottom: 32px;
+    }
+    .info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .info-card h3 { margin-top: 0; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      background: var(--bg-card);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.92rem;
+    }
+    th {
+      background: rgba(132, 204, 22, 0.08);
+      color: var(--accent-lime);
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .disclaimer {
+      padding: 18px 22px;
+      background: rgba(236, 72, 153, 0.06);
+      border: 1px solid rgba(236, 72, 153, 0.25);
+      border-radius: 12px;
+      font-size: 0.9rem;
+      color: var(--text-2);
+      margin: 40px 0;
+    }
+    .disclaimer strong { color: var(--accent-magenta); }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 30px 24px;
+      text-align: center;
+      color: var(--text-3);
+      font-size: 0.84rem;
+    }
+    footer a { color: var(--text-2); margin: 0 8px; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Vai al contenuto principale</a>
+
+  <header class="page-header" role="banner">
+    <div class="page-header-inner">
+      <a href="index.html" aria-label="XPlanium - Torna alla home">
+        <img src="assets/logo-xplanium.svg" alt="XPlanium" class="logo-img" />
+      </a>
+      <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Torna alla home
+      </a>
+    </div>
+  </header>
+
+  <main id="main-content" role="main">
+    <div class="eyebrow">Informativa GDPR</div>
+    <h1>Privacy Policy</h1>
+    <p class="updated">Ultimo aggiornamento: 27 maggio 2026 — Versione 1.0</p>
+
+    <p class="lead">
+      Questa informativa descrive come <strong>Demontech S.r.l.</strong>, titolare del trattamento, raccoglie e tratta i dati personali dei visitatori del sito <strong>xplanium.it</strong> ai sensi del Regolamento (UE) 2016/679 (GDPR).
+    </p>
+
+    <div class="info-card">
+      <h3>Titolare del trattamento</h3>
+      <p>
+        <strong>Demontech S.r.l.</strong><br>
+        P.IVA: <em>[da inserire]</em><br>
+        Sede legale: <em>[da inserire]</em><br>
+        Email: <a href="mailto:info@xplanium.it">info@xplanium.it</a><br>
+        PEC: <em>[da inserire]</em>
+      </p>
+    </div>
+
+    <h2>1. Tipologie di dati raccolti</h2>
+    <p>Il sito raccoglie le seguenti tipologie di dati personali:</p>
+
+    <h3>1.1 Dati conferiti volontariamente tramite form di contatto</h3>
+    <p>Quando compili il form per richiedere un preventivo, ci comunichi:</p>
+    <ul>
+      <li><strong>Dati identificativi</strong>: nome e cognome, ragione sociale dell'azienda</li>
+      <li><strong>Dati di contatto</strong>: indirizzo email, numero di telefono (opzionale)</li>
+      <li><strong>Dati di profilazione commerciale</strong>: settore di attività, moduli di interesse</li>
+      <li><strong>Contenuto della richiesta</strong>: il messaggio libero che ci invii</li>
+    </ul>
+
+    <h3>1.2 Dati raccolti automaticamente durante la navigazione</h3>
+    <ul>
+      <li><strong>Dati di log</strong>: indirizzo IP (registrato temporaneamente per finalità di sicurezza e anti-abuso del form), data e ora della richiesta</li>
+      <li><strong>Cookie tecnici</strong>: vedi <a href="cookie.html">Cookie Policy</a> per il dettaglio</li>
+    </ul>
+
+    <h2>2. Finalità e basi giuridiche del trattamento</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Finalità</th>
+          <th>Base giuridica</th>
+          <th>Conservazione</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Gestire la richiesta di preventivo e rispondere</td>
+          <td>Esecuzione di misure precontrattuali su tua richiesta (art. 6.1.b GDPR)</td>
+          <td>24 mesi dall'ultimo contatto</td>
+        </tr>
+        <tr>
+          <td>Adempimenti di legge (fiscali, contrattuali se diventi cliente)</td>
+          <td>Obbligo legale (art. 6.1.c GDPR)</td>
+          <td>10 anni</td>
+        </tr>
+        <tr>
+          <td>Sicurezza del sito e prevenzione abusi del form</td>
+          <td>Legittimo interesse del titolare (art. 6.1.f GDPR)</td>
+          <td>90 giorni (log IP)</td>
+        </tr>
+        <tr>
+          <td>Cookie analitici (se hai dato consenso)</td>
+          <td>Consenso (art. 6.1.a GDPR)</td>
+          <td>Vedi cookie policy</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>3. Modalità del trattamento</h2>
+    <p>
+      Il trattamento avviene con strumenti elettronici, adottando misure di sicurezza tecniche e organizzative adeguate a prevenire perdita, uso illecito o accessi non autorizzati. In particolare:
+    </p>
+    <ul>
+      <li>Trasmissione dei dati su connessione cifrata (HTTPS/TLS)</li>
+      <li>Server in cloud presso fornitori GDPR-compliant con datacenter in UE</li>
+      <li>Backup automatici cifrati con conservazione limitata nel tempo</li>
+      <li>Accesso ai dati limitato al personale autorizzato e debitamente formato</li>
+    </ul>
+
+    <h2>4. Comunicazione dei dati a terzi</h2>
+    <p>I tuoi dati possono essere comunicati a:</p>
+    <ul>
+      <li><strong>Fornitori tecnici (responsabili del trattamento)</strong>: DigitalOcean (hosting infrastruttura), Brevo (invio email transazionali), Google Fonts (caricamento font del sito). Ognuno di essi è vincolato da un accordo di trattamento ex art. 28 GDPR.</li>
+      <li><strong>Autorità pubbliche</strong> quando richiesto dalla legge.</li>
+    </ul>
+    <p>I dati <strong>non vengono mai venduti</strong> né ceduti a terzi per finalità di marketing.</p>
+
+    <h2>5. Trasferimento dei dati extra-UE</h2>
+    <p>
+      Alcuni fornitori (es. Google Fonts) potrebbero trattare dati su server al di fuori dell'Unione Europea. In questi casi il trasferimento avviene esclusivamente verso Paesi con decisione di adeguatezza della Commissione Europea o con Clausole Contrattuali Standard (SCC).
+    </p>
+
+    <h2>6. Diritti dell'interessato</h2>
+    <p>In qualsiasi momento puoi esercitare i seguenti diritti:</p>
+    <ul>
+      <li><strong>Accesso</strong> ai tuoi dati personali (art. 15)</li>
+      <li><strong>Rettifica</strong> di dati inesatti (art. 16)</li>
+      <li><strong>Cancellazione</strong> ("diritto all'oblio", art. 17)</li>
+      <li><strong>Limitazione</strong> del trattamento (art. 18)</li>
+      <li><strong>Portabilità</strong> in formato strutturato (art. 20)</li>
+      <li><strong>Opposizione</strong> al trattamento basato su legittimo interesse (art. 21)</li>
+      <li><strong>Revoca del consenso</strong> in qualsiasi momento (per i trattamenti basati sul consenso)</li>
+      <li><strong>Reclamo</strong> al Garante per la Protezione dei Dati Personali (<a href="https://www.garanteprivacy.it">www.garanteprivacy.it</a>)</li>
+    </ul>
+    <p>
+      Per esercitare questi diritti scrivi a <a href="mailto:info@xplanium.it">info@xplanium.it</a>. Risponderemo entro 30 giorni come previsto dal GDPR.
+    </p>
+
+    <h2>7. Cookie</h2>
+    <p>
+      Il sito utilizza cookie tecnici (sempre attivi, indispensabili al funzionamento) e — solo previo consenso — cookie analitici. Non utilizziamo cookie di profilazione di terze parti per finalità di marketing. Per il dettaglio consulta la <a href="cookie.html">Cookie Policy</a>.
+    </p>
+
+    <h2>8. Minori</h2>
+    <p>
+      Il sito è rivolto ad un pubblico professionale e <strong>non è destinato a minori di 16 anni</strong>. Non raccogliamo consapevolmente dati personali di minori. Se ritieni che un minore ci abbia fornito dati personali ti preghiamo di contattarci affinché possiamo provvedere alla cancellazione.
+    </p>
+
+    <h2>9. Modifiche a questa informativa</h2>
+    <p>
+      Demontech S.r.l. si riserva il diritto di modificare questa informativa in qualsiasi momento. Le modifiche saranno pubblicate su questa pagina con indicazione della data di ultimo aggiornamento. Ti invitiamo a consultarla periodicamente.
+    </p>
+
+    <div class="disclaimer">
+      <strong>Nota legale:</strong> questa informativa è una base di partenza conforme ai principi del GDPR. Si raccomanda una revisione finale da parte di un legale specializzato in materia di protezione dei dati prima della pubblicazione definitiva, soprattutto per quanto riguarda i dati specifici del titolare (P.IVA, sede, eventuale DPO) e i fornitori effettivamente utilizzati.
+    </div>
+  </main>
+
+  <footer role="contentinfo">
+    <p>&copy; <span id="year"></span> Demontech S.r.l. — Tutti i diritti riservati</p>
+    <p>
+      <a href="index.html">Home</a> ·
+      <a href="privacy.html">Privacy</a> ·
+      <a href="cookie.html">Cookie</a> ·
+      <a href="accessibilita.html">Accessibilità</a> ·
+      <a href="mailto:info@xplanium.it">info@xplanium.it</a>
+    </p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

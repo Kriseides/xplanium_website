@@ -1,0 +1,22 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Build / cache
+.cache/
+*.tmp
+
+# Env (futuro, se mai server-side)
+.env
+.env.local
+.env.production

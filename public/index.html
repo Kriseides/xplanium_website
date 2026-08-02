@@ -475,20 +475,42 @@
       border-radius: var(--radius-lg);
       backdrop-filter: blur(20px);
     }
-    .hero-stat .num { font-size: clamp(1.4rem, 3vw, 2rem); white-space: nowrap; }
-    .hero-stat .lbl { font-size: clamp(0.72rem, 1.2vw, 0.82rem); }
+    /* Quattro colonne stavano solo su schermi larghi: sotto, "Modulare" e
+       "Pianificazione automatica interventi" uscivano dal riquadro. Due
+       colonne, e le parole restano dentro. */
+    @media (max-width: 760px) {
+      .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 20px 12px; }
+    }
     .hero-stat {
       text-align: center;
+      /* Una cella di griglia non scende sotto il contenuto piu' largo se non
+         glielo si dice: senza questo la parola lunga allarga la colonna e
+         sfonda il riquadro invece di rimpicciolirsi. */
+      min-width: 0;
     }
     .hero-stat .num {
       font-family: var(--font-display);
-      font-size: 2rem; font-weight: 700;
+      /* Il `font-size: 2rem` che stava qui vinceva sulla clamp dichiarata
+         sopra — stessa specificita', regola successiva — quindi la parola
+         restava di dimensione fissa su qualunque schermo. Ora la clamp e'
+         l'unica, ed e' quella che le fa rimpicciolire. */
+      font-size: clamp(1.15rem, 3.2vw, 2rem);
+      font-weight: 700;
+      line-height: 1.15;
       background: var(--gradient-text);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      /* Niente `nowrap`: "Pianificazione" e "Modulare" devono poter andare a
+         capo prima di uscire dal bordo. */
+      overflow-wrap: anywhere;
     }
-    .hero-stat .lbl { font-size: 0.82rem; color: var(--text-2); margin-top: 4px; }
+    .hero-stat .lbl {
+      font-size: clamp(0.72rem, 1.2vw, 0.82rem);
+      color: var(--text-2);
+      margin-top: 4px;
+      overflow-wrap: anywhere;
+    }
 
     /* Hero floating orbs */
     .orb {
@@ -530,7 +552,14 @@
       max-width: 860px;
       margin: 0 auto;
     }
-    @media (max-width: 480px) { .sectors-grid { grid-template-columns: 1fr; } }
+    /* Restano DUE colonne anche sul telefono: sedici riquadri incolonnati uno
+       sotto l'altro sono uno scorrimento infinito, e queste card contengono
+       solo un'icona e due parole — ci stanno benissimo in mezza larghezza. */
+    @media (max-width: 480px) {
+      .sectors-grid { gap: 10px; }
+      .sector { padding: 16px 10px; }
+      .sector h4 { font-size: 0.82rem; }
+    }
     .sector {
       padding: 28px 20px;
       background: var(--bg-card);
@@ -2121,7 +2150,12 @@
       max-width: 720px;
       margin: 0 auto;
     }
-    @media (max-width: 560px) { .ai-criteria-chips { grid-template-columns: 1fr; } }
+    /* Anche qui due colonne fino in fondo: sono otto etichette corte, e in
+       colonna unica diventavano una lista lunga quanto lo schermo. */
+    @media (max-width: 560px) {
+      .ai-criteria-chips { gap: 6px; }
+      .ai-chip { padding: 7px 10px; font-size: 0.78rem; }
+    }
     .ai-chip {
       display: inline-flex;
       align-items: center;

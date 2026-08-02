@@ -421,6 +421,10 @@
 
     .nav-cta { display: flex; gap: 12px; align-items: center; }
     .nav-cta .btn { padding: 10px 20px; font-size: 0.9rem; }
+    /* Niente freccia nel bottone dell'header: a questa dimensione ridotta
+       diventa un trattino illeggibile, e non aggiunge nulla — l'etichetta
+       "Richiedi una demo" dice già dove porta. Resta nei bottoni grandi. */
+    .nav-cta .btn svg { display: none; }
 
     .menu-toggle { display: none; width: 40px; height: 40px; }
     .menu-toggle span {
@@ -516,12 +520,16 @@
     /* ============================
        SETTORI
        ============================ */
+    /* Due colonne, non quattro: con sedici settori una griglia larga diventa
+       un muro di riquadri che nessuno legge. In due colonne l'occhio scorre
+       una lista, e ogni voce ha spazio per il nome per esteso. */
     .sectors-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 16px;
+      max-width: 860px;
+      margin: 0 auto;
     }
-    @media (max-width: 900px) { .sectors-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 480px) { .sectors-grid { grid-template-columns: 1fr; } }
     .sector {
       padding: 28px 20px;
@@ -892,48 +900,21 @@
       filter: blur(40px);
       z-index: -1;
     }
+    /* Screenshot senza finta cornice del browser.
+       La barra con i pallini colorati e l'URL finto imitava una finestra che
+       non esiste: aggiungeva un bordo scuro attorno a immagini che hanno gia'
+       la loro interfaccia dentro, e su alcune schermate lo sfondo del riquadro
+       restava visibile ai lati facendole sembrare deformate. Resta l'ombra,
+       che stacca l'immagine dal fondo senza fingere niente. */
     .hero-browser {
       max-width: 620px;
       margin: 0 auto;
       border-radius: 14px;
       overflow: hidden;
-      background: #0a0e27;
-      border: 1px solid rgba(132, 204, 22, 0.2);
-      box-shadow:
-        0 30px 80px -20px rgba(0, 0, 0, 0.7),
-        0 0 0 1px rgba(0, 0, 0, 0.4),
-        0 0 40px rgba(132, 204, 22, 0.1);
+      box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.7);
       transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .hero-browser:hover { transform: translateY(-4px); }
-    .hero-browser-bar {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 14px;
-      background: #06091c;
-      border-bottom: 1px solid rgba(132, 204, 22, 0.1);
-    }
-    .hero-browser-bar .dot {
-      width: 11px; height: 11px;
-      border-radius: 50%;
-      display: inline-block;
-    }
-    .hero-browser-bar .dot-red    { background: #ec4899; }
-    .hero-browser-bar .dot-amber  { background: #f97316; }
-    .hero-browser-bar .dot-green  { background: #84cc16; }
-    .hero-browser-url {
-      flex: 1;
-      text-align: center;
-      font-family: monospace;
-      font-size: 0.78rem;
-      color: var(--text-3);
-      padding: 4px 14px;
-      background: rgba(132, 204, 22, 0.05);
-      border-radius: 6px;
-      max-width: 240px;
-      margin: 0 auto;
-    }
     .hero-browser-img {
       width: 100%;
       height: auto;
@@ -963,7 +944,11 @@
       backdrop-filter: blur(10px);
     }
     .workflow-showcase .ws-mobile { max-width: 380px; margin: 0 auto; }
-    .workflow-showcase .ws-mobile svg { width: 100%; height: auto; }
+    /* La regola c'era solo per `svg`, ma qui dentro ora c'è un `<img>`: senza
+       una larghezza propria veniva stirato dal contenitore. È il caso di
+       screenshot "stretchato". */
+    .workflow-showcase .ws-mobile svg,
+    .workflow-showcase .ws-mobile img { width: 100%; height: auto; display: block; }
     .workflow-showcase h3 { margin-bottom: 14px; }
     .workflow-showcase p { color: var(--text-2); font-size: 1rem; margin-bottom: 18px; }
     .ws-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
@@ -1220,46 +1205,15 @@
     }
     .app-show-tags .tag svg { width: 14px; height: 14px; color: var(--accent-lime); }
 
+    /* Come `.hero-browser`: via la finta finestra, resta solo l'immagine. */
     .app-frame {
       border-radius: 14px;
       overflow: hidden;
-      background: #0a0e27;
-      border: 1px solid rgba(132, 204, 22, 0.2);
-      box-shadow:
-        0 30px 80px -20px rgba(0, 0, 0, 0.7),
-        0 0 0 1px rgba(0, 0, 0, 0.4),
-        0 0 40px rgba(132, 204, 22, 0.08);
+      box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.7);
       transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
     }
     .app-frame:hover { transform: translateY(-4px); }
-    .app-frame-bar {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 14px;
-      background: #06091c;
-      border-bottom: 1px solid rgba(132, 204, 22, 0.1);
-    }
-    .app-frame-bar .dot {
-      width: 11px; height: 11px;
-      border-radius: 50%;
-    }
-    .app-frame-bar .dot-red    { background: #ec4899; }
-    .app-frame-bar .dot-amber  { background: #f97316; }
-    .app-frame-bar .dot-green  { background: #84cc16; }
-    .app-frame-url {
-      flex: 1;
-      text-align: center;
-      font-family: monospace;
-      font-size: 0.76rem;
-      color: var(--text-3);
-      padding: 4px 14px;
-      background: rgba(132, 204, 22, 0.05);
-      border-radius: 6px;
-      max-width: 260px;
-      margin: 0 auto;
-    }
     .app-frame svg { width: 100%; height: auto; display: block; }
     .app-frame img { width: 100%; height: auto; display: block; }
 
@@ -1392,6 +1346,9 @@
       flex-wrap: wrap;
       gap: 6px;
       margin-bottom: 16px;
+      /* Senza questo un figlio flex non scende mai sotto la sua larghezza
+         naturale, e in una colonna stretta sfonda il contenitore. */
+      min-width: 0;
     }
     .hl-badge {
       display: inline-flex;
@@ -1403,8 +1360,15 @@
       font-weight: 700;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      line-height: 1;
-      white-space: nowrap;
+      line-height: 1.25;
+      /* Era `nowrap`: etichette lunghe come "App 100% Nativa" o
+         "Pianificazione AI" diventavano più larghe della card, e poiché
+         `.module` ha `overflow: visible` (serve al badge "Più richiesto")
+         il testo usciva dal bordo destro invece di essere tagliato.
+         Ora va a capo dentro la pillola e non esce mai. */
+      white-space: normal;
+      max-width: 100%;
+      text-align: center;
     }
     .hl-badge svg { width: 12px; height: 12px; }
     .hl-offline {
@@ -2147,14 +2111,17 @@
     .ai-mode-chip.chip-single { --chip-accent: #a855f7; --chip-accent-2: #ec4899; --chip-shadow: rgba(168,85,247,0.35); }
 
     /* Chip criteri mini */
+    /* Due colonne invece di una fila che va a capo da sola: sette criteri
+       disposti a caso su tre righe irregolari si leggono come un mucchio,
+       in due colonne come un elenco. */
     .ai-criteria-chips {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 8px;
-      justify-content: center;
-      max-width: 900px;
+      max-width: 720px;
       margin: 0 auto;
     }
+    @media (max-width: 560px) { .ai-criteria-chips { grid-template-columns: 1fr; } }
     .ai-chip {
       display: inline-flex;
       align-items: center;
@@ -2174,13 +2141,9 @@
       color: var(--text-0);
       transform: translateY(-2px);
     }
-    .ai-chip .dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--chip-color, var(--accent-lime));
-      flex-shrink: 0;
-      box-shadow: 0 0 8px var(--chip-color, var(--accent-lime));
-    }
+    /* Il pallino colorato è stato tolto: sette colori diversi accanto a sette
+       etichette sembravano una legenda di qualcosa, ma non stavano a
+       significare niente. Il colore resta sul bordo al passaggio del mouse. */
     .ai-chip.ch-role     { --chip-color: #84cc16; }
     .ai-chip.ch-seniority { --chip-color: #22d3ee; }
     .ai-chip.ch-priority { --chip-color: #ec4899; }
@@ -3082,12 +3045,6 @@
           </div>
           <div class="hero-visual reveal">
             <div class="hero-browser">
-              <div class="hero-browser-bar">
-                <span class="dot dot-red"></span>
-                <span class="dot dot-amber"></span>
-                <span class="dot dot-green"></span>
-                <span class="hero-browser-url">app.xplanium.it</span>
-              </div>
               <img src="assets/photos/screen-dashboard.webp" alt="Dashboard XPlanium - panoramica progetti e attività" class="hero-browser-img" loading="eager" />
             </div>
           </div>
@@ -3276,14 +3233,14 @@
         <!-- Criteri come chip mini -->
         <p class="ai-criteria-title">Cosa considera l'AI</p>
         <div class="ai-criteria-chips reveal">
-          <span class="ai-chip ch-role"><span class="dot" aria-hidden="true"></span>Ruoli e competenze</span>
-          <span class="ai-chip ch-seniority"><span class="dot" aria-hidden="true"></span>Seniority</span>
-          <span class="ai-chip ch-priority"><span class="dot" aria-hidden="true"></span>Priorità attività</span>
-          <span class="ai-chip ch-deadline"><span class="dot" aria-hidden="true"></span>Attività in scadenza</span>
-          <span class="ai-chip ch-stalled"><span class="dot" aria-hidden="true"></span>Attività ferme da troppo</span>
-          <span class="ai-chip ch-absence"><span class="dot" aria-hidden="true"></span>Ferie, malattie, permessi</span>
-          <span class="ai-chip ch-team"><span class="dot" aria-hidden="true"></span>Affiatamento tra colleghi</span>
-          <span class="ai-chip ch-plus"><span class="dot" aria-hidden="true"></span>Le tue regole aziendali</span>
+          <span class="ai-chip ch-role">Ruoli e competenze</span>
+          <span class="ai-chip ch-seniority">Seniority</span>
+          <span class="ai-chip ch-priority">Priorità attività</span>
+          <span class="ai-chip ch-deadline">Attività in scadenza</span>
+          <span class="ai-chip ch-stalled">Attività ferme da troppo</span>
+          <span class="ai-chip ch-absence">Ferie, malattie, permessi</span>
+          <span class="ai-chip ch-team">Affiatamento tra colleghi</span>
+          <span class="ai-chip ch-plus">Le tue regole aziendali</span>
         </div>
 
         <div class="ai-cta reveal">
@@ -3471,12 +3428,6 @@
             </div>
           </div>
           <div class="app-frame">
-            <div class="app-frame-bar">
-              <span class="dot dot-red"></span>
-              <span class="dot dot-amber"></span>
-              <span class="dot dot-green"></span>
-              <span class="app-frame-url">app.xplanium.it/pianificazione</span>
-            </div>
             <!-- Screenshot reale della vista Gantt di XPlanium -->
             <img src="assets/photos/screen_gantt.webp" alt="Schermata reale della vista Gantt di XPlanium: pianificazione delle attività di progetto in timeline con barre colorate per stato (da fare, in lavorazione, completato, bloccato), oggi evidenziato in verde, filtri per tipo, progetto, operatore e tecnico." loading="lazy" />
           </div>
@@ -3506,12 +3457,6 @@
             </div>
           </div>
           <div class="app-frame">
-            <div class="app-frame-bar">
-              <span class="dot dot-red"></span>
-              <span class="dot dot-amber"></span>
-              <span class="dot dot-green"></span>
-              <span class="app-frame-url">app.xplanium.it/pipeline</span>
-            </div>
             <!-- Screenshot reale della vista Kanban di XPlanium -->
             <img src="assets/photos/screen_kanban.webp" alt="Schermata reale della vista Kanban di XPlanium: 4 colonne stato attività (Pianificate 215, In lavorazione 54, Bloccate 11, Completate 128) con card che mostrano progetto, operatore assegnato, cliente e percentuale di completamento. Header con filtri per tipo, progetto, operatore, cliente e priorità." loading="lazy" />
           </div>

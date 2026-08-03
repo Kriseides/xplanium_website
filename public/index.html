@@ -561,29 +561,27 @@
     /* ============================
        SETTORI
        ============================ */
-    /* Due colonne, non quattro: con sedici settori una griglia larga diventa
-       un muro di riquadri che nessuno legge. In due colonne l'occhio scorre
-       una lista, e ogni voce ha spazio per il nome per esteso. */
+    /* Quattro per riga sul desktop: sedici settori diventano quattro file
+       ordinate, che si abbracciano con un colpo d'occhio. In due colonne
+       sarebbero otto righe, cioè una lista da scorrere.
+       Flex e non grid perché l'ultima riga, se un giorno i settori non
+       fossero un multiplo di quattro, resta centrata invece di lasciare
+       buchi allineati a sinistra. */
     .sectors-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 16px;
-      max-width: 860px;
+      max-width: 1080px;
       margin: 0 auto;
     }
-    /* Restano DUE colonne anche sul telefono: sedici riquadri incolonnati uno
-       sotto l'altro sono uno scorrimento infinito, e queste card contengono
-       solo un'icona e due parole — ci stanno benissimo in mezza larghezza. */
-    @media (max-width: 480px) {
-      .sectors-grid { gap: 10px; }
-      .sector {
-      /* Vedi la nota su .problem-item: senza `min-width: 0` la cella di
-         griglia resta larga quanto la parola piu' lunga ("Climatizzazione")
-         e la colonna sfonda. */
-      min-width: 0; padding: 16px 10px; }
-      .sector h4 { font-size: 0.82rem; }
-    }
     .sector {
+      /* 4 per riga: tre gap da 16px distribuiti sulle quattro card = 12px
+         ciascuna. `min-width: 0` è obbligatorio, non difensivo: senza, la
+         card resta larga quanto la parola più lunga ("Climatizzazione") e la
+         riga sfonda invece di andare a capo. */
+      flex: 1 1 calc(25% - 12px);
+      min-width: 0;
       padding: 28px 20px;
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -607,6 +605,19 @@
     }
     .sector-icon svg { width: 26px; height: 26px; color: var(--accent-lime); }
     .sector h4 { color: var(--text-0); font-size: 0.95rem; overflow-wrap: anywhere; }
+
+    /* DUE colonne sotto i 768px — e solo lì. Sedici riquadri incolonnati uno
+       sotto l'altro sono uno scorrimento infinito, e queste card contengono
+       un'icona e due parole: in mezza larghezza ci stanno comode.
+       Questo blocco sta DOPO le regole base, e non prima come stava finora:
+       una media query non aggiunge specificità, quindi le righe successive
+       con lo stesso selettore la sovrascrivevano e le misure per il telefono
+       non entravano mai in vigore. */
+    @media (max-width: 768px) {
+      .sectors-grid { gap: 10px; }
+      .sector { flex: 1 1 calc(50% - 5px); padding: 16px 10px; }
+      .sector h4 { font-size: 0.82rem; }
+    }
 
     /* ============================
        PROBLEMI
@@ -2174,25 +2185,24 @@
     .ai-mode-chip.chip-single { --chip-accent: #a855f7; --chip-accent-2: #ec4899; --chip-shadow: rgba(168,85,247,0.35); }
 
     /* Chip criteri mini */
-    /* Due colonne invece di una fila che va a capo da sola: sette criteri
-       disposti a caso su tre righe irregolari si leggono come un mucchio,
-       in due colonne come un elenco. */
+    /* Fila che va a capo da sola, centrata: sono etichette di lunghezza molto
+       diversa ("Seniority" contro "Attività ferme da troppo"), e una griglia a
+       colonne fisse le stirava tutte alla larghezza della più lunga —
+       trasformando delle pastiglie in caselle. In flex ognuna è larga quanto
+       il suo testo, e le righe restano centrate. */
     .ai-criteria-chips {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 8px;
       max-width: 720px;
       margin: 0 auto;
     }
-    /* Anche qui due colonne fino in fondo: sono otto etichette corte, e in
-       colonna unica diventavano una lista lunga quanto lo schermo. */
-    @media (max-width: 560px) {
-      .ai-criteria-chips { gap: 6px; }
-      .ai-chip { padding: 7px 10px; font-size: 0.78rem; }
-    }
     .ai-chip {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
+      text-align: center;
       gap: 8px;
       padding: 8px 14px;
       background: var(--bg-card);
@@ -2220,6 +2230,22 @@
     .ai-chip.ch-absence  { --chip-color: #a855f7; }
     .ai-chip.ch-team     { --chip-color: #3b82f6; }
     .ai-chip.ch-plus     { --chip-color: #94a3b8; }
+
+    /* Due colonne SOLO sul telefono: otto etichette in fila che va a capo, su
+       uno schermo stretto, producono righe da una e da tre con dei vuoti in
+       mezzo. La griglia le incolonna e rende il blocco leggibile.
+       Anche qui il blocco sta dopo le regole base e non prima: dov'era, le
+       righe successive con lo stesso selettore lo annullavano. */
+    @media (max-width: 560px) {
+      .ai-criteria-chips {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+      }
+      /* `min-width: 0` perché "Ferie, malattie, permessi" è più larga di
+         mezzo schermo: senza, la colonna si allarga e la griglia sfonda. */
+      .ai-chip { min-width: 0; padding: 7px 10px; font-size: 0.78rem; }
+    }
 
     .ai-criteria-title {
       text-align: center;

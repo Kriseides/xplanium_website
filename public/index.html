@@ -2595,6 +2595,21 @@
     .form-group select[aria-invalid="true"]:focus {
       box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.18);
     }
+    /* Voci della tendina: colori OPACHI, obbligatori.
+       Il pannello a discesa di un <select> lo disegna il browser, e sul suo
+       sfondo eredita quello del campo. Il campo qui e' semitrasparente
+       (`rgba(0,0,0,.3)`, e in errore `rgba(236,72,153,.05)`): il browser lo
+       compone sul bianco, quindi in stato normale usciva un grigio leggibile
+       e in stato di errore un rosa quasi bianco su cui il testo spariva.
+       Fissando qui una coppia opaca, il pannello e' leggibile in OGNI stato e
+       non dipende piu' da come il browser compone la trasparenza. */
+    .form-group select option {
+      background-color: #12171d;
+      color: #e8ecf1;
+    }
+    .form-group select option:disabled {
+      color: #7d8794;
+    }
     .field-error {
       display: none;
       margin-top: 6px;

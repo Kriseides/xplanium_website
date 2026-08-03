@@ -183,6 +183,12 @@
       --container: 1240px;
     }
 
+    /* Rete di sicurezza: nessuna immagine puo' essere piu' larga del suo
+       contenitore. Bastava un `<img>` senza regole per allargare la pagina,
+       e con `overflow-x: hidden` sul body il risultato non era una barra di
+       scorrimento ma testo tagliato via, invisibile e irraggiungibile. */
+    img, svg, video { max-width: 100%; }
+
     body {
       font-family: var(--font-body);
       background: var(--bg-0);
@@ -425,6 +431,19 @@
        diventa un trattino illeggibile, e non aggiunge nulla — l'etichetta
        "Richiedi una demo" dice già dove porta. Resta nei bottoni grandi. */
     .nav-cta .btn svg { display: none; }
+    /* Sotto i 400px il bottone e il logo non ci stanno insieme: si stringe il
+       bottone invece di far uscire l'intestazione dallo schermo. */
+    @media (max-width: 400px) {
+      .nav-cta .btn { padding: 9px 12px; font-size: 0.8rem; }
+      .nav-cta { gap: 8px; }
+    }
+    /* Schermi molto stretti (320px, iPhone SE): i bottoni dell'hero hanno una
+       larghezza minima maggiore dello spazio disponibile. Vanno a piena
+       larghezza e il testo puo' andare a capo. */
+    @media (max-width: 360px) {
+      .hero-cta .btn, .hero-left .btn, .perso-cta .btn { width: 100%; justify-content: center; white-space: normal; padding-inline: 16px; }
+      .nav-cta .btn { padding: 8px 10px; font-size: 0.75rem; }
+    }
 
     .menu-toggle { display: none; width: 40px; height: 40px; }
     .menu-toggle span {
@@ -557,7 +576,11 @@
        solo un'icona e due parole — ci stanno benissimo in mezza larghezza. */
     @media (max-width: 480px) {
       .sectors-grid { gap: 10px; }
-      .sector { padding: 16px 10px; }
+      .sector {
+      /* Vedi la nota su .problem-item: senza `min-width: 0` la cella di
+         griglia resta larga quanto la parola piu' lunga ("Climatizzazione")
+         e la colonna sfonda. */
+      min-width: 0; padding: 16px 10px; }
       .sector h4 { font-size: 0.82rem; }
     }
     .sector {
@@ -583,7 +606,7 @@
       border: 1px solid var(--border-strong);
     }
     .sector-icon svg { width: 26px; height: 26px; color: var(--accent-lime); }
-    .sector h4 { color: var(--text-0); font-size: 0.95rem; }
+    .sector h4 { color: var(--text-0); font-size: 0.95rem; overflow-wrap: anywhere; }
 
     /* ============================
        PROBLEMI
@@ -604,8 +627,13 @@
       box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.6);
     }
     .problems-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .problems-list { display: flex; flex-direction: column; gap: 16px; }
+    .problems-list { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+    /* `min-width: 0` qui e sul contenitore del testo: senza, la colonna della
+       griglia non scende sotto la larghezza minima del contenuto e la card
+       sfonda il bordo destro sui telefoni stretti. */
+    .problem-item > div { min-width: 0; }
     .problem-item {
+      min-width: 0;
       display: flex; gap: 16px; align-items: flex-start;
       padding: 20px;
       background: var(--bg-card);
@@ -644,11 +672,17 @@
     }
     .consequences {
       display: grid;
+      /* Era il vero colpevole dello sbordamento nella sezione "problemi":
+         due colonne che non collassavano mai imponevano al blocco padre una
+         larghezza minima di ~372px, e su un telefono da 390px quel blocco
+         usciva dallo schermo trascinandosi dietro le card accanto. */
       grid-template-columns: 1fr 1fr;
       gap: 12px;
       margin-top: 28px;
     }
     .consequence {
+      min-width: 0;
+      overflow-wrap: anywhere;
       padding: 14px;
       background: rgba(0, 0, 0, 0.3);
       border-radius: var(--radius-sm);
@@ -2454,6 +2488,7 @@
     .contact {
       background: linear-gradient(180deg, transparent, rgba(132, 204, 22, 0.05));
     }
+    .contact-wrap > * { min-width: 0; }
     .contact-wrap {
       display: grid;
       grid-template-columns: 1fr 1.2fr;

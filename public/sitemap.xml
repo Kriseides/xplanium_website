@@ -2,12 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://xplanium.it/</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://xplanium.it/#problemi</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://xplanium.it/#settori</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://xplanium.it/#crm</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://xplanium.it/#gestione-agenti</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -15,24 +27,24 @@
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://xplanium.it/#soluzione</loc>
+    <loc>https://xplanium.it/#gantt</loc>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://xplanium.it/#sul-campo</loc>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://xplanium.it/#firme</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://xplanium.it/#soluzione</loc>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://xplanium.it/#moduli</loc>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://xplanium.it/#personalizzazione</loc>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://xplanium.it/#vantaggi</loc>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://xplanium.it/#cloud</loc>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://xplanium.it/#faq</loc>
@@ -44,19 +56,19 @@
   </url>
   <url>
     <loc>https://xplanium.it/privacy.html</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://xplanium.it/cookie.html</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://xplanium.it/accessibilita.html</loc>
-    <lastmod>2026-05-27</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

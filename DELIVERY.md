@@ -142,9 +142,10 @@ Payload atteso (JSON):
   "email":   "string (email valid, required)",
   "phone":   "string (opt, max 40 char)",
   "sector":  "string (required, enum — vedi sotto)",
-  "modules": ["Vendite", "Marketing", "Social", "Cliente", "Statistiche"],
+  "modules": ["Vendite", "Marketing", "Cliente", "Statistiche"],
   "message": "string (10-4000 char, required)",
   "privacy": true,
+  "marketing": "boolean (opt) — consenso al marketing gruppo Kriseides",
   "website": "honeypot (deve essere vuoto — se valorizzato, scartare)"
 }
 ```
@@ -154,9 +155,9 @@ Payload atteso (JSON):
 `Videosorveglianza` · `Domotica e automatismi` · `Infissi e serramenti` ·
 `Edilizia e finiture` · `Piscine e SPA` · `Altro`
 
-**Valori enum `modules`** (max 5): `Vendite`, `Statistiche`, `Cliente`,
-`Marketing`, `Social`. Il modulo Core è sempre incluso di default e NON
-viene mai inviato dal form.
+**Valori enum `modules`** (max 4): `Vendite`, `Statistiche`, `Cliente`,
+`Marketing`. Il modulo Core è sempre incluso di default e NON viene mai
+inviato dal form.
 
 Response attesa:
 - `200 OK` + `{ "ok": true }` → notifica al cliente "Grazie, ti ricontattiamo"

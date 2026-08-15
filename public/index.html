@@ -360,11 +360,13 @@
     }
     .navbar-inner {
       display: flex; align-items: center; justify-content: space-between;
+      gap: 16px;
       max-width: var(--container); margin: 0 auto;
       padding: 16px 24px;
     }
     .logo {
       display: flex; align-items: center; gap: 10px;
+      min-width: 0;
       font-family: var(--font-display);
       font-weight: 700; font-size: 1.4rem;
       letter-spacing: -0.02em;
@@ -425,24 +427,28 @@
     }
     .nav-links a:hover::after { width: 100%; }
 
-    .nav-cta { display: flex; gap: 12px; align-items: center; }
-    .nav-cta .btn { padding: 10px 20px; font-size: 0.9rem; }
+    .nav-cta { display: flex; gap: 12px; align-items: center; flex-shrink: 0; }
+    .nav-cta .btn { padding: 10px 20px; font-size: 0.9rem; white-space: nowrap; }
     /* Niente freccia nel bottone dell'header: a questa dimensione ridotta
        diventa un trattino illeggibile, e non aggiunge nulla — l'etichetta
        "Richiedi una demo" dice già dove porta. Resta nei bottoni grandi. */
     .nav-cta .btn svg { display: none; }
-    /* Sotto i 400px il bottone e il logo non ci stanno insieme: si stringe il
-       bottone invece di far uscire l'intestazione dallo schermo. */
-    @media (max-width: 400px) {
-      .nav-cta .btn { padding: 9px 12px; font-size: 0.8rem; }
+    /* Sotto i 560px logo, bottone e hamburger non ci stanno alla dimensione
+       piena: si rimpicciolisce il logo e si stringono i padding, tenendo
+       l'etichetta completa del bottone. */
+    @media (max-width: 560px) {
       .nav-cta { gap: 8px; }
+      .nav-cta .btn { padding: 9px 14px; font-size: 0.82rem; }
+      .logo-img { height: 30px; }
+      .navbar-inner { padding: 12px 14px; gap: 10px; }
     }
     /* Schermi molto stretti (320px, iPhone SE): i bottoni dell'hero hanno una
        larghezza minima maggiore dello spazio disponibile. Vanno a piena
        larghezza e il testo puo' andare a capo. */
     @media (max-width: 360px) {
       .hero-cta .btn, .hero-text .btn, .perso-cta .btn { width: 100%; justify-content: center; white-space: normal; padding-inline: 16px; }
-      .nav-cta .btn { padding: 8px 10px; font-size: 0.75rem; }
+      .nav-cta .btn { padding: 8px 12px; font-size: 0.78rem; }
+      .logo-img { height: 28px; }
     }
 
     .menu-toggle { display: none; width: 40px; height: 40px; }
@@ -927,11 +933,13 @@
     .workflow-nav { display: none; }
 
     @media (max-width: 900px) {
-      /* Mobile: nav a pulsanti 01-04 + carousel single-step */
+      /* Mobile: nav a pulsanti 01-04 + carousel single-step.
+         nowrap + flex:1 così i quattro stanno sempre su una riga sola,
+         restringendosi invece di andare a capo. */
       .workflow-nav {
         display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
+        flex-wrap: nowrap;
+        gap: 6px;
         justify-content: center;
         padding: 0 0 24px;
       }
@@ -940,8 +948,9 @@
         flex-direction: column;
         align-items: center;
         gap: 2px;
-        min-width: 68px;
-        padding: 10px 14px;
+        flex: 1 1 0;
+        min-width: 0;
+        padding: 10px 6px;
         background: var(--bg-card);
         border: 1px solid var(--border);
         border-radius: 14px;
@@ -1569,6 +1578,27 @@
         justify-content: center;
         padding: 4px 0 16px;
         margin-bottom: 8px;
+      }
+      /* Pallini sotto ai carousel (moduli e workflow) */
+      .carousel-dots {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        margin-top: 4px;
+      }
+      .carousel-dot {
+        width: 8px; height: 8px;
+        border-radius: 50%;
+        background: var(--border-strong);
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        transition: all 0.25s;
+      }
+      .carousel-dot.active {
+        width: 24px;
+        border-radius: 999px;
+        background: var(--dot-accent, var(--accent-lime));
       }
       .modules-nav-chip {
         display: inline-flex;
@@ -3679,6 +3709,9 @@
       .sector-extra { display: block; }
       .sectors-toggle-wrap { display: none; }
 
+      /* I pallini servono solo ai carousel mobile */
+      .carousel-dots { display: none; }
+
       /* ── TESTIMONIALS: 3 card affiancate invece di 1 ── */
       .testimonials-carousel { max-width: 1180px; }
       .testimonials-track {
@@ -4097,7 +4130,7 @@
           </div>
           <div class="esign-content reveal">
             <div class="eyebrow">FIRME DIGITALI</div>
-            <h2>Carta zero. <span class="gradient-text">Firma direttamente sul tablet.</span></h2>
+            <h2>Carta zero. <span class="gradient-text">Firma direttamente sul tablet</span></h2>
             <p>Niente più stampa, scansione, attesa. XPlanium digitalizza le due firme che ti servono davvero: <strong>i verbali di intervento sul campo</strong> e <strong>le offerte commerciali</strong> inviate via email.</p>
             <div class="esign-features collapse-hidden">
               <div class="esign-feature">
@@ -4189,6 +4222,7 @@
             <p>I dati raccolti diventano progetto e offerta commerciale. Il cliente riceve tutto via email e firma online.</p>
           </div>
         </div>
+        <div class="carousel-dots" id="workflowDots" aria-hidden="true"></div>
 
         <!-- Showcase: tecnici in azione -->
       <!-- workflow-showcase: spostato nel parking div sotto il footer -->
@@ -4202,7 +4236,9 @@
       <div class="container">
         <div class="section-header reveal">
           <div class="eyebrow">UN ECOSISTEMA INTEGRATO</div>
-          <h2>Una <span class="gradient-text">sola piattaforma</span>, dove vivono tutti i moduli</h2>
+          <!-- La virgola sta DENTRO lo span: fuori diventava un nodo di testo
+               separato e il browser la mandava a capo da sola. -->
+          <h2>Una <span class="gradient-text">sola piattaforma,</span> dove vivono tutti i moduli</h2>
           <p>XPlanium non è una collezione di tool separati: è un <strong>ecosistema unico</strong> dove ogni modulo parla con gli altri, condivide la stessa base dati e lavora come un'estensione naturale del precedente. Attivi solo i moduli che ti servono — gli altri li aggiungi quando vuoi, senza migrazioni né cambi di strumento.</p>
         </div>
         <!-- Nav a chip (icona + nome): visibile solo su mobile, controlla il carousel -->
@@ -4352,6 +4388,7 @@
             </ul>
           </div>
         </div>
+        <div class="carousel-dots" id="modulesDots" aria-hidden="true"></div>
       </div>
     </section>
 
@@ -5300,7 +5337,7 @@
           </div>
           <div class="emo-content">
             <span class="emo-eyebrow">L'IMPRONTA DEL TUO MESTIERE</span>
-            <h2>La tecnologia non sostituisce <em>il sapere</em>. Lo amplifica.</h2>
+            <h2>La tecnologia non sostituisce <em>il sapere</em>. Lo amplifica</h2>
             <p class="lead">XPlanium non pretende di insegnare a un tecnico come si fa il suo lavoro. Si occupa di tutto il resto, perché lui possa farlo meglio.</p>
             <p>Ogni schermata, ogni notifica, ogni checklist è pensata partendo dal modo in cui lavora davvero un'azienda di installatori italiana. Niente fronzoli da software generalista, niente passaggi inutili: solo quello che serve, quando serve.</p>
           </div>
@@ -5713,22 +5750,40 @@
         });
       });
 
+      // Pallini indicatori sotto al carousel
+      const dotsWrap = document.getElementById('workflowDots');
+      const items = Array.from(steps.querySelectorAll('.workflow-step'));
+      let dots = [];
+      if (dotsWrap) {
+        items.forEach((_, i) => {
+          const d = document.createElement('button');
+          d.type = 'button';
+          d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+          d.setAttribute('aria-label', `Vai allo step ${i + 1}`);
+          d.addEventListener('click', () => {
+            steps.scrollTo({ left: items[i].offsetLeft - steps.offsetLeft, behavior: 'smooth' });
+          });
+          dotsWrap.appendChild(d);
+        });
+        dots = Array.from(dotsWrap.children);
+      }
+
       let scrollTimer;
       steps.addEventListener('scroll', () => {
         if (!isMobile()) return;
         clearTimeout(scrollTimer);
         scrollTimer = setTimeout(() => {
           const scrollLeft = steps.scrollLeft;
-          const items = Array.from(steps.querySelectorAll('.workflow-step'));
           const closest = items.reduce((best, s, i) => {
             const dist = Math.abs(s.offsetLeft - steps.offsetLeft - scrollLeft);
             return dist < best.dist ? { i, s, dist } : best;
           }, { i: 0, s: items[0], dist: Infinity });
-          buttons.forEach((b, i) => {
+          buttons.forEach(b => {
             const active = b.dataset.target === closest.s.id;
             b.classList.toggle('active', active);
             b.setAttribute('aria-selected', active ? 'true' : 'false');
           });
+          dots.forEach((d, i) => d.classList.toggle('active', i === closest.i));
         }, 100);
       });
     })();
@@ -5755,23 +5810,44 @@
         });
       });
 
-      // Scroll manuale sul carousel → aggiorna il chip attivo
+      // Pallini indicatori sotto al carousel
+      const dotsWrap = document.getElementById('modulesDots');
+      const modules = Array.from(grid.querySelectorAll('.module'));
+      let dots = [];
+      if (dotsWrap) {
+        modules.forEach((m, i) => {
+          const d = document.createElement('button');
+          d.type = 'button';
+          d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+          d.setAttribute('aria-label', `Vai al modulo ${i + 1}`);
+          // Il pallino attivo eredita il colore del modulo corrispondente
+          const chip = chips.find(c => c.dataset.target === m.id);
+          if (chip) d.style.setProperty('--dot-accent', chip.style.getPropertyValue('--chip-accent'));
+          d.addEventListener('click', () => {
+            grid.scrollTo({ left: m.offsetLeft - grid.offsetLeft, behavior: 'smooth' });
+          });
+          dotsWrap.appendChild(d);
+        });
+        dots = Array.from(dotsWrap.children);
+      }
+
+      // Scroll manuale sul carousel → aggiorna chip e pallino attivi
       let scrollTimer;
       grid.addEventListener('scroll', () => {
         if (!isMobile()) return;
         clearTimeout(scrollTimer);
         scrollTimer = setTimeout(() => {
           const scrollLeft = grid.scrollLeft;
-          const modules = Array.from(grid.querySelectorAll('.module'));
           const closest = modules.reduce((best, m, i) => {
             const dist = Math.abs(m.offsetLeft - grid.offsetLeft - scrollLeft);
             return dist < best.dist ? { i, m, dist } : best;
           }, { i: 0, m: modules[0], dist: Infinity });
-          chips.forEach((c, i) => {
+          chips.forEach(c => {
             const active = c.dataset.target === closest.m.id;
             c.classList.toggle('active', active);
             c.setAttribute('aria-selected', active ? 'true' : 'false');
           });
+          dots.forEach((d, i) => d.classList.toggle('active', i === closest.i));
         }, 100);
       });
     })();

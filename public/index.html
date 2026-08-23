@@ -8,7 +8,7 @@
   <!-- Primary Meta Tags -->
   <title>XPlanium | Piattaforma gestionale modulare per installatori e impiantisti</title>
   <meta name="title" content="XPlanium | Piattaforma gestionale modulare per installatori e impiantisti" />
-  <meta name="description" content="XPlanium è la piattaforma AI per gestire progetti, interventi e tecnici delle aziende di installazione. Include Pianificazione automatica AI degli interventi e app mobile nativa Android per i tecnici sul campo. Moduli opzionali: Vendite, Marketing, Cliente, Statistiche. Richiedi una dimostrazione." />
+  <meta name="description" content="XPlanium è la piattaforma AI per gestire progetti, pianificare le attività e team in azienda o sul campo. Include Pianificazione automatica AI delle attività e app mobile nativa Android per il team. Moduli opzionali: Vendite, Marketing, Cliente, Statistiche. Richiedi una dimostrazione." />
   <meta name="keywords" content="gestionale installatori, software impiantisti, gestionale impianti elettrici, gestionale fotovoltaico, software videosorveglianza, app tecnici, gestione vendite installatori, gestione interventi, pianificazione tecnici, preventivi installatori, piattaforma modulare, software personalizzato, Kriseides, XPlanium" />
   <meta name="author" content="Kriseides S.r.l." />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -51,7 +51,7 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "XPlanium",
-    "description": "Piattaforma digitale modulare e personalizzabile per la gestione di impianti, clienti, tecnici e processi commerciali per installatori e impiantisti.",
+    "description": "Piattaforma digitale modulare e personalizzabile per gestire progetti, pianificare attività e coordinare i team, in azienda o sul campo.",
     "url": "https://xplanium.it/",
     "applicationCategory": "BusinessApplication",
     "applicationSubCategory": "Field Service Management",
@@ -117,7 +117,7 @@
         "name": "Per quali settori è pensato XPlanium?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Impianti elettrici, fotovoltaici, idraulici, videosorveglianza, domotica, infissi e serramenti, edilizia e finiture, piscine e SPA, e in generale tutte le aziende di installazione e manutenzione tecnica."
+          "text": "Installatori e impiantisti, termoidraulica, manutenzione industriale, edilizia, servizi educativi, enti di formazione, assistenza alla persona e in generale qualsiasi organizzazione che deve decidere ogni settimana chi fa cosa, dove e quando."
         }
       },
       {
@@ -125,7 +125,7 @@
         "name": "Come funziona il pricing?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Paghi una tantum per i moduli che attivi e un canone mensile per i servizi Cloud (infrastruttura, backup, supporto, firme digitali FES su offerte e verbali). Contattaci per una dimostrazione personalizzata e un'offerta su misura."
+          "text": "Paghi un canone base e un canone per i moduli che deciderai di attivare, disattivabili in qualunque momento. Contattaci per una dimostrazione personalizzata e un'offerta su misura."
         }
       }
     ]
@@ -655,6 +655,31 @@
     }
     .sectors-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
+    /* Box di chiusura della sezione settori: recupera chi non si riconosce
+       in nessuna delle categorie elencate. */
+    .sectors-cta {
+      max-width: 720px;
+      margin: 32px auto 0;
+      padding: 20px 28px;
+      text-align: center;
+      background: rgba(132, 204, 22, 0.06);
+      border: 1px solid rgba(132, 204, 22, 0.25);
+      border-radius: var(--radius-lg);
+    }
+    .sectors-cta p {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--text-1);
+      line-height: 1.65;
+    }
+    .sectors-cta a {
+      color: var(--accent-lime);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .sectors-cta a:hover { color: #a3e635; }
+
     /* Toggle "mostra altro" universale + Settori (variante per grid) */
     .sector-extra { display: none; }
     .sectors-grid.expanded .sector-extra { display: block; animation: sectorFadeIn 0.4s ease-out; }
@@ -719,6 +744,95 @@
       .sectors-grid { gap: 10px; }
       .sector { flex: 1 1 calc(50% - 5px); padding: 16px 10px; }
       .sector h4 { font-size: 0.82rem; }
+    }
+
+    /* ============================
+       ASSISTENZA UMANA
+       Sezione alta nel journey: risponde al dubbio "e se poi mi pianto?"
+       prima ancora che il visitatore guardi le funzionalità.
+       ============================ */
+    .support {
+      position: relative;
+      background:
+        linear-gradient(180deg, var(--bg-0) 0, transparent 140px, transparent calc(100% - 140px), var(--bg-0) 100%),
+        radial-gradient(ellipse at 50% 40%, rgba(132, 204, 22, 0.07), transparent 60%);
+    }
+    .support-hero { text-align: center; max-width: 780px; margin: 0 auto 40px; }
+    .support-image {
+      max-width: 520px;
+      margin: 0 auto 44px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-card);
+      aspect-ratio: 4 / 3;
+      box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.7);
+    }
+    .support-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .support-hero h2 { margin-bottom: 18px; }
+    .support-hero .lead {
+      font-size: 1.25rem;
+      color: var(--accent-lime);
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    .support-hero p:not(.lead) {
+      font-size: 1rem;
+      color: var(--text-2);
+      line-height: 1.75;
+      margin: 0;
+    }
+    .support-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1050px;
+      margin: 0 auto;
+    }
+    @media (max-width: 900px) { .support-grid { grid-template-columns: 1fr; } }
+    .support-card {
+      padding: 28px 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      transition: all 0.3s;
+    }
+    .support-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-lime);
+      background: var(--bg-card-hover);
+    }
+    .support-card-icon {
+      width: 46px; height: 46px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent-lime), #22d3ee);
+      display: grid; place-items: center;
+      margin-bottom: 18px;
+    }
+    .support-card-icon svg { width: 22px; height: 22px; color: var(--bg-0); }
+    .support-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+      color: var(--text-0);
+    }
+    .support-card p {
+      font-size: 0.92rem;
+      color: var(--text-2);
+      line-height: 1.65;
+      margin: 0;
+    }
+    .support-note {
+      max-width: 680px;
+      margin: 34px auto 0;
+      padding: 18px 26px;
+      text-align: center;
+      background: rgba(132, 204, 22, 0.07);
+      border: 1px solid rgba(132, 204, 22, 0.28);
+      border-radius: var(--radius-lg);
+      font-size: 1rem;
+      color: var(--text-1);
+      line-height: 1.6;
     }
 
     /* ============================
@@ -3532,13 +3646,16 @@
         margin: 0;
       }
 
-      /* ── EMO (Gestione Agenti, Sul Campo): due colonne affiancate ── */
+      /* ── EMO (Gestione Agenti, Sul Campo): due colonne affiancate.
+            Colonna foto in px come nelle altre sezioni: garantisce che gap e
+            larghezza dell'immagine siano identici in tutta la pagina. ── */
       .emo-wrap {
         display: grid;
-        grid-template-columns: auto 1fr;
-        gap: 70px;
+        grid-template-columns: 520px 1fr;
+        gap: 55px;
         align-items: center;
       }
+      .emo-photo { width: 100%; }
       .emo-content {
         max-width: none;
         margin: 0;
@@ -3551,21 +3668,21 @@
          invertire l'affiancamento di queste due senza accorgersene. */
       /* Gestione Agenti: foto a DESTRA (ribaltata per spezzare la sequenza
          di sezioni con l'immagine a sinistra che la precedono e seguono) */
-      #gestione-agenti .emo-wrap { grid-template-columns: 1fr auto; }
+      #gestione-agenti .emo-wrap { grid-template-columns: 1fr 520px; }
       #gestione-agenti .emo-photo { order: 2; }
       #gestione-agenti .emo-content { order: 1; }
       /* Sul Campo: foto a DESTRA (ribaltata: la precede il Gantt che ha già
          lo screenshot a destra, ma tra i due c'è uno stacco di sezione netto
          e l'alternanza serve a non incolonnare tre testi di fila a sinistra) */
-      #sul-campo .emo-wrap { grid-template-columns: 1fr auto; }
+      #sul-campo .emo-wrap { grid-template-columns: 1fr 520px; }
       #sul-campo .emo-photo { order: 2; }
       #sul-campo .emo-content { order: 1; }
 
       /* ── FIRME: foto a sinistra, testo+feature a destra ── */
       .esign-wrap {
         display: grid;
-        grid-template-columns: auto 1fr;
-        gap: 60px;
+        grid-template-columns: 520px 1fr;
+        gap: 55px;
         align-items: center;
         max-width: none;
       }
@@ -3573,6 +3690,7 @@
         max-width: none;
         margin: 0;
       }
+      .esign-photo { width: 100%; }
       .esign-content {
         max-width: none;
         margin: 0;
@@ -3595,15 +3713,20 @@
          SOPRA il bordo della sezione, e in un affiancamento non ha più senso:
          va azzerato o l'immagine esce dalla riga. */
 
-      /* ── SETTORI: foto a sinistra, testo a destra, griglia sotto ── */
+      /* ── SETTORI: foto a sinistra, testo a destra, griglia sotto.
+            Colonna dell'immagine dichiarata in px e non `auto`: con `auto` la
+            traccia si dimensionava sul contenuto includendo margini residui, e
+            il testo partiva molto più a destra del previsto. ── */
       #settori .container {
         display: grid;
-        grid-template-columns: auto 1fr;
-        column-gap: 60px;
+        grid-template-columns: 520px 1fr;
+        column-gap: 55px;
         align-items: center;
       }
       #settori .sectors-image {
         grid-column: 1; grid-row: 1;
+        width: 100%;
+        margin: 0;
       }
       #settori .section-header {
         grid-column: 2; grid-row: 1;
@@ -3612,7 +3735,9 @@
       }
       #settori .section-header .eyebrow { justify-content: flex-start; }
       #settori .sectors-grid,
-      #settori .sectors-toggle-wrap { grid-column: 1 / -1; margin-top: 60px; }
+      #settori .sectors-toggle-wrap,
+      #settori .sectors-cta { grid-column: 1 / -1; }
+      #settori .sectors-grid { margin-top: 55px; }
 
       /* ── KANBAN e GANTT: screenshot largo a fianco del testo ──
          Lo screenshot prende la colonna più larga: è una schermata fitta di
@@ -3658,6 +3783,31 @@
       #gantt .section-header,
       #gantt .app-show-wrap--stacked { grid-column: 1; }
 
+      /* ── ASSISTENZA: testo a sinistra, foto a destra, card sotto a piena
+            larghezza. Alterna con i Settori, che hanno la foto a sinistra. ── */
+      #assistenza .container {
+        display: grid;
+        grid-template-columns: 1fr 520px;
+        column-gap: 55px;
+        align-items: center;
+      }
+      #assistenza .support-hero {
+        grid-column: 1; grid-row: 1;
+        max-width: none; margin: 0;
+        text-align: left;
+      }
+      #assistenza .support-hero .eyebrow { justify-content: flex-start; }
+      #assistenza .support-image {
+        grid-column: 2; grid-row: 1;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+      }
+      #assistenza .support-grid {
+        grid-column: 1 / -1;
+        margin-top: 55px;
+      }
+
       /* ── PIANIFICAZIONE AI: screenshot a sinistra, titolo e intro a destra,
             modalità e criteri a piena larghezza sotto ── */
       #pianificazione .container {
@@ -3694,10 +3844,11 @@
       .problems-image--mobile { display: none; }
       .problems-wrap {
         display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 50px;
+        grid-template-columns: 1fr 520px;
+        gap: 55px;
         align-items: start;
       }
+      .problems-image--desktop { width: 100%; }
       .problems-list { max-width: none; margin: 0; order: 1; }
       .problems-image--desktop {
         order: 2;
@@ -3772,7 +3923,7 @@
           <!-- H1 separato dal resto del testo: su mobile deve apparire prima dell'immagine,
                poi immagine, poi testo+CTA. Con grid-template-areas riordiniamo senza duplicare. -->
           <h1 class="hero-h1 reveal">
-            Gestisci progetti, interventi e tecnici<br />
+            Gestisci e pianifica attività e team<br />
             <span class="gradient-text-hero">con l'AI</span>
           </h1>
           <div class="hero-visual reveal">
@@ -3786,7 +3937,7 @@
           </div>
           <div class="hero-text reveal">
             <p class="lead">
-              XPlanium è la <strong>piattaforma web</strong> per installatori e aziende di impianti. Coordini le squadre, pianifichi le <strong>manutenzioni programmate</strong>, segui ogni lavoro dall'offerta al verbale firmato. Sul campo, i tuoi tecnici lavorano con un'<strong>app mobile nativa</strong>. <strong>Le decisioni restano tue.</strong>
+              XPlanium è la <strong>piattaforma web</strong> per gestire progetti, attività e coordinare i team coinvolti. Insieme all'AI <strong>pianifichi ogni aspetto delle attività</strong>, segui ogni lavoro dall'offerta al verbale firmato, e il team può utilizzare l'<strong>app mobile nativa</strong> per aggiornare i propri compiti e consuntivare le ore. <strong>Tutte le decisioni sono sempre tue.</strong>
             </p>
             <div class="hero-cta">
               <a href="#contatti" class="btn btn-primary">
@@ -3875,80 +4026,96 @@
       <div class="container">
         <!-- Immagine in alto: pattern uniforme immagine → titolo → corpo -->
         <div class="sectors-image reveal">
-          <img src="assets/photos/solar-installer.webp" alt="Tecnico al lavoro sull'installazione di un impianto fotovoltaico su tetto" loading="lazy" />
+          <img src="assets/photos/sectors.webp" alt="Quattro contesti di lavoro gestiti con XPlanium: un tecnico su un impianto fotovoltaico, un'educatrice con dei bambini in aula, un formatore durante un corso aziendale e una responsabile che pianifica il lavoro dall'ufficio" loading="lazy" />
         </div>
         <div class="section-header reveal">
           <div class="eyebrow">PER CHI È PENSATO</div>
-          <h2>Un solo strumento per <span class="gradient-text">tutti i settori</span> tecnici</h2>
-          <p>Dagli impianti elettrici alle piscine, dalla videosorveglianza alla manutenzione industriale: XPlanium parla la lingua del tuo mestiere.</p>
+          <h2>Lo strumento giusto per <span class="gradient-text">le tue esigenze</span></h2>
+          <p>Dagli impianti elettrici ai servizi educativi, dalla manutenzione industriale alla formazione: XPlanium parla la lingua del tuo mestiere.</p>
         </div>
         <div class="sectors-grid reveal-stagger" id="sectorsGrid">
-
-          <!-- 8 settori visibili di default -->
-          <div class="sector sector-extra">
+          <!-- 4 settori visibili di default su mobile; gli altri dietro il
+               pulsante "Mostra tutti i settori". Su desktop sono tutti
+               sempre visibili (vedi @media min-width:901px). -->
+          <div class="sector">
             <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-2 8 10-12h-7l2-8z"/></svg></div>
             <h4>Impianti Elettrici</h4>
           </div>
-          <div class="sector sector-extra">
+          <div class="sector">
+            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="13" rx="2"/><path d="M8 21h8"/><path d="M12 16v5"/><path d="M6 8h7"/><path d="M6 11.5h4"/></svg></div>
+            <h4>Formazione e Docenza</h4>
+          </div>
+          <div class="sector">
+            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7.502 19.423c2.602 2.105 6.395 2.105 8.996 0c2.602 -2.105 3.262 -5.708 1.566 -8.546l-4.89 -7.26c-.42 -.625 -1.287 -.803 -1.936 -.397a1.376 1.376 0 0 0 -.41 .397l-4.893 7.26c-1.695 2.838 -1.035 6.441 1.567 8.546"/></svg></div>
+            <h4>Termoidraulica</h4>
+          </div>
+          <div class="sector">
             <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3V4M12 20V21M4 12H3M6.31 6.31L5.5 5.5M17.69 6.31L18.5 5.5M6.31 17.69L5.5 18.5M17.69 17.69L18.5 18.5M21 12H20M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0z"/></svg></div>
             <h4>Fotovoltaico</h4>
           </div>
           <div class="sector sector-extra">
-            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7.502 19.423c2.602 2.105 6.395 2.105 8.996 0c2.602 -2.105 3.262 -5.708 1.566 -8.546l-4.89 -7.26c-.42 -.625 -1.287 -.803 -1.936 -.397a1.376 1.376 0 0 0 -.41 .397l-4.893 7.26c-1.695 2.838 -1.035 6.441 1.567 8.546"/></svg></div>
-            <h4>Termoidraulica</h4>
+            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l10-4 10 4-10 4z"/><path d="M6 10v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/><path d="M22 7v6"/></svg></div>
+            <h4>Servizi Educativi e Sostegno</h4>
           </div>
           <div class="sector sector-extra">
-            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="1"/><line x1="12" y1="3" x2="12" y2="21"/><line x1="3" y1="12" x2="21" y2="12"/></svg></div>
-            <h4>Infissi e Serramenti</h4>
+            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+            <h4>Manutenzione Industriale</h4>
           </div>
-          <div class="sector">
-            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
-            <h4>Antifurto e Allarmi</h4>
-          </div>
-          <div class="sector">
-            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v4H9z"/><path d="M10 7v-2M14 7v-2"/><rect x="8" y="7" width="8" height="14" rx="2"/><path d="M10 12h4"/><circle cx="19" cy="4" r="0.6" fill="currentColor"/><circle cx="21" cy="6" r="0.6" fill="currentColor"/><circle cx="21" cy="9" r="0.6" fill="currentColor"/></svg></div>
-            <h4>Pulizia e Sanificazione</h4>
-          </div>
-          <div class="sector">
-            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 19a2 2 0 1 0 -4 0a2 2 0 0 0 4 0"/><path d="M18 5a2 2 0 1 0 -4 0a2 2 0 0 0 4 0"/><path d="M10 5a2 2 0 1 0 -4 0a2 2 0 0 0 4 0"/><path d="M6 12a2 2 0 1 0 -4 0a2 2 0 0 0 4 0"/><path d="M18 19a2 2 0 1 0 -4 0a2 2 0 0 0 4 0"/><path d="M14 12a2 2 0 1 0 -4 0a2 2 0 0 0 4 0"/><path d="M22 12a2 2 0 1 0 -4 0a2 2 0 0 0 4 0"/><path d="M6 12h4"/><path d="M14 12h4"/><path d="M15 7l-2 3"/><path d="M9 7l2 3"/><path d="M11 14l-2 3"/><path d="M13 14l2 3"/></svg></div>
-            <h4>Domotica</h4>
-          </div>
-          <div class="sector">
-            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="7" rx="1.5"/><rect x="2" y="14" width="20" height="7" rx="1.5"/><line x1="6" y1="6.5" x2="6.01" y2="6.5"/><line x1="6" y1="17.5" x2="6.01" y2="17.5"/><line x1="10" y1="6.5" x2="10.01" y2="6.5"/><line x1="10" y1="17.5" x2="10.01" y2="17.5"/></svg></div>
-            <h4>Fibra e Reti dati</h4>
-          </div>
-          <!-- 8 settori extra, nascosti fino al click su "Mostra altro" -->
           <div class="sector sector-extra">
             <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/><path d="M9 4l3 3 3-3M9 20l3-3 3 3M4 9l3 3-3 3M20 9l-3 3 3 3"/></svg></div>
             <h4>Climatizzazione HVAC</h4>
           </div>
           <div class="sector sector-extra">
-            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v14"/><path d="M2 8h4v10"/><path d="M6 8l8-4h4l2 4v6"/><path d="M6 14h13"/><circle cx="8" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg></div>
-            <h4>Carrelli Elevatori</h4>
-          </div>
-          <div class="sector sector-extra">
-            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 18c2 0 2-2 5-2s3 2 5 2 2-2 5-2 3 2 5 2M2 14c2 0 2-2 5-2s3 2 5 2 2-2 5-2 3 2 5 2M12 5a2 2 0 100 4 2 2 0 000-4z"/></svg></div>
-            <h4>Piscine e SPA</h4>
+            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 6.6a4.4 4.4 0 0 0-6.2 0L12 9.2 9.4 6.6a4.4 4.4 0 1 0-6.2 6.2L12 21.6l8.8-8.8a4.4 4.4 0 0 0 0-6.2z"/></svg></div>
+            <h4>Assistenza e Servizi alla Persona</h4>
           </div>
           <div class="sector sector-extra">
             <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"/><path d="M9 10a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"/><path d="M8 16l-2.091 3.486a1 1 0 0 0 .857 1.514h10.468a1 1 0 0 0 .857 -1.514l-2.091 -3.486"/></svg></div>
             <h4>Videosorveglianza</h4>
           </div>
           <div class="sector sector-extra">
-            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V6l4-2v17"/><path d="M21 21V6l-4-2v17"/><path d="M7 21h10"/><path d="M7 9h10"/><path d="M7 13h10"/><path d="M7 17h10"/></svg></div>
-            <h4>Cancelli Automatici</h4>
+            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
+            <h4>Antifurto e Allarmi</h4>
+          </div>
+          <div class="sector sector-extra">
+            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 19a2 2 0 1 0 -4 0a2 2 0 0 0 4 0"/><path d="M18 5a2 2 0 1 0 -4 0a2 2 0 0 0 4 0"/><path d="M10 5a2 2 0 1 0 -4 0a2 2 0 0 0 4 0"/><path d="M6 12a2 2 0 1 0 -4 0a2 2 0 0 0 4 0"/><path d="M18 19a2 2 0 1 0 -4 0a2 2 0 0 0 4 0"/><path d="M14 12a2 2 0 1 0 -4 0a2 2 0 0 0 4 0"/><path d="M22 12a2 2 0 1 0 -4 0a2 2 0 0 0 4 0"/><path d="M6 12h4"/><path d="M14 12h4"/><path d="M15 7l-2 3"/><path d="M9 7l2 3"/><path d="M11 14l-2 3"/><path d="M13 14l2 3"/></svg></div>
+            <h4>Domotica</h4>
+          </div>
+          <div class="sector sector-extra">
+            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="7" rx="1.5"/><rect x="2" y="14" width="20" height="7" rx="1.5"/><line x1="6" y1="6.5" x2="6.01" y2="6.5"/><line x1="6" y1="17.5" x2="6.01" y2="17.5"/><line x1="10" y1="6.5" x2="10.01" y2="6.5"/><line x1="10" y1="17.5" x2="10.01" y2="17.5"/></svg></div>
+            <h4>Fibra e Reti dati</h4>
+          </div>
+          <div class="sector sector-extra">
+            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 3h15a1.5 1.5 0 0 1 1.5 1.5v15a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 19.5v-15A1.5 1.5 0 0 1 4.5 3z"/><path d="M12 8v8"/><path d="M8 12h8"/></svg></div>
+            <h4>Sanità Territoriale</h4>
           </div>
           <div class="sector sector-extra">
             <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V10l7-7 7 7v11M9 21v-7h6v7"/></svg></div>
             <h4>Edilizia e Finiture</h4>
           </div>
           <div class="sector sector-extra">
+            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="1"/><line x1="12" y1="3" x2="12" y2="21"/><line x1="3" y1="12" x2="21" y2="12"/></svg></div>
+            <h4>Infissi e Serramenti</h4>
+          </div>
+          <div class="sector sector-extra">
+            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v4H9z"/><path d="M10 7v-2M14 7v-2"/><rect x="8" y="7" width="8" height="14" rx="2"/><path d="M10 12h4"/><circle cx="19" cy="4" r="0.6" fill="currentColor"/><circle cx="21" cy="6" r="0.6" fill="currentColor"/><circle cx="21" cy="9" r="0.6" fill="currentColor"/></svg></div>
+            <h4>Pulizia e Sanificazione</h4>
+          </div>
+          <div class="sector sector-extra">
+            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v14"/><path d="M2 8h4v10"/><path d="M6 8l8-4h4l2 4v6"/><path d="M6 14h13"/><circle cx="8" cy="19" r="2"/><circle cx="17" cy="19" r="2"/></svg></div>
+            <h4>Carrelli Elevatori</h4>
+          </div>
+          <div class="sector sector-extra">
+            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V6l4-2v17"/><path d="M21 21V6l-4-2v17"/><path d="M7 21h10"/><path d="M7 9h10"/><path d="M7 13h10"/><path d="M7 17h10"/></svg></div>
+            <h4>Cancelli Automatici</h4>
+          </div>
+          <div class="sector sector-extra">
             <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17h4V5H2v12h3"/><path d="M20 17h2v-3.34a4 4 0 0 0-1.17-2.83L19 9h-5"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></div>
             <h4>Noleggio Veicoli e Macchinari</h4>
           </div>
           <div class="sector sector-extra">
-            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
-            <h4>Manutenzione Industriale</h4>
+            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 18c2 0 2-2 5-2s3 2 5 2 2-2 5-2 3 2 5 2M2 14c2 0 2-2 5-2s3 2 5 2 2-2 5-2 3 2 5 2M12 5a2 2 0 100 4 2 2 0 000-4z"/></svg></div>
+            <h4>Piscine e SPA</h4>
           </div>
         </div>
         <div class="sectors-toggle-wrap">
@@ -3957,6 +4124,49 @@
             <span class="toggle-less">Mostra meno</span>
             <svg class="toggle-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
+        </div>
+        <div class="sectors-cta reveal">
+          <p>I settori sono molteplici ed elencarli tutti &egrave; impossibile! Se vuoi scoprire se XPlanium fa al caso tuo <a href="#contatti">contattaci pure</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================
+         ASSISTENZA UMANA
+         ============================ -->
+    <section class="support" id="assistenza" aria-labelledby="supportHeading">
+      <div class="container">
+        <div class="support-hero reveal">
+          <div class="eyebrow">ASSISTENZA UMANA</div>
+          <h2 id="supportHeading">Dall'altra parte c'&egrave; <span class="gradient-text">sempre una persona</span></h2>
+          <p class="lead">Se ci contatti vuol dire che hai bisogno di aiuto e noi siamo pronti a dartelo.</p>
+          <p>Quando scrivi o chiami, ti risponde qualcuno del <strong>team di XPlanium</strong> che ti conosce bene e che tu hai imparato a conoscere: non un call center, non un bot. La stessa persona che ti ha seguito nel setup &egrave; quella che ti risponde quando devi aggiungere un modulo o cambiare un flusso.</p>
+        </div>
+        <div class="support-image reveal">
+          <img src="assets/photos/support.webp" alt="Una persona del team XPlanium che risponde a una richiesta di assistenza di un cliente" loading="lazy" />
+        </div>
+        <div class="support-grid reveal-stagger">
+          <div class="support-card">
+            <div class="support-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 11l-3 3-2-2"/></svg>
+            </div>
+            <h3>Ti risponde chi conosce il tuo sistema</h3>
+            <p>Niente primo livello che ti chiede di riavviare. Chi ti risponde ha davanti la tua configurazione e sa come lavori.</p>
+          </div>
+          <div class="support-card">
+            <div class="support-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h3>Sappiamo quanto il tuo tempo &egrave; importante</h3>
+            <p>Rispondiamo ai tuoi ticket di assistenza in poche ore, non in giorni, e se hai estrema urgenza puoi contattarci telefonicamente.</p>
+          </div>
+          <div class="support-card">
+            <div class="support-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <h3>Il setup lo fa una persona, non un wizard</h3>
+            <p>Configuriamo XPlanium sui tuoi processi reali parlando con te. Nessuna procedura guidata che ti lascia a met&agrave; strada.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -4020,7 +4230,7 @@
         </div>
         <div class="ai-killer-hero reveal">
           <div class="eyebrow" style="color: var(--accent-magenta);">PIANIFICAZIONE INTELLIGENTE</div>
-          <h2 id="aiPlanningHeading"><em>Pianificazione automatica</em><br />degli interventi con l'AI</h2>
+          <h2 id="aiPlanningHeading"><em>Pianificazione automatica</em><br />delle attività con l'AI</h2>
         </div>
 
         <p class="ai-intro reveal">Puoi usarla in <strong>due modi</strong>, a seconda di quanto lavoro vuoi delegare all'AI. Le sue proposte sono sempre un suggerimento: <strong>puoi accettarle, modificarle o rifiutarle</strong>.</p>
@@ -4035,7 +4245,7 @@
           <article class="ai-mode-desc mode-single">
             <span class="ai-mode-num" aria-hidden="true">02</span>
             <h3>Assegnazione del singolo intervento</h3>
-            <p>Quando arriva una nuova richiesta — un'urgenza, un sopralluogo, una manutenzione — chiedi all'AI a chi assegnarla. Valuta chi è libero, chi ha la competenza giusta, chi è più vicino, e ti propone il tecnico ideale con data e orario. <strong>La decisione finale è tua.</strong></p>
+            <p>Quando arriva una nuova richiesta — un'urgenza, un sopralluogo, un collaudo — chiedi all'AI a chi assegnarla. Valuta chi è libero, chi ha la competenza giusta, chi è più vicino, e ti propone il tecnico ideale con data e orario. <strong>La decisione finale è tua.</strong></p>
           </article>
         </div>
 
@@ -4109,8 +4319,8 @@
           </div>
           <div class="emo-content">
             <span class="emo-eyebrow">PER CHI LAVORA SUL CAMPO</span>
-            <h2 id="sulCampoHeading">Ogni intervento sotto controllo, <em>anche senza connessione</em></h2>
-            <p class="lead">I tuoi tecnici escono al mattino con un obiettivo: fare il lavoro e farlo bene. Il resto non deve rallentarli.</p>
+            <h2 id="sulCampoHeading">Ogni attività sotto controllo, <em>anche senza connessione</em></h2>
+            <p class="lead">I team ricevono la pianificazione in modo da avere chiari gli obiettivi della giornata.</p>
             <p>Sul telefono hanno un'<strong>app mobile nativa Android</strong> con calendario, schede cliente, checklist, raccolta foto e firma del verbale sul posto. Tutto <strong>funziona offline</strong> e si sincronizza con l'ufficio appena torna la rete — anche due ore dopo.</p>
           </div>
         </div>
@@ -4289,7 +4499,7 @@
               <li>Gestione progetti e attività</li>
               <li>Calendario e Gantt</li>
             </ul>
-            <h4 class="module-subtitle">App mobile Tecnici</h4>
+            <h4 class="module-subtitle">App mobile per il team</h4>
             <ul class="module-features">
               <li class="li-multi"><div>
                 <strong>Funziona anche offline</strong>
@@ -4493,7 +4703,7 @@
           <details class="faq-item">
             <summary>Cos'&egrave; il modulo Core e perch&eacute; &egrave; sempre incluso?</summary>
             <div class="faq-answer">
-              Il <strong>modulo Core</strong> &egrave; l'ossatura di XPlanium: unisce il <strong>backoffice web</strong> (clienti, progetti, pipeline, preventivi, contratti, calendario, gestione tecnici) e l'<strong>app mobile nativa per i tecnici</strong> sul campo (calendario interventi, foto, checklist, firma cliente, funzionamento offline). Tutti gli altri moduli opzionali (Vendite, Cliente, Statistiche, Marketing) leggono e scrivono sulla stessa base dati del Core: senza di esso non avrebbero contesto su cui operare. Per questo &egrave; incluso sempre di default.
+              Il <strong>modulo Core</strong> &egrave; l'ossatura di XPlanium: unisce il <strong>backoffice web</strong> (clienti, progetti, attivit&agrave;, calendario, Gantt, gestione operatori e tecnici, pianificazione interventi con AI) e l'<strong>app mobile nativa per i tecnici</strong> sul campo (calendario interventi, foto, checklist, ore lavorate, verbale firmato dal cliente, funzionamento offline). Tutti gli altri moduli opzionali (Vendite, Cliente, Statistiche, Marketing) leggono e scrivono sulla stessa base dati del Core: senza di esso non avrebbero contesto su cui operare. Per questo &egrave; incluso sempre di default.
             </div>
           </details>
           <details class="faq-item">
@@ -4511,7 +4721,7 @@
           <details class="faq-item faq-extra">
             <summary>In quanto tempo si fa una personalizzazione?</summary>
             <div class="faq-answer">
-              Per le <strong>richieste piccole</strong> (campi custom, modifiche stati, branding) tipicamente <strong>1-3 giorni lavorativi</strong> dall'approvazione. Per <strong>sviluppi medi</strong> (integrazione API, dashboard custom, modulo dedicato) <strong>2-6 settimane</strong>. Per <strong>progetti grandi</strong> (es. una funzionalit&agrave; completamente nuova) concordiamo milestone con consegne intermedie ogni 2-3 settimane. Lavoriamo a sprint chiari: tu sai sempre a che punto siamo, vedi anteprime, dai feedback prima della consegna finale.
+              Per le <strong>richieste piccole</strong> (campi custom, modifiche stati, branding) tipicamente <strong>1-3 giorni lavorativi</strong> dall'approvazione. Per <strong>sviluppi medi</strong> (integrazione API, dashboard custom, modulo dedicato) <strong>2-3 settimane</strong>. Per <strong>progetti grandi</strong> (es. una funzionalit&agrave; completamente nuova) concordiamo milestone con consegne intermedie, tipicamente su un arco di <strong>2-6 settimane</strong>. Lavoriamo a sprint chiari: tu sai sempre a che punto siamo, vedi anteprime, dai feedback prima della consegna finale.
             </div>
           </details>
           <details class="faq-item faq-extra">
@@ -4523,34 +4733,34 @@
           <details class="faq-item faq-extra">
             <summary>Per quali settori &egrave; pensato XPlanium?</summary>
             <div class="faq-answer">
-              Per chi <strong>installa, monta, manutiene</strong>: impianti elettrici e industriali, fotovoltaico, idraulica, videosorveglianza, domotica, infissi e serramenti, edilizia e finiture, piscine e SPA. In generale qualsiasi azienda tecnica che lavora su progetti, sopralluoghi e interventi presso il cliente.
+              Per chi deve <strong>pianificare e gestire il lavoro dei team</strong> internamente e fuori dalla sede: installatori e impiantisti, termoidraulica, servizi educativi, enti di formazione e molto altro. In generale qualsiasi organizzazione che deve decidere ogni settimana <strong>chi fa cosa, dove e quando</strong>.
             </div>
           </details>
           <details class="faq-item faq-extra">
             <summary>Come funziona il pricing?</summary>
             <div class="faq-answer">
-              Paghi <strong>una tantum</strong> per il modulo Amministrazione (la base) e per gli altri moduli che attivi, pi&ugrave; un <strong>canone mensile</strong> per i Servizi Cloud (infrastruttura, backup, supporto tecnico, firme digitali, conservazione a norma). Sono incluse un pacchetto di firme digitali, l'invio di 300 email al giorno e tokens mensili per l'utilizzo di AI. <strong>Ogni dimostrazione &egrave; personalizzata</strong> in base ai moduli scelti e alla dimensione della tua azienda &mdash; <a href="#contatti">richiedi il tuo</a> e ti rispondiamo entro 24h lavorative.
+              Paghi un <strong>canone base</strong> e un <strong>canone per i moduli</strong> che deciderai di attivare (disattivabili in qualunque momento).
             </div>
           </details>
           <details class="faq-item faq-extra">
             <summary>Come funzionano le firme digitali su offerte e verbali di intervento?</summary>
             <div class="faq-answer">
               XPlanium gestisce <strong>due tipi di firma digitale semplice (FES)</strong> in modo integrato:<br><br>
-              <strong>1. Verbali di intervento</strong> &mdash; al termine del lavoro il tecnico fa firmare il verbale direttamente sul tablet o smartphone, in cantiere. Il documento firmato viene inviato automaticamente al cliente e archiviato.<br><br>
-              <strong>2. Offerte commerciali</strong> &mdash; il cliente riceve via email l'offerta e la firma online da qualsiasi dispositivo, con un link sicuro. La piattaforma riceve la notifica dell'offerta accettata e la trattativa avanza automaticamente in pipeline.<br><br>
+              <strong>1. Verbali di intervento</strong> &mdash; al termine del lavoro il tecnico fa firmare il verbale direttamente sul tablet o smartphone, in cantiere, o in alternativa invia il verbale al cliente per essere firmato tramite OTP. Il documento firmato viene inviato automaticamente al cliente e archiviato.<br><br>
+              <strong>2. Offerte commerciali</strong> &mdash; il cliente firma direttamente sul tablet dell'agente oppure riceve via email l'offerta e la firma online da qualsiasi dispositivo, con un link sicuro. La piattaforma riceve la notifica dell'offerta accettata e la trattativa avanza automaticamente in pipeline.<br><br>
               XPlanium <strong>non gestisce contratti né firme elettroniche avanzate (FEA)</strong>: per la fase contrattuale continui a usare i tuoi strumenti abituali.
             </div>
           </details>
           <details class="faq-item faq-extra">
-            <summary>I tecnici possono usarla anche senza connessione?</summary>
+            <summary>I tecnici e gli agenti di commercio possono usare le loro app anche senza connessione?</summary>
             <div class="faq-answer">
-              S&igrave;. L'app mobile per i tecnici &egrave; <strong>offline-first</strong>: continuano a lavorare anche in cantieri senza copertura, compilano checklist, scattano foto, raccolgono firme. Appena tornano online tutto si sincronizza automaticamente.
+              S&igrave;. L'app mobile per i tecnici &egrave; <strong>offline-first</strong>: continuano a lavorare anche in cantieri senza copertura, compilano checklist, scattano foto, raccolgono firme. Anche l'app PWA degli agenti &egrave; offline-first permettendo di concludere la trattativa con il cliente e creare un'offerta da far firmare in presenza. Appena tornano online tutto si sincronizza automaticamente.
             </div>
           </details>
           <details class="faq-item faq-extra">
             <summary>I miei dati dove sono ospitati?</summary>
             <div class="faq-answer">
-              L'infrastruttura &egrave; cloud, con <strong>backup automatici giornalieri</strong> e procedure di disaster recovery. La conservazione di documenti e firme digitali &egrave; a norma di legge italiana.
+              L'infrastruttura &egrave; cloud, con <strong>backup automatici giornalieri</strong> e procedure di disaster recovery.
             </div>
           </details>
           <details class="faq-item faq-extra">
@@ -4746,6 +4956,7 @@
           <h5>Piattaforma</h5>
           <ul>
             <li><a href="#settori">Settori</a></li>
+            <li><a href="#assistenza">Assistenza umana</a></li>
             <li><a href="#crm">Vendite</a></li>
             <li><a href="#gestione-agenti">Gestione Agenti</a></li>
             <li><a href="#pianificazione">Pianificazione AI</a></li>

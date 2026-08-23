@@ -1,0 +1,63 @@
+# ===========================================================================
+#  Normalizzazione dei fine riga
+#
+#  Nel repository si scrive SEMPRE LF, e anche i file sul disco restano LF su
+#  ogni piattaforma. Senza questo file Git eredita core.autocrlf dalla config
+#  globale (su Windows vale "true") e ad ogni push stampa centinaia di
+#  "LF will be replaced by CRLF the next time Git touches it".
+#
+#  Dopo aver aggiunto questo file va eseguito UNA TANTUM, ad albero pulito:
+#      git add --renormalize .
+#      git commit -m "chore: normalizza i fine riga a LF"
+#      git rm --cached -r . -q && git reset --hard   # riallinea i file su disco
+# ===========================================================================
+* text=auto eol=lf
+
+# --- Devono restare CRLF: Windows non li esegue con LF ---------------------
+*.bat   text eol=crlf
+*.cmd   text eol=crlf
+*.ps1   text eol=crlf
+
+# --- Devono restare LF: eseguiti da shell o da Git anche su Windows --------
+*.sh        text eol=lf
+.husky/**   text eol=lf
+
+# --- Binari: nessuna conversione, nessun diff testuale ---------------------
+*.png     binary
+*.jpg     binary
+*.jpeg    binary
+*.gif     binary
+*.webp    binary
+*.bmp     binary
+*.ico     binary
+*.icns    binary
+*.pdf     binary
+*.zip     binary
+*.gz      binary
+*.tgz     binary
+*.7z      binary
+*.woff    binary
+*.woff2   binary
+*.ttf     binary
+*.otf     binary
+*.eot     binary
+*.mp3     binary
+*.mp4     binary
+*.mov     binary
+*.webm    binary
+*.wav     binary
+*.xls     binary
+*.xlsx    binary
+*.doc     binary
+*.docx    binary
+*.pptx    binary
+*.db      binary
+*.sqlite  binary
+*.sqlite3 binary
+*.p12     binary
+*.pfx     binary
+*.jks     binary
+*.keystore binary
+
+# --- Meno rumore nelle PR: file generati ----------------------------------
+package-lock.json   linguist-generated=true

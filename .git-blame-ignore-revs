@@ -1,0 +1,7 @@
+# Commit da ignorare in `git blame`: toccano solo la formattazione, non il
+# contenuto. Si attiva una volta per repo con:
+#
+#     git config blame.ignoreRevsFile .git-blame-ignore-revs
+#
+# Dopo il commit di normalizzazione dei fine riga, incolla qui sotto il suo
+# SHA completo (`git rev-parse HEAD`), una riga per commit.

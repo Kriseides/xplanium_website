@@ -2667,8 +2667,8 @@
     .planner-video video {
       width: 100%;
       height: auto;
-      /* Rapporto del crop B: 1380 x 620 px */
-      aspect-ratio: 1380 / 620;
+      /* Rapporto del crop B: 1376 x 608 px (multipli di 16, per i decoder VP9) */
+      aspect-ratio: 1376 / 608;
       display: block;
       border-radius: 14px;
       background: #0a0e27;
@@ -4201,7 +4201,8 @@
             poster="assets/videos/planner-poster.jpg"
             aria-label="Il planner di XPlanium che compone la settimana: propone le date ai clienti, raccoglie le risposte, fissa gli appuntamenti e assegna le persone."
           >
-            <source src="assets/videos/planner.webm" type="video/webm" />
+            <!-- Solo H.264: il WebM/VP9 dava PIPELINE_ERROR_DECODE su Chromium.
+                 Se in futuro si rigenera un WebM valido, va aggiunto PRIMA di questo. -->
             <source src="assets/videos/planner.mp4" type="video/mp4" />
           </video>
           <figcaption class="planner-video-cap">La settimana che si compone da sola, dalla proposta al cliente all&rsquo;assegnazione</figcaption>
@@ -6404,8 +6405,8 @@
       }
 
       vid.addEventListener('error', () => {
-        console.error('[planner] errore di caricamento video:', vid.error, '— src:', vid.currentSrc);
-      });
+        console.error('[planner] errore video:', vid.error, '— src:', vid.currentSrc);
+      }, true);
 
       // Nessuna pausa fuori viewport: il file è leggero e la pausa
       // automatica rischiava di fermare la riproduzione a sproposito.

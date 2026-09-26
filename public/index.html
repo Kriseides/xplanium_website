@@ -8,8 +8,8 @@
   <!-- Primary Meta Tags -->
   <title>XPlanium | Piattaforma gestionale modulare per installatori e impiantisti</title>
   <meta name="title" content="XPlanium | Piattaforma gestionale modulare per installatori e impiantisti" />
-  <meta name="description" content="XPlanium è la piattaforma AI per gestire progetti, pianificare le attività e team in azienda o sul campo. Include Pianificazione automatica AI delle attività e app mobile nativa Android per il team. Moduli opzionali: Vendite, Marketing, Cliente, Statistiche. Richiedi una dimostrazione." />
-  <meta name="keywords" content="gestionale installatori, software impiantisti, gestionale impianti elettrici, gestionale fotovoltaico, software videosorveglianza, app tecnici, gestione vendite installatori, gestione interventi, pianificazione tecnici, preventivi installatori, piattaforma modulare, software personalizzato, Kriseides, XPlanium" />
+  <meta name="description" content="XPlanium è la piattaforma AI con il planner che organizza la settimana al posto tuo: propone le date ai clienti, raccoglie le conferme e assegna le persone giuste a ogni compito. Gestione progetti, attività e team in azienda o sul campo, con app mobile nativa. Richiedi una dimostrazione." />
+  <meta name="keywords" content="planner automatico, pianificazione automatica lavoro, software gestione team, gestionale installatori, software impiantisti, gestione attività, pianificazione personale, app per team sul campo, piattaforma modulare, software personalizzato, Kriseides, XPlanium" />
   <meta name="author" content="Kriseides S.r.l." />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <meta name="language" content="Italian" />
@@ -51,7 +51,7 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "XPlanium",
-    "description": "Piattaforma digitale modulare e personalizzabile per gestire progetti, pianificare attività e coordinare i team, in azienda o sul campo.",
+    "description": "Piattaforma digitale con planner automatico che propone le date ai clienti, raccoglie le conferme e assegna le persone giuste a ogni compito. Gestione progetti, attività e team, in azienda o sul campo.",
     "url": "https://xplanium.it/",
     "applicationCategory": "BusinessApplication",
     "applicationSubCategory": "Field Service Management",
@@ -101,7 +101,7 @@
         "name": "Cosa significa che XPlanium è modulare?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Significa che parti dal modulo Core (backoffice web + app mobile per i tecnici, sempre incluso) e attivi solo i moduli opzionali che ti servono (Vendite, Marketing, Cliente, Statistiche), aggiungendone altri in futuro senza dover migrare i dati o cambiare strumento."
+          "text": "Significa che parti dal modulo Core (backoffice web + app mobile per chi opera sul campo, sempre incluso) e attivi solo i moduli opzionali che ti servono (Vendite, Marketing, Cliente, Statistiche), aggiungendone altri in futuro senza dover migrare i dati o cambiare strumento."
         }
       },
       {
@@ -2575,6 +2575,181 @@
       background: linear-gradient(135deg, #0a0e27, #11173a, #170b2e);
     }
 
+    /* ═══════════════════════════════════════════════════════════════
+       PLANNER — la catena automatica
+       Il cuore del prodotto: l'effetto "fantascientifico" non lo fanno
+       gli aggettivi, lo fa la sequenza dei passaggi messa in fila, che
+       mostra quante cose accadono senza che l'operatore intervenga.
+       ═══════════════════════════════════════════════════════════════ */
+    .chain-intro {
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-lime);
+      margin: 0 0 30px;
+    }
+    .chain-outro {
+      text-align: center;
+      font-size: 1.15rem;
+      color: var(--text-0);
+      font-weight: 600;
+      margin: 34px 0 0;
+    }
+    .planner-chain {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1080px;
+      margin: 0 auto;
+      counter-reset: chainstep;
+    }
+    @media (max-width: 900px) { .planner-chain { grid-template-columns: 1fr; gap: 14px; } }
+    .chain-step {
+      position: relative;
+      padding: 26px 24px 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      transition: all 0.3s;
+      overflow: hidden;
+    }
+    .chain-step::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--accent-lime), #22d3ee);
+      opacity: 0.5;
+      transition: opacity 0.3s;
+    }
+    .chain-step:hover { transform: translateY(-4px); border-color: var(--accent-lime); }
+    .chain-step:hover::before { opacity: 1; }
+    /* Il primo passo è l'unico manuale: si distingue dagli altri cinque */
+    .chain-step.is-manual { border-color: rgba(132, 204, 22, 0.45); background: rgba(132, 204, 22, 0.05); }
+    .chain-num {
+      font-family: var(--font-display);
+      font-size: 2.1rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      background: linear-gradient(135deg, var(--accent-lime), #22d3ee);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: block;
+      margin-bottom: 12px;
+    }
+    .chain-step h3 {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--text-0);
+      margin: 0 0 10px;
+    }
+    .chain-step p {
+      font-size: 0.93rem;
+      color: var(--text-2);
+      line-height: 1.62;
+      margin: 0;
+    }
+
+    /* Video del planner in loop */
+    .planner-video {
+      max-width: 1000px;
+      margin: 34px auto 48px;
+      padding: 0;
+    }
+    .planner-video video {
+      width: 100%;
+      height: auto;
+      /* Rapporto del crop B: 1380 x 620 px */
+      aspect-ratio: 1380 / 620;
+      display: block;
+      border-radius: 14px;
+      background: #0a0e27;
+      border: 1px solid rgba(132, 204, 22, 0.3);
+      box-shadow:
+        0 40px 100px -20px rgba(0, 0, 0, 0.8),
+        0 0 60px rgba(132, 204, 22, 0.18),
+        0 0 100px rgba(168, 85, 247, 0.12);
+    }
+    .planner-video-cap {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: var(--text-3);
+    }
+    @media (max-width: 640px) {
+      .planner-video { margin: 26px auto 38px; }
+      .planner-video-cap { font-size: 0.84rem; }
+    }
+
+    /* Come sceglie chi mandare — tre card */
+    .planner-match {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    @media (max-width: 900px) { .planner-match { grid-template-columns: 1fr; } }
+    .match-card {
+      padding: 28px 26px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      transition: all 0.3s;
+    }
+    .match-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--mc-accent, var(--accent-lime));
+      background: var(--bg-card-hover);
+    }
+    .match-card-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--mc-accent, var(--accent-lime)), var(--mc-accent-2, #22d3ee));
+      display: grid; place-items: center;
+      margin-bottom: 16px;
+    }
+    .match-card-icon svg { width: 21px; height: 21px; color: var(--bg-0); }
+    .match-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+      color: var(--text-0);
+      line-height: 1.3;
+    }
+    .match-card p { font-size: 0.93rem; color: var(--text-2); line-height: 1.65; margin: 0 0 10px; }
+    .match-card p:last-child { margin-bottom: 0; }
+    .match-card .match-inverse {
+      padding-top: 10px;
+      border-top: 1px dashed var(--border-strong);
+      color: var(--text-1);
+    }
+    .match-card .match-inverse strong { color: var(--mc-accent, var(--accent-lime)); }
+    .match-card.mc-team  { --mc-accent: #84cc16; --mc-accent-2: #22d3ee; }
+    .match-card.mc-client{ --mc-accent: #3b82f6; --mc-accent-2: #a855f7; }
+    .match-card.mc-rules { --mc-accent: #ec4899; --mc-accent-2: #a855f7; }
+
+    .planner-closing {
+      max-width: 780px;
+      margin: 56px auto 0;
+      text-align: center;
+    }
+    .planner-closing p {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--text-0);
+      line-height: 1.45;
+      margin: 0 0 26px;
+    }
+
     /* Modalità: intro + descrizioni testuali (nuovo, sostituisce chip-bottoni) */
     .ai-intro {
       max-width: 780px;
@@ -3809,37 +3984,14 @@
         margin-top: 55px;
       }
 
-      /* ── PIANIFICAZIONE AI: screenshot a sinistra, titolo e intro a destra,
-            modalità e criteri a piena larghezza sotto ── */
-      #pianificazione .container {
-        display: grid;
-        grid-template-columns: 1.15fr 0.85fr;
-        column-gap: 56px;
-        align-items: center;
-      }
-      #pianificazione .ai-screenshot {
-        grid-column: 1; grid-row: 1 / span 2;
-        max-width: none; margin: 0;
-      }
-      #pianificazione .ai-killer-hero {
-        grid-column: 2; grid-row: 1;
-        max-width: none; margin: 0 0 20px;
-        text-align: left;
-        align-self: end;
-      }
-      #pianificazione .ai-killer-hero .eyebrow { justify-content: flex-start; }
-      #pianificazione .ai-intro {
-        grid-column: 2; grid-row: 2;
-        max-width: none; margin: 0;
-        text-align: left;
-        align-self: start;
-      }
-      #pianificazione .ai-modes-desc,
-      #pianificazione .ai-criteria-title,
-      #pianificazione .ai-criteria-chips,
-      #pianificazione .collapse-toggle-wrap,
-      #pianificazione .ai-cta { grid-column: 1 / -1; }
-      #pianificazione .ai-modes-desc { margin-top: 60px; }
+      /* ── IL PLANNER: niente due colonne qui. È la sezione più importante
+            della pagina e si sviluppa in verticale a piena larghezza —
+            apertura, catena dei sei passaggi, video, matching, modalità.
+            L'affiancamento immagine/testo la comprimerebbe. ── */
+      #pianificazione .ai-killer-hero { max-width: 860px; margin: 0 auto 6px; }
+      #pianificazione .ai-intro { margin-bottom: 64px; }
+      #pianificazione .ai-criteria-title { margin-top: 64px; }
+      #pianificazione .ai-modes-desc { margin-top: 56px; }
 
       /* ── PROBLEMI: due colonne, lista a sinistra e foto a destra ── */
       .problems-image--mobile { display: none; }
@@ -3892,7 +4044,7 @@
       <nav class="nav-links" id="navLinks" aria-label="Navigazione principale">
         <a href="#settori">Settori</a>
         <a href="#crm">Vendite</a>
-        <a href="#pianificazione">Pianificazione</a>
+        <a href="#pianificazione">Planner</a>
         <a href="#sul-campo">Sul Campo</a>
         <a href="#moduli">Moduli</a>
         <a href="#faq">FAQ</a>
@@ -3924,8 +4076,8 @@
           <!-- H1 separato dal resto del testo: su mobile deve apparire prima dell'immagine,
                poi immagine, poi testo+CTA. Con grid-template-areas riordiniamo senza duplicare. -->
           <h1 class="hero-h1 reveal">
-            Gestisci e pianifica attività e team<br />
-            <span class="gradient-text-hero">con l'AI</span>
+            Il planner che organizza tutto<br />
+            <span class="gradient-text-hero">al posto tuo</span>
           </h1>
           <div class="hero-visual reveal">
             <div class="hero-browser">
@@ -3938,7 +4090,7 @@
           </div>
           <div class="hero-text reveal">
             <p class="lead">
-              XPlanium è la <strong>piattaforma web</strong> per gestire progetti, attività e coordinare i team coinvolti. Insieme all'AI <strong>pianifichi ogni aspetto delle attività</strong>, segui ogni lavoro dall'offerta al verbale firmato, e il team può utilizzare l'<strong>app mobile nativa</strong> per aggiornare i propri compiti e consuntivare le ore. <strong>Tutte le decisioni sono sempre tue.</strong>
+              Basta con decine di telefonate per fissare gli appuntamenti: <strong>è XPlanium a contattare i tuoi clienti</strong>, a proporre le date migliori per ogni compito e ad assegnare le persone più adatte a svolgerlo. Tu gestisci progetti e attività, il team aggiorna il lavoro dall'<strong>app mobile nativa</strong>. <strong>Tutte le decisioni sono sempre tue.</strong>
             </p>
             <div class="hero-cta">
               <a href="#contatti" class="btn btn-primary">
@@ -3996,7 +4148,7 @@
             <div class="problem-item collapse-hidden">
               <div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
               <div>
-                <h4>Poca comunicazione tra i tecnici</h4>
+                <h4>Poca comunicazione tra ufficio e campo</h4>
                 <p>Chi è in cantiere non sa cosa decide l'ufficio. L'ufficio non sa cosa succede in cantiere. E i clienti se ne accorgono.</p>
               </div>
             </div>
@@ -4016,6 +4168,126 @@
               </button>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================
+         IL PLANNER — il cuore del prodotto.
+         Sta in terza posizione, subito dopo i Problemi: è il pezzo che
+         distingue XPlanium da qualunque altro gestionale, e va letto
+         prima che il visitatore si stanchi di scorrere.
+         ============================ -->
+    <section class="ai-killer" id="pianificazione" aria-labelledby="aiPlanningHeading" data-collapse="true">
+      <div class="container">
+
+        <!-- ── Blocco 1: apertura ── -->
+        <div class="ai-killer-hero reveal">
+          <div class="eyebrow" style="color: var(--accent-magenta);">IL PLANNER</div>
+          <h2 id="aiPlanningHeading"><em>Premi un pulsante.</em><br />Il resto lo fa lui.</h2>
+        </div>
+        <p class="ai-intro reveal">Propone le date ai tuoi clienti, aspetta le risposte, fissa gli appuntamenti e assegna le persone giuste. Tu guardi il risultato e decidi se va bene.</p>
+
+        <!-- ── Blocco 2: il planner in azione (video in loop) ──
+             Loop muto, crop 1380x620. Il poster copre i casi in cui
+             l'autoplay è bloccato (iOS in risparmio energetico, risparmio dati). -->
+        <figure class="planner-video reveal">
+          <video
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="auto"
+            poster="assets/videos/planner-poster.jpg"
+            aria-label="Il planner di XPlanium che compone la settimana: propone le date ai clienti, raccoglie le risposte, fissa gli appuntamenti e assegna le persone."
+          >
+            <source src="assets/videos/planner.webm" type="video/webm" />
+            <source src="assets/videos/planner.mp4" type="video/mp4" />
+          </video>
+          <figcaption class="planner-video-cap">La settimana che si compone da sola, dalla proposta al cliente all&rsquo;assegnazione</figcaption>
+        </figure>
+
+        <!-- ── Blocco 3: la catena automatica ── -->
+        <p class="chain-intro reveal">Tu fai il primo passo</p>
+        <div class="planner-chain reveal-stagger">
+          <article class="chain-step is-manual">
+            <span class="chain-num" aria-hidden="true">01</span>
+            <h3>Avvii la settimana</h3>
+            <p>Apri il planner e chiedi di pianificare la settimana. Da qui in poi non devi pi&ugrave; fare niente.</p>
+          </article>
+          <article class="chain-step">
+            <span class="chain-num" aria-hidden="true">02</span>
+            <h3>Propone le date ai clienti</h3>
+            <p>Calcola le finestre possibili per ogni compito aperto e scrive a ogni cliente proponendo le date disponibili.</p>
+          </article>
+          <article class="chain-step">
+            <span class="chain-num" aria-hidden="true">03</span>
+            <h3>I clienti scelgono</h3>
+            <p>Ognuno risponde con la data che gli va meglio, direttamente dal link che ha ricevuto.</p>
+          </article>
+          <article class="chain-step">
+            <span class="chain-num" aria-hidden="true">04</span>
+            <h3>Fissa gli appuntamenti</h3>
+            <p>Man mano che arrivano le risposte conferma le date e le inserisce nella pianificazione.</p>
+          </article>
+          <article class="chain-step">
+            <span class="chain-num" aria-hidden="true">05</span>
+            <h3>Assegna le persone giuste</h3>
+            <p>Per ogni compito confermato sceglie chi mandare: competenze, seniority, zona, carico di lavoro.</p>
+          </article>
+          <article class="chain-step">
+            <span class="chain-num" aria-hidden="true">06</span>
+            <h3>Rimodula e ottimizza</h3>
+            <p>Se una conferma arriva tardi o salta un appuntamento, ricompone la settimana senza rompere il resto.</p>
+          </article>
+        </div>
+        <p class="chain-outro reveal">Il resto accade da solo.</p>
+
+        <!-- ── Blocco 4: come sceglie chi mandare ── -->
+        <p class="ai-criteria-title collapse-hidden">Come sceglie chi mandare</p>
+        <div class="planner-match reveal-stagger collapse-hidden">
+          <article class="match-card mc-team">
+            <div class="match-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3>Le persone giuste insieme</h3>
+            <p>Impara chi lavora bene in coppia: le squadre che funzionano restano squadre, senza che tu debba ricordartelo ogni luned&igrave;.</p>
+            <p class="match-inverse"><strong>E anche il contrario:</strong> chi &egrave; meglio non mettere insieme resta separato. Ci sono accoppiate che rallentano il lavoro, e il planner se le ricorda.</p>
+          </article>
+          <article class="match-card mc-client">
+            <div class="match-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M22 11l-2 2-1-1"/></svg>
+            </div>
+            <h3>La persona giusta per quel cliente</h3>
+            <p>Chi c'&egrave; gi&agrave; stato conosce il posto, la situazione, la persona da cercare. A parit&agrave; di condizioni, ci torna lui.</p>
+            <p class="match-inverse"><strong>E anche il contrario:</strong> se con un cliente qualcuno non ha funzionato, non ce lo rimanda. Nessuno deve spiegare perch&eacute;.</p>
+          </article>
+          <article class="match-card mc-rules">
+            <div class="match-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            </div>
+            <h3>Quello che sai tu, lo sa anche lui</h3>
+            <p>Competenze e abilitazioni, seniority, priorit&agrave;, scadenze, attivit&agrave; ferme da troppo tempo, ferie e malattie, trasferte e disponibilit&agrave;.</p>
+            <p class="match-inverse"><strong>Comprese le regole non scritte:</strong> quelle che oggi stanno solo nella tua testa gliele insegni una volta, e le rispetta da l&igrave; in poi.</p>
+          </article>
+        </div>
+
+        <!-- Blocco 5 (le due modalità A/B): spostato nel parking div sotto il footer -->
+
+        <div class="collapse-toggle-wrap">
+          <button type="button" class="collapse-toggle" data-collapse-btn aria-expanded="false">
+            <span class="toggle-more">Scopri come sceglie</span>
+            <span class="toggle-less">Mostra meno</span>
+            <svg class="toggle-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+        </div>
+
+        <!-- ── Blocco 6: chiusura + CTA ── -->
+        <div class="planner-closing reveal">
+          <a href="#contatti" class="btn btn-primary">
+            Vedi il planner in azione
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
         </div>
       </div>
     </section>
@@ -4133,46 +4405,6 @@
     </section>
 
     <!-- ============================
-         ASSISTENZA UMANA
-         ============================ -->
-    <section class="support" id="assistenza" aria-labelledby="supportHeading">
-      <div class="container">
-        <div class="support-hero reveal">
-          <div class="eyebrow">ASSISTENZA UMANA</div>
-          <h2 id="supportHeading">Dall'altra parte c'&egrave; <span class="gradient-text">sempre una persona</span></h2>
-          <p class="lead">Se ci contatti vuol dire che hai bisogno di aiuto e noi siamo pronti a dartelo.</p>
-          <p>Quando scrivi o chiami, ti risponde qualcuno del <strong>team di XPlanium</strong> che ti conosce bene e che tu hai imparato a conoscere: non un call center, non un bot. La stessa persona che ti ha seguito nel setup &egrave; quella che ti risponde quando devi aggiungere un modulo o cambiare un flusso.</p>
-        </div>
-        <div class="support-image reveal">
-          <img src="assets/photos/support.webp" alt="Una persona del team XPlanium che risponde a una richiesta di assistenza di un cliente" loading="lazy" />
-        </div>
-        <div class="support-grid reveal-stagger">
-          <div class="support-card">
-            <div class="support-card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 11l-3 3-2-2"/></svg>
-            </div>
-            <h3>Ti risponde chi conosce il tuo sistema</h3>
-            <p>Niente primo livello che ti chiede di riavviare. Chi ti risponde ha davanti la tua configurazione e sa come lavori.</p>
-          </div>
-          <div class="support-card">
-            <div class="support-card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            </div>
-            <h3>Sappiamo quanto il tuo tempo &egrave; importante</h3>
-            <p>Rispondiamo ai tuoi ticket di assistenza in poche ore, non in giorni, e se hai estrema urgenza puoi contattarci telefonicamente.</p>
-          </div>
-          <div class="support-card">
-            <div class="support-card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-            </div>
-            <h3>Il setup lo fa una persona, non un wizard</h3>
-            <p>Configuriamo XPlanium sui tuoi processi reali parlando con te. Nessuna procedura guidata che ti lascia a met&agrave; strada.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================
          PIPELINE KANBAN SHOWCASE
          ============================ -->
     <section class="app-show crm-bg" id="crm">
@@ -4221,67 +4453,6 @@
     </section>
 
     <!-- ============================
-         KILLER FEATURE — PIANIFICAZIONE AUTOMATICA
-         ============================ -->
-    <section class="ai-killer" id="pianificazione" aria-labelledby="aiPlanningHeading" data-collapse="true">
-      <div class="container">
-        <!-- Pattern uniforme: foto → headline → titolo → descrizione -->
-        <div class="ai-screenshot reveal">
-          <img src="assets/photos/screen_planning.webp" alt="Schermata della funzione di Pianificazione automatica di XPlanium: l'AI genera in un click la pianificazione settimanale di tutti i tecnici, considerando ruoli, seniority, priorità, scadenze, assenze e affiatamento tra colleghi." loading="lazy" />
-        </div>
-        <div class="ai-killer-hero reveal">
-          <div class="eyebrow" style="color: var(--accent-magenta);">PIANIFICAZIONE INTELLIGENTE</div>
-          <h2 id="aiPlanningHeading"><em>Pianificazione automatica</em><br />delle attività con l'AI</h2>
-        </div>
-
-        <p class="ai-intro reveal">Puoi usarla in <strong>due modi</strong>, a seconda di quanto lavoro vuoi delegare all'AI. Le sue proposte sono sempre un suggerimento: <strong>puoi accettarle, modificarle o rifiutarle</strong>.</p>
-
-        <!-- Due modalità descritte per esteso sotto lo screenshot -->
-        <div class="ai-modes-desc reveal-stagger collapse-hidden">
-          <article class="ai-mode-desc mode-weekly">
-            <span class="ai-mode-num" aria-hidden="true">01</span>
-            <h3>Pianificazione settimanale su tutti i tecnici</h3>
-            <p>All'inizio della settimana chiedi all'AI di combinare <strong>tutti gli interventi aperti</strong> con <strong>tutti i tecnici disponibili</strong>. In pochi secondi ricevi una proposta di calendario completa: chi fa cosa, quando, con quale compagno di squadra. Tu la rivedi, aggiusti quello che vuoi, confermi.</p>
-          </article>
-          <article class="ai-mode-desc mode-single">
-            <span class="ai-mode-num" aria-hidden="true">02</span>
-            <h3>Assegnazione del singolo intervento</h3>
-            <p>Quando arriva una nuova richiesta — un'urgenza, un sopralluogo, un collaudo — chiedi all'AI a chi assegnarla. Valuta chi è libero, chi ha la competenza giusta, chi è più vicino, e ti propone il tecnico ideale con data e orario. <strong>La decisione finale è tua.</strong></p>
-          </article>
-        </div>
-
-        <!-- Criteri come chip mini -->
-        <p class="ai-criteria-title collapse-hidden">Cosa considera l'AI</p>
-        <div class="ai-criteria-chips reveal collapse-hidden">
-          <span class="ai-chip ch-role">Ruoli e competenze</span>
-          <span class="ai-chip ch-seniority">Seniority</span>
-          <span class="ai-chip ch-priority">Priorità attività</span>
-          <span class="ai-chip ch-deadline">Attività in scadenza</span>
-          <span class="ai-chip ch-stalled">Attività ferme da troppo</span>
-          <span class="ai-chip ch-absence">Ferie, malattie, permessi</span>
-          <span class="ai-chip ch-team">Affiatamento tra colleghi</span>
-          <span class="ai-chip ch-trip">Trasferte e disponibilità</span>
-          <span class="ai-chip ch-plus">Le tue regole aziendali</span>
-        </div>
-
-        <div class="collapse-toggle-wrap">
-          <button type="button" class="collapse-toggle" data-collapse-btn aria-expanded="false">
-            <span class="toggle-more">Scopri come funziona</span>
-            <span class="toggle-less">Mostra meno</span>
-            <svg class="toggle-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-        </div>
-
-        <div class="ai-cta reveal">
-          <a href="#contatti" class="btn btn-primary">
-            Vedila in azione
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================
          GANTT SHOWCASE
          ============================ -->
     <section class="app-show gantt-bg" id="gantt">
@@ -4297,12 +4468,12 @@
         <div class="app-show-wrap app-show-wrap--stacked reveal">
           <div class="app-show-content">
             <p class="lead"><strong>Non un foglio Excel travestito da gestionale</strong>, ma una pianificazione visiva pensata per chi coordina squadre, cantieri e tempi stretti.</p>
-            <p>Il <strong>diagramma Gantt interattivo</strong> mostra ogni progetto, ogni intervento e ogni tecnico assegnato: quali sono occupati, dove ci sono buchi nel calendario, quali progetti rischiano di sforare. <strong>Trascini, ridimensioni e riassegni</strong> le barre con il mouse e il sistema notifica automaticamente il tecnico, riprogramma le dipendenze, aggiorna il cliente.</p>
+            <p>Il <strong>diagramma Gantt interattivo</strong> mostra ogni progetto, ogni compito e ogni persona assegnata: chi è occupato, dove restano finestre libere, quali progetti rischiano di sforare. <strong>Trascini, ridimensioni e riassegni</strong> le barre con il mouse e il sistema avvisa automaticamente chi è coinvolto, riprogramma le dipendenze, aggiorna il cliente.</p>
             <div class="app-show-tags">
               <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>Drag &amp; Drop</span>
               <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Dipendenze automatiche</span>
               <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Tempo reale</span>
-              <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>Carico tecnici</span>
+              <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>Carico di lavoro</span>
             </div>
           </div>
         </div>
@@ -4310,7 +4481,7 @@
     </section>
 
     <!-- ============================
-         SUL CAMPO — Operatività dei tecnici
+         SUL CAMPO — Operatività di chi lavora fuori sede
          ============================ -->
     <section class="emo emo-tech" id="sul-campo" aria-labelledby="sulCampoHeading">
       <div class="container">
@@ -4349,7 +4520,7 @@
                 <div class="esign-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 7.5L12 3 4 7.5l8 4.5 8-4.5z"/><path d="M4 7.5v9L12 21l8-4.5v-9"/><line x1="12" y1="12" x2="12" y2="21"/></svg></div>
                 <div>
                   <h4>Verbali di intervento firmati sul posto</h4>
-                  <p>Al termine del lavoro il tecnico fa firmare il verbale direttamente sul tablet o smartphone. Il cliente lo riceve subito via email e resta archiviato nel gestionale.</p>
+                  <p>Al termine del lavoro chi opera sul campo fa firmare il verbale direttamente sul tablet o smartphone. Il cliente lo riceve subito via email e resta archiviato nel gestionale.</p>
                 </div>
               </div>
               <div class="esign-feature">
@@ -4415,7 +4586,7 @@
             <div class="step-label">PIANIFICA</div>
             <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
             <h4>L'ufficio organizza</h4>
-            <p>L'amministrazione pianifica il sopralluogo in base alle disponibilità del team e invia i dati ai tecnici assegnati.</p>
+            <p>Il planner propone le date al cliente, fissa l'appuntamento in base alle disponibilità del team e invia i dati a chi è stato assegnato.</p>
           </div>
           <div class="workflow-step" id="wf-03">
             <div class="step-badge">03</div>
@@ -4423,7 +4594,7 @@
             <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M6 5a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-14" /><path d="M11 4h2" /><path d="M12 17v.01" />
             </svg></div>
-            <h4>I tecnici operano dal campo</h4>
+            <h4>Il team opera sul campo</h4>
             <p>Dall'app mobile vedono calendario, schede cliente, checklist. Caricano foto, note e firme. Anche offline.</p>
           </div>
           <div class="workflow-step" id="wf-04">
@@ -4436,7 +4607,7 @@
         </div>
         <div class="carousel-dots" id="workflowDots" aria-hidden="true"></div>
 
-        <!-- Showcase: tecnici in azione -->
+        <!-- Showcase: team in azione -->
       <!-- workflow-showcase: spostato nel parking div sotto il footer -->
       </div>
     </section>
@@ -4496,10 +4667,10 @@
             <h3>Tutto il flusso operativo</h3>
             <h4 class="module-subtitle">Backoffice web</h4>
             <ul class="module-features">
-              <li>Gestione operatori e tecnici</li>
-              <li>Pianificazione interventi con AI</li>
+              <li>Gestione operatori e team</li>
+              <li>Planner automatico dei compiti</li>
               <li>Gestione progetti e attività</li>
-              <li>Calendario e Gantt</li>
+              <li>Planner automatico e Gantt</li>
               <li>Clienti internazionali, trasferte e fusi orari</li>
             </ul>
             <h4 class="module-subtitle">App mobile per il team</h4>
@@ -4508,7 +4679,7 @@
                 <strong>Funziona anche offline</strong>
                 <span>I dati vengono sincronizzati appena torna online</span>
               </div></li>
-              <li>Calendario interventi e notifiche</li>
+              <li>Calendario dei compiti e notifiche</li>
               <li>Foto, checklist e ore lavorate</li>
               <li>Verbale di intervento firmato dal cliente</li>
               <li>Gestione assenze, ferie e malattie</li>
@@ -4553,7 +4724,7 @@
             <h3>Area cliente self-service</h3>
             <p>Riduci telefonate ed email. Il cliente vede lo stato del suo impianto e richiede assistenza da solo, e l'AI ti aiuta a generare le risposte più efficaci.</p>
             <ul class="module-features">
-              <li>Dettaglio impianto, richiesta nuovi interventi e storico</li>
+              <li>Dettaglio impianto, richiesta di nuovi lavori e storico</li>
               <li>Verbali di intervento ricevuti automaticamente</li>
               <li class="li-multi"><div>
                 <strong>Supporto con sistema di ticket</strong>
@@ -4606,6 +4777,49 @@
     </section>
 
     <!-- ============================
+         ASSISTENZA UMANA
+         Sta in fase di valutazione, non di scoperta: risponde al dubbio
+         "e se poi mi pianto?", che nasce dopo aver visto cosa fa il
+         prodotto, non prima.
+         ============================ -->
+    <section class="support" id="assistenza" aria-labelledby="supportHeading">
+      <div class="container">
+        <div class="support-hero reveal">
+          <div class="eyebrow">ASSISTENZA UMANA</div>
+          <h2 id="supportHeading">Dall'altra parte c'&egrave; <span class="gradient-text">sempre una persona</span></h2>
+          <p class="lead">Se ci contatti vuol dire che hai bisogno di aiuto e noi siamo pronti a dartelo.</p>
+          <p>Quando scrivi o chiami, ti risponde qualcuno del <strong>team di XPlanium</strong> che ti conosce bene e che tu hai imparato a conoscere: non un call center, non un bot. La stessa persona che ti ha seguito nel setup &egrave; quella che ti risponde quando devi aggiungere un modulo o cambiare un flusso.</p>
+        </div>
+        <div class="support-image reveal">
+          <img src="assets/photos/support.webp" alt="Una persona del team XPlanium che risponde a una richiesta di assistenza di un cliente" loading="lazy" />
+        </div>
+        <div class="support-grid reveal-stagger">
+          <div class="support-card">
+            <div class="support-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 11l-3 3-2-2"/></svg>
+            </div>
+            <h3>Ti risponde chi conosce il tuo sistema</h3>
+            <p>Niente primo livello che ti chiede di riavviare. Chi ti risponde ha davanti la tua configurazione e sa come lavori.</p>
+          </div>
+          <div class="support-card">
+            <div class="support-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h3>Sappiamo quanto il tuo tempo &egrave; importante</h3>
+            <p>Rispondiamo ai tuoi ticket di assistenza in poche ore, non in giorni, e se hai estrema urgenza puoi contattarci telefonicamente.</p>
+          </div>
+          <div class="support-card">
+            <div class="support-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <h3>Il setup lo fa una persona, non un wizard</h3>
+            <p>Configuriamo XPlanium sui tuoi processi reali parlando con te. Nessuna procedura guidata che ti lascia a met&agrave; strada.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================
          TESTIMONIAL
          ============================ -->
     <section class="testimonials" id="testimonial" aria-labelledby="testimonialHeading">
@@ -4630,7 +4844,7 @@
               <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,2 15,9 22,9.5 17,14.5 18.5,22 12,18 5.5,22 7,14.5 2,9.5 9,9"/></svg>
               <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,2 15,9 22,9.5 17,14.5 18.5,22 12,18 5.5,22 7,14.5 2,9.5 9,9"/></svg>
             </div>
-            <p class="testimonial-text">Prima impiegavo due ore al giorno a coordinare le squadre via WhatsApp. Adesso apro il calendario e in cinque minuti so cosa fanno tutti, dove sono e quanto manca a chiudere ogni cantiere.</p>
+            <p class="testimonial-text">Prima passavo il venerd&igrave; al telefono a fissare gli appuntamenti della settimana dopo. Adesso avvio il planner, i clienti rispondono da soli e il luned&igrave; mattina trovo la settimana gi&agrave; composta. Mi restano da sistemare due o tre cose, non quaranta.</p>
             <div class="testimonial-author">
               <div class="testimonial-avatar av-lime" aria-hidden="true">MR</div>
               <div>
@@ -4700,13 +4914,13 @@
           <details class="faq-item" open>
             <summary>Cosa significa che XPlanium &egrave; modulare?</summary>
             <div class="faq-answer">
-              Significa che <strong>non sei costretto ad acquistare tutto subito</strong>. Il modulo <strong>Core</strong> (backoffice web + app mobile per i tecnici) &egrave; la base sempre inclusa; gli altri (Vendite, Marketing, Cliente, Statistiche) li attivi quando ti servono, senza dover migrare dati o cambiare piattaforma. I moduli sono integrati nativamente: parlano tra loro, condividono la stessa base dati e si sbloccano semplicemente abilitandoli.
+              Significa che <strong>non sei costretto ad acquistare tutto subito</strong>. Il modulo <strong>Core</strong> (backoffice web + app mobile per chi opera sul campo) &egrave; la base sempre inclusa; gli altri (Vendite, Marketing, Cliente, Statistiche) li attivi quando ti servono, senza dover migrare dati o cambiare piattaforma. I moduli sono integrati nativamente: parlano tra loro, condividono la stessa base dati e si sbloccano semplicemente abilitandoli.
             </div>
           </details>
           <details class="faq-item">
             <summary>Cos'&egrave; il modulo Core e perch&eacute; &egrave; sempre incluso?</summary>
             <div class="faq-answer">
-              Il <strong>modulo Core</strong> &egrave; l'ossatura di XPlanium: unisce il <strong>backoffice web</strong> (clienti, progetti, attivit&agrave;, calendario, Gantt, gestione operatori e tecnici, pianificazione interventi con AI) e l'<strong>app mobile nativa per i tecnici</strong> sul campo (calendario interventi, foto, checklist, ore lavorate, verbale firmato dal cliente, funzionamento offline). Tutti gli altri moduli opzionali (Vendite, Cliente, Statistiche, Marketing) leggono e scrivono sulla stessa base dati del Core: senza di esso non avrebbero contesto su cui operare. Per questo &egrave; incluso sempre di default.
+              Il <strong>modulo Core</strong> &egrave; l'ossatura di XPlanium: unisce il <strong>backoffice web</strong> (clienti, progetti, attivit&agrave;, <strong>planner automatico</strong>, Gantt, gestione operatori e team) e l'<strong>app mobile nativa per chi opera sul campo</strong> (calendario dei compiti, foto, checklist, ore lavorate, verbale firmato dal cliente, funzionamento offline). Tutti gli altri moduli opzionali (Vendite, Cliente, Statistiche, Marketing) leggono e scrivono sulla stessa base dati del Core: senza di esso non avrebbero contesto su cui operare. Per questo &egrave; incluso sempre di default.
             </div>
           </details>
           <details class="faq-item">
@@ -4749,7 +4963,7 @@
             <summary>Come funzionano le firme digitali su offerte e verbali di intervento?</summary>
             <div class="faq-answer">
               XPlanium gestisce <strong>due tipi di firma digitale semplice (FES)</strong> in modo integrato:<br><br>
-              <strong>1. Verbali di intervento</strong> &mdash; al termine del lavoro il tecnico fa firmare il verbale direttamente sul tablet o smartphone, in cantiere, o in alternativa invia il verbale al cliente per essere firmato tramite OTP. Il documento firmato viene inviato automaticamente al cliente e archiviato.<br><br>
+              <strong>1. Verbali di intervento</strong> &mdash; al termine del lavoro chi opera sul campo fa firmare il verbale direttamente sul tablet o smartphone, oppure lo invia al cliente per la firma tramite OTP. Il documento firmato viene inviato automaticamente al cliente e archiviato.<br><br>
               <strong>2. Offerte commerciali</strong> &mdash; il cliente firma direttamente sul tablet dell'agente oppure riceve via email l'offerta e la firma online da qualsiasi dispositivo, con un link sicuro. La piattaforma riceve la notifica dell'offerta accettata e la trattativa avanza automaticamente in pipeline.<br><br>
               XPlanium <strong>non gestisce contratti né firme elettroniche avanzate (FEA)</strong>: per la fase contrattuale continui a usare i tuoi strumenti abituali.
             </div>
@@ -4759,14 +4973,14 @@
             <div class="faq-answer">
               S&igrave;, e sono gestiti nativamente, non con work-around.<br><br>
               <strong>Clienti internazionali</strong> &mdash; ogni cliente ha la propria sede e il proprio fuso orario. Le attivit&agrave; che si svolgono da lui vengono pianificate nell'orario del posto, quello che legger&agrave; chi ci va.<br><br>
-              <strong>Trasferte</strong> &mdash; sono attivit&agrave; a tutti gli effetti: occupano il calendario della persona per tutta la loro durata, e la Pianificazione automatica ne tiene conto quando distribuisce il lavoro, comprese le abilitazioni di chi pu&ograve; partire.<br><br>
-              <strong>Fusi orari</strong> &mdash; la regola &egrave; semplice: <strong>si pianifica nell'orario del posto, si legge nell'orario della propria sede</strong>. Calendario e Gantt mostrano tutto nel fuso di chi guarda, cos&igrave; nessuno deve fare conti a mente e nessuno si presenta con sei ore di anticipo.
+              <strong>Trasferte</strong> &mdash; sono attivit&agrave; a tutti gli effetti: occupano la disponibilit&agrave; della persona per tutta la loro durata, e il planner ne tiene conto quando distribuisce il lavoro, comprese le abilitazioni di chi pu&ograve; partire.<br><br>
+              <strong>Fusi orari</strong> &mdash; la regola &egrave; semplice: <strong>si pianifica nell'orario del posto, si legge nell'orario della propria sede</strong>. Planner e Gantt mostrano tutto nel fuso di chi guarda, cos&igrave; nessuno deve fare conti a mente e nessuno si presenta con sei ore di anticipo.
             </div>
           </details>
           <details class="faq-item faq-extra">
-            <summary>I tecnici e gli agenti di commercio possono usare le loro app anche senza connessione?</summary>
+            <summary>Il team e gli agenti di commercio possono usare le loro app anche senza connessione?</summary>
             <div class="faq-answer">
-              S&igrave;. L'app mobile per i tecnici &egrave; <strong>offline-first</strong>: continuano a lavorare anche in cantieri senza copertura, compilano checklist, scattano foto, raccolgono firme. Anche l'app PWA degli agenti &egrave; offline-first permettendo di concludere la trattativa con il cliente e creare un'offerta da far firmare in presenza. Appena tornano online tutto si sincronizza automaticamente.
+              S&igrave;. L'app mobile per chi opera sul campo &egrave; <strong>offline-first</strong>: si continua a lavorare anche dove non c'&egrave; copertura, compilando checklist, scattando foto e raccogliendo firme. Anche l'app PWA degli agenti &egrave; offline-first permettendo di concludere la trattativa con il cliente e creare un'offerta da far firmare in presenza. Appena tornano online tutto si sincronizza automaticamente.
             </div>
           </details>
           <details class="faq-item faq-extra">
@@ -4884,7 +5098,7 @@
             <div class="form-group">
               <label>Moduli opzionali di interesse <span style="font-weight:400; color:var(--text-3); font-size:0.78rem;">(il modulo Core &egrave; sempre incluso)</span></label>
               <div class="modules-check">
-                <label class="module-check checked locked" title="Modulo Core sempre incluso: backoffice web + app mobile per i tecnici">
+                <label class="module-check checked locked" title="Modulo Core sempre incluso: backoffice web + app mobile per chi opera sul campo">
                   <input type="checkbox" name="modules" value="Core (incluso)" checked disabled />
                   Core &#128274;
                 </label>
@@ -4943,7 +5157,7 @@
           <a href="#hero" class="logo" aria-label="XPlanium - Home">
             <img src="assets/logo-xplanium.svg" alt="XPlanium" class="logo-img footer-logo-img" />
           </a>
-          <p>La piattaforma digitale modulare e personalizzabile per installatori, impiantisti e aziende tecniche.</p>
+          <p>La piattaforma digitale modulare e personalizzabile per chi pianifica il lavoro di un team, in azienda o sul campo.</p>
           <div class="powered-by">
             <span class="powered-label">A product by</span>
             <a href="https://kriseides.com" target="_blank" rel="noopener" class="powered-link" aria-label="Kriseides S.r.l. (apre in una nuova scheda)">
@@ -4971,7 +5185,7 @@
             <li><a href="#assistenza">Assistenza umana</a></li>
             <li><a href="#crm">Vendite</a></li>
             <li><a href="#gestione-agenti">Gestione Agenti</a></li>
-            <li><a href="#pianificazione">Pianificazione AI</a></li>
+            <li><a href="#pianificazione">Planner automatico</a></li>
             <li><a href="#gantt">Gantt</a></li>
             <li><a href="#sul-campo">Sul Campo</a></li>
             <li><a href="#firme">Firme digitali</a></li>
@@ -5013,6 +5227,23 @@
        Nascoste al rendering tramite [hidden] + display:none inline.
        ═════════════════════════════════════════════════════════════════ -->
   <div id="parked-sections" hidden aria-hidden="true" style="display:none !important;">
+    <!-- ============================
+         PLANNER — Blocco 5: le due modalità A/B
+         (rimosso dalla sezione #pianificazione, conservato qui)
+         ============================ -->
+    <div class="ai-modes-desc reveal-stagger collapse-hidden">
+      <article class="ai-mode-desc mode-weekly">
+        <span class="ai-mode-num" aria-hidden="true">A</span>
+        <h3>Tutta la settimana, in automatico</h3>
+        <p>Il planner prende <strong>tutti i compiti aperti</strong>, contatta i clienti, raccoglie le conferme e compone la settimana completa: chi fa cosa, quando, con chi. Tu la rivedi, aggiusti quello che vuoi, confermi.</p>
+      </article>
+      <article class="ai-mode-desc mode-single">
+        <span class="ai-mode-num" aria-hidden="true">B</span>
+        <h3>Un singolo compito, subito</h3>
+        <p>Arriva un'urgenza, un sopralluogo, una richiesta last minute? Chiedi al planner a chi assegnarlo: valuta chi &egrave; libero, chi ha la competenza giusta, chi &egrave; pi&ugrave; vicino, e propone la persona ideale con data e orario.</p>
+      </article>
+    </div>
+
     <!-- ============================
          PROMISE — XPlanium si adatta a te
          ============================ -->
@@ -6141,6 +6372,39 @@
       track.parentElement.addEventListener('focusout', startAutoplay);
 
       startAutoplay();
+    })();
+
+    // ============================
+    // Video del planner: rispetta prefers-reduced-motion e non consuma
+    // banda/CPU quando il video non è visibile a schermo.
+    // ============================
+    (function () {
+      const vid = document.querySelector('.planner-video video');
+      if (!vid) return;
+
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (reduce.matches) {
+        vid.removeAttribute('autoplay');
+        vid.removeAttribute('loop');
+        vid.controls = true;
+        vid.pause();
+        return;
+      }
+
+      if (!('IntersectionObserver' in window)) return;
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              vid.play().catch(() => {});
+            } else {
+              vid.pause();
+            }
+          });
+        },
+        { threshold: 0.25 }
+      );
+      io.observe(vid);
     })();
 
     // ============================

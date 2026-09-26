@@ -6391,20 +6391,37 @@
         return;
       }
 
-      if (!('IntersectionObserver' in window)) return;
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              vid.play().catch(() => {});
-            } else {
-              vid.pause();
-            }
+      // Se il browser rifiuta l'autoplay, mostriamo i controlli invece di
+      // lasciare un riquadro fermo senza spiegazione.
+      function tryPlay() {
+        const p = vid.play();
+        if (p && typeof p.catch === 'function') {
+          p.catch((err) => {
+            console.warn('[planner] autoplay bloccato:', err && err.name, err && err.message);
+            vid.controls = true;
           });
-        },
-        { threshold: 0.25 }
-      );
-      io.observe(vid);
+        }
+      }
+
+      vid.addEventListener('error', () => {
+        console.error('[planner] errore di caricamento video:', vid.error, '— src:', vid.currentSrc);
+      });
+
+      // Nessuna pausa fuori viewport: il file è leggero e la pausa
+      // automatica rischiava di fermare la riproduzione a sproposito.
+      tryPlay();
+      vid.addEventListener('loadeddata', tryPlay, { once: true });
+      vid.addEventListener('canplay', tryPlay, { once: true });
+
+      // Ultimo tentativo al primo gesto dell'utente: alcuni browser
+      // sbloccano l'autoplay solo dopo un'interazione.
+      const onFirstGesture = () => {
+        if (vid.paused) tryPlay();
+        window.removeEventListener('pointerdown', onFirstGesture);
+        window.removeEventListener('keydown', onFirstGesture);
+      };
+      window.addEventListener('pointerdown', onFirstGesture, { once: false });
+      window.addEventListener('keydown', onFirstGesture, { once: false });
     })();
 
     // ============================

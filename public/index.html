@@ -410,12 +410,13 @@
     }
     .powered-by:hover .powered-logo { opacity: 1; }
 
-    .nav-links { display: flex; gap: 32px; }
+    .nav-links { display: flex; gap: 26px; }
     .nav-links a {
       font-size: 0.92rem;
       color: var(--text-1);
       transition: color 0.2s;
       position: relative;
+      white-space: nowrap;
     }
     .nav-links a:hover { color: var(--accent-lime); }
     .nav-links a::after {
@@ -436,10 +437,16 @@
     /* Sotto i 560px logo, bottone e hamburger non ci stanno alla dimensione
        piena: si rimpicciolisce il logo e si stringono i padding, tenendo
        l'etichetta completa del bottone. */
+    /* Il simbolo è quasi quadrato: può stare più alto del logo esteso
+       senza rubare larghezza. */
+    .logo picture { display: block; }
+    @media (min-width: 1101px) and (max-width: 1220px) {
+      .logo-img { height: 44px; }
+    }
     @media (max-width: 560px) {
       .nav-cta { gap: 8px; }
       .nav-cta .btn { padding: 9px 14px; font-size: 0.82rem; }
-      .logo-img { height: 30px; }
+      .logo-img { height: 40px; } /* qui è il simbolo */
       .navbar-inner { padding: 12px 14px; gap: 10px; }
     }
     /* Schermi molto stretti (320px, iPhone SE): i bottoni dell'hero hanno una
@@ -448,7 +455,7 @@
     @media (max-width: 360px) {
       .hero-cta .btn, .hero-text .btn, .perso-cta .btn { width: 100%; justify-content: center; white-space: normal; padding-inline: 16px; }
       .nav-cta .btn { padding: 8px 12px; font-size: 0.78rem; }
-      .logo-img { height: 28px; }
+      .logo-img { height: 36px; }
     }
 
     .menu-toggle { display: none; width: 40px; height: 40px; }
@@ -2591,12 +2598,53 @@
       color: var(--accent-lime);
       margin: 0 0 30px;
     }
+    /* CTA subito sotto il video, prima della catena dei 6 passaggi */
+    .planner-cta-inline {
+      display: flex;
+      justify-content: center;
+      margin: 0 0 52px;
+    }
+
+    /* Chiusura della catena: foto + testo */
+    .chain-outro-block {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 26px;
+      align-items: center;
+      max-width: 1080px;
+      margin: 44px auto 0;
+    }
+    .chain-outro-photo {
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 30px 70px -24px rgba(0, 0, 0, 0.75);
+    }
+    .chain-outro-photo img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+    }
     .chain-outro {
-      text-align: center;
-      font-size: 1.15rem;
+      font-size: 1.5rem;
+      font-family: var(--font-display);
       color: var(--text-0);
-      font-weight: 600;
-      margin: 34px 0 0;
+      font-weight: 700;
+      line-height: 1.25;
+      margin: 0 0 12px;
+    }
+    .chain-outro-sub {
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--text-2);
+      margin: 0;
+    }
+    @media (max-width: 900px) {
+      .chain-outro-block { margin-top: 32px; gap: 20px; }
+      .chain-outro { font-size: 1.3rem; text-align: center; }
+      .chain-outro-sub { text-align: center; }
+      .planner-cta-inline { margin-bottom: 40px; }
     }
     .planner-chain {
       display: grid;
@@ -3494,7 +3542,7 @@
     /* ============================
        RESPONSIVE
        ============================ */
-    @media (max-width: 980px) {
+    @media (max-width: 1100px) {
       .menu-toggle { display: block; }
       .nav-links {
         position: fixed;
@@ -3509,6 +3557,8 @@
         transition: transform 0.3s;
       }
       .nav-links.open { transform: translateY(0); }
+      /* Applicata dal JS mentre si ridimensiona la finestra */
+      .nav-links.no-transition { transition: none !important; }
       .nav-links a { padding: 16px 0; border-bottom: 1px solid var(--border); }
       .nav-cta .btn:not(.btn-primary) { display: none; }
 
@@ -4008,9 +4058,14 @@
         top: 110px;
       }
 
-      /* ── SETTORI: nessun toggle, tutti i 16 sempre visibili ── */
-      .sector-extra { display: block; }
-      .sectors-toggle-wrap { display: none; }
+      /* ── PLANNER: chiusura della catena a due colonne ── */
+      .chain-outro-block {
+        grid-template-columns: 520px 1fr;
+        gap: 55px;
+        margin-top: 56px;
+      }
+
+      /* ── SETTORI: primi 8 visibili, gli altri dietro il toggle anche su desktop ── */
 
       /* I pallini servono solo ai carousel mobile */
       .carousel-dots { display: none; }
@@ -4038,16 +4093,22 @@
   <header class="navbar" id="navbar" role="banner">
     <div class="navbar-inner">
       <a href="#hero" class="logo" aria-label="XPlanium - Home">
-        <img src="assets/logo-xplanium.svg" alt="XPlanium - Plan, Strike, Finish" class="logo-img" />
+        <!-- Solo simbolo dove il logo esteso non ci sta: nella fascia
+             1101-1220px (menu orizzontale ancora attivo) e sotto i 560px.
+             In mezzo c'è l'hamburger, quindi il wordmark torna per esteso. -->
+        <picture>
+          <source media="(max-width: 560px)" srcset="assets/logo-xplanium-mark.svg" />
+          <source media="(min-width: 1101px) and (max-width: 1220px)" srcset="assets/logo-xplanium-mark.svg" />
+          <img src="assets/logo-xplanium.svg" alt="XPlanium - Plan, Strike, Finish" class="logo-img" />
+        </picture>
       </a>
       <nav class="nav-links" id="navLinks" aria-label="Navigazione principale">
-        <a href="#settori">Settori</a>
-        <a href="#crm">Vendite</a>
-        <a href="#pianificazione">Planner</a>
-        <a href="#sul-campo">Sul Campo</a>
-        <a href="#moduli">Moduli</a>
+        <a href="#pianificazione">Planner automatico</a>
+        <a href="#settori">Settori di impiego</a>
+        <a href="#crm">Pipeline di vendita</a>
+        <a href="#sul-campo">Lavora sul campo</a>
+        <a href="#moduli">Moduli aggiuntivi</a>
         <a href="#faq">FAQ</a>
-        <a href="#contatti">Contatti</a>
       </nav>
       <div class="nav-cta">
         <a href="#contatti" class="btn btn-primary">
@@ -4185,7 +4246,7 @@
           <div class="eyebrow" style="color: var(--accent-magenta);">IL PLANNER</div>
           <h2 id="aiPlanningHeading"><em>Premi un pulsante.</em><br />Il resto lo fa lui.</h2>
         </div>
-        <p class="ai-intro reveal">Propone le date ai tuoi clienti, aspetta le risposte, fissa gli appuntamenti e assegna le persone giuste. Tu guardi il risultato e decidi se va bene.</p>
+        <p class="ai-intro reveal">Sceglie le date migliori e le propone ai tuoi clienti inviando email automatiche, aspetta le loro risposte, fissa gli appuntamenti e assegna le persone giuste. Tu guardi il risultato e decidi se va bene.</p>
 
         <!-- ── Blocco 2: il planner in azione (video in loop) ──
              Loop muto, crop 1380x620. Il poster copre i casi in cui
@@ -4206,6 +4267,13 @@
           </video>
           <figcaption class="planner-video-cap">La settimana che si compone da sola, dalla proposta al cliente all&rsquo;assegnazione</figcaption>
         </figure>
+
+        <div class="planner-cta-inline reveal">
+          <a href="#contatti" class="btn btn-primary">
+            Vedi il planner in azione
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </div>
 
         <!-- ── Blocco 3: la catena automatica ── -->
         <p class="chain-intro reveal">Tu fai il primo passo</p>
@@ -4241,7 +4309,15 @@
             <p>Se una conferma arriva tardi o salta un appuntamento, ricompone la settimana senza rompere il resto.</p>
           </article>
         </div>
-        <p class="chain-outro reveal">Il resto accade da solo.</p>
+        <div class="chain-outro-block reveal">
+          <div class="chain-outro-photo">
+            <img src="assets/photos/associazioni.webp" alt="Due colleghi si congratulano a fine lavoro davanti a un armadio di rete" loading="lazy" />
+          </div>
+          <div class="chain-outro-text">
+            <p class="chain-outro">Il resto accade da solo.</p>
+            <p class="chain-outro-sub">Nessuno passa pi&ugrave; la giornata al telefono a rincorrere conferme. Tu e il tuo team pensate al lavoro, non a chi deve andare dove.</p>
+          </div>
+        </div>
 
         <!-- ── Blocco 4: come sceglie chi mandare ── -->
         <p class="ai-criteria-title collapse-hidden">Come sceglie chi mandare</p>
@@ -4326,13 +4402,21 @@
             <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3V4M12 20V21M4 12H3M6.31 6.31L5.5 5.5M17.69 6.31L18.5 5.5M6.31 17.69L5.5 18.5M17.69 17.69L18.5 18.5M21 12H20M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0z"/></svg></div>
             <h4>Fotovoltaico</h4>
           </div>
-          <div class="sector sector-extra">
+          <div class="sector">
             <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l10-4 10 4-10 4z"/><path d="M6 10v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/><path d="M22 7v6"/></svg></div>
             <h4>Servizi Educativi e Sostegno</h4>
           </div>
-          <div class="sector sector-extra">
+          <div class="sector">
             <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
             <h4>Manutenzione Industriale</h4>
+          </div>
+          <div class="sector">
+            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="1"/><line x1="12" y1="3" x2="12" y2="21"/><line x1="3" y1="12" x2="21" y2="12"/></svg></div>
+            <h4>Infissi e Serramenti</h4>
+          </div>
+          <div class="sector">
+            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"/><path d="M9 10a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"/><path d="M8 16l-2.091 3.486a1 1 0 0 0 .857 1.514h10.468a1 1 0 0 0 .857 -1.514l-2.091 -3.486"/></svg></div>
+            <h4>Videosorveglianza</h4>
           </div>
           <div class="sector sector-extra">
             <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/><path d="M9 4l3 3 3-3M9 20l3-3 3 3M4 9l3 3-3 3M20 9l-3 3 3 3"/></svg></div>
@@ -4341,10 +4425,6 @@
           <div class="sector sector-extra">
             <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 6.6a4.4 4.4 0 0 0-6.2 0L12 9.2 9.4 6.6a4.4 4.4 0 1 0-6.2 6.2L12 21.6l8.8-8.8a4.4 4.4 0 0 0 0-6.2z"/></svg></div>
             <h4>Assistenza e Servizi alla Persona</h4>
-          </div>
-          <div class="sector sector-extra">
-            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"/><path d="M9 10a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"/><path d="M8 16l-2.091 3.486a1 1 0 0 0 .857 1.514h10.468a1 1 0 0 0 .857 -1.514l-2.091 -3.486"/></svg></div>
-            <h4>Videosorveglianza</h4>
           </div>
           <div class="sector sector-extra">
             <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
@@ -4365,10 +4445,6 @@
           <div class="sector sector-extra">
             <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V10l7-7 7 7v11M9 21v-7h6v7"/></svg></div>
             <h4>Edilizia e Finiture</h4>
-          </div>
-          <div class="sector sector-extra">
-            <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="1"/><line x1="12" y1="3" x2="12" y2="21"/><line x1="3" y1="12" x2="21" y2="12"/></svg></div>
-            <h4>Infissi e Serramenti</h4>
           </div>
           <div class="sector sector-extra">
             <div class="sector-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v4H9z"/><path d="M10 7v-2M14 7v-2"/><rect x="8" y="7" width="8" height="14" rx="2"/><path d="M10 12h4"/><circle cx="19" cy="4" r="0.6" fill="currentColor"/><circle cx="21" cy="6" r="0.6" fill="currentColor"/><circle cx="21" cy="9" r="0.6" fill="currentColor"/></svg></div>
@@ -4547,7 +4623,9 @@
     <!-- ============================
          SOLUZIONE / WORKFLOW
          ============================ -->
-    <section class="workflow" id="soluzione">
+    <!-- PARCHEGGIATA: ridondante rispetto alla catena del planner.
+         Per riattivarla togliere hidden/aria-hidden/style dalla <section>. -->
+    <section class="workflow" id="soluzione" hidden aria-hidden="true" style="display:none !important;">
       <div class="container">
         <div class="section-header reveal">
           <div class="eyebrow">LA SOLUZIONE</div>
@@ -4822,7 +4900,9 @@
     <!-- ============================
          TESTIMONIAL
          ============================ -->
-    <section class="testimonials" id="testimonial" aria-labelledby="testimonialHeading">
+    <!-- PARCHEGGIATA: testimonianze non ancora reali.
+         Per riattivarla togliere hidden/aria-hidden/style dalla <section>. -->
+    <section class="testimonials" id="testimonial" aria-hidden="true" hidden style="display:none !important;">
       <div class="container">
         <div class="section-header reveal">
           <div class="eyebrow">DICONO DI NOI</div>
@@ -5190,7 +5270,7 @@
             <li><a href="#sul-campo">Sul Campo</a></li>
             <li><a href="#firme">Firme digitali</a></li>
             <li><a href="#moduli">Moduli</a></li>
-            <li><a href="#soluzione">Come funziona</a></li>
+            <li><a href="#assistenza">Assistenza</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -6118,6 +6198,21 @@
         menuToggle.classList.remove('open');
         menuToggle.setAttribute('aria-expanded', 'false');
       });
+    });
+
+    // Attraversando il breakpoint dei 1100px il pannello passa da "in flusso"
+    // a "fisso e traslato": senza questo, la transizione anima quel salto e
+    // si vede il menu aprirsi e richiudersi da solo.
+    let navResizeTimer;
+    window.addEventListener('resize', () => {
+      navLinks.classList.add('no-transition');
+      clearTimeout(navResizeTimer);
+      navResizeTimer = setTimeout(() => navLinks.classList.remove('no-transition'), 250);
+      if (window.innerWidth > 1100 && navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+        menuToggle.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }
     });
 
     // Scroll reveal

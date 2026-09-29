@@ -608,6 +608,66 @@
        Flex e non grid perché l'ultima riga, se un giorno i settori non
        fossero un multiplo di quattro, resta centrata invece di lasciare
        buchi allineati a sinistra. */
+    /* ── Cosa comprende la piattaforma (sopra i settori) ── */
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .platform-card {
+      padding: 26px 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .platform-card:hover {
+      border-color: rgba(132, 204, 22, 0.45);
+      transform: translateY(-3px);
+    }
+    .platform-icon {
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 10px;
+      background: rgba(132, 204, 22, 0.1);
+      color: var(--accent-lime);
+      margin-bottom: 16px;
+    }
+    .platform-icon svg { width: 21px; height: 21px; }
+    .platform-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-0);
+      margin: 0 0 8px;
+    }
+    .platform-card p {
+      font-size: 0.93rem;
+      line-height: 1.6;
+      color: var(--text-2);
+      margin: 0;
+    }
+    /* Cerniera fra "cosa comprende" e "in quali settori" */
+    .sectors-divider {
+      max-width: 760px;
+      margin: 64px auto 32px;
+      text-align: center;
+    }
+    .sectors-divider .eyebrow { justify-content: center; margin-bottom: 12px; }
+    .sectors-divider p {
+      font-size: 1.02rem;
+      line-height: 1.65;
+      color: var(--text-2);
+      margin: 0;
+    }
+    @media (max-width: 900px) {
+      .platform-grid { grid-template-columns: 1fr; gap: 14px; }
+      .platform-card { padding: 20px 18px; }
+      .sectors-divider { margin: 44px auto 26px; }
+    }
+
     .sectors-grid {
       display: flex;
       flex-wrap: wrap;
@@ -1284,6 +1344,9 @@
       margin: 0;
       align-self: end;
     }
+    /* inline (non inline-block): così le parole evidenziate si spezzano
+       insieme al resto del titolo e non lasciano orfano l'articolo. */
+    .hero-h1 .gradient-text-hero { display: inline; }
     .hero-text {
       grid-area: text;
       text-align: left;
@@ -1355,6 +1418,8 @@
         gap: 32px;
       }
       .hero-h1 { text-align: center; }
+      /* Su schermi stretti l'interruzione la decide il testo, non noi */
+      .hero-h1 br { display: none; }
       .hero-text { text-align: center; }
       .hero-text .hero-cta { justify-content: center; }
       .esign-wrap { grid-template-columns: 1fr; gap: 40px; }
@@ -3959,10 +4024,13 @@
         text-align: left;
       }
       #settori .section-header .eyebrow { justify-content: flex-start; }
+      #settori .platform-grid,
+      #settori .sectors-divider,
       #settori .sectors-grid,
       #settori .sectors-toggle-wrap,
       #settori .sectors-cta { grid-column: 1 / -1; }
-      #settori .sectors-grid { margin-top: 55px; }
+      #settori .platform-grid { margin-top: 55px; }
+      #settori .sectors-grid { margin-top: 0; }
 
       /* ── KANBAN e GANTT: screenshot largo a fianco del testo ──
          Lo screenshot prende la colonna più larga: è una schermata fitta di
@@ -4136,8 +4204,8 @@
           <!-- H1 separato dal resto del testo: su mobile deve apparire prima dell'immagine,
                poi immagine, poi testo+CTA. Con grid-template-areas riordiniamo senza duplicare. -->
           <h1 class="hero-h1 reveal">
-            Il planner che organizza tutto<br />
-            <span class="gradient-text-hero">al posto tuo</span>
+            Il <span class="gradient-text-hero">planner automatico</span><br />
+            che fa tutto il lavoro al posto tuo
           </h1>
           <div class="hero-visual reveal">
             <div class="hero-browser">
@@ -4378,10 +4446,61 @@
           <img src="assets/photos/sectors.webp" alt="Quattro contesti di lavoro gestiti con XPlanium: un tecnico su un impianto fotovoltaico, un'educatrice con dei bambini in aula, un formatore durante un corso aziendale e una responsabile che pianifica il lavoro dall'ufficio" loading="lazy" />
         </div>
         <div class="section-header reveal">
-          <div class="eyebrow">PER CHI È PENSATO</div>
-          <h2>Lo strumento giusto per <span class="gradient-text">le tue esigenze</span></h2>
-          <p>Dagli impianti elettrici ai servizi educativi, dalla manutenzione industriale alla formazione: XPlanium parla la lingua del tuo mestiere.</p>
+          <div class="eyebrow">COSA COMPRENDE</div>
+          <h2>Una piattaforma che copre <span class="gradient-text">tutto il ciclo di lavoro</span></h2>
+          <p>Dal primo contatto commerciale all'attivit&agrave; conclusa e fatturata: vendite, progetti, lavoro sul campo, clienti e statistiche vivono nello stesso posto, configurati sui processi che hai gi&agrave;.</p>
         </div>
+        <!-- Cosa comprende la piattaforma, oltre al planner -->
+        <div class="platform-grid reveal-stagger">
+          <article class="platform-card">
+            <div class="platform-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg>
+            </div>
+            <h3>Vendite e offerte</h3>
+            <p>Pipeline, preventivi e offerte che il cliente firma digitalmente.</p>
+          </article>
+          <article class="platform-card">
+            <div class="platform-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h6M7 13h10M7 17h4"/></svg>
+            </div>
+            <h3>Progetti e attivit&agrave;</h3>
+            <p>Commesse, scadenze e Gantt di tutta l'azienda in un colpo d'occhio.</p>
+          </article>
+          <article class="platform-card">
+            <div class="platform-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>
+            </div>
+            <h3>Lavoro sul campo</h3>
+            <p>App mobile nativa con foto, checklist e firme. Funziona anche offline.</p>
+          </article>
+          <article class="platform-card">
+            <div class="platform-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
+            </div>
+            <h3>Portale clienti</h3>
+            <p>Richieste, documenti e comunicazioni in un unico posto, sempre accessibile.</p>
+          </article>
+          <article class="platform-card">
+            <div class="platform-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+            </div>
+            <h3>Statistiche</h3>
+            <p>Margini, tempi e carichi di lavoro aggiornati senza compilare un foglio.</p>
+          </article>
+          <article class="platform-card">
+            <div class="platform-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-7-8-3z"/></svg>
+            </div>
+            <h3>Marketing</h3>
+            <p>Landing page, campagne ed email, con QR-Code per l'accesso diretto.</p>
+          </article>
+        </div>
+
+        <div class="sectors-divider reveal">
+          <div class="eyebrow">ALCUNI ESEMPI DI SETTORI DI IMPIEGO</div>
+          <p>XPlanium si adatta a qualsiasi attivit&agrave; in cui si pianifica il lavoro di un team. Questi sono solo alcuni dei settori in cui viene usato.</p>
+        </div>
+
         <div class="sectors-grid reveal-stagger" id="sectorsGrid">
           <!-- 4 settori visibili di default su mobile; gli altri dietro il
                pulsante "Mostra tutti i settori". Su desktop sono tutti

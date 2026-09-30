@@ -446,7 +446,7 @@
     @media (max-width: 560px) {
       .nav-cta { gap: 8px; }
       .nav-cta .btn { padding: 9px 14px; font-size: 0.82rem; }
-      .logo-img { height: 40px; } /* qui è il simbolo */
+      .logo-img { height: 32px; }
       .navbar-inner { padding: 12px 14px; gap: 10px; }
     }
     /* Schermi molto stretti (320px, iPhone SE): i bottoni dell'hero hanno una
@@ -455,7 +455,7 @@
     @media (max-width: 360px) {
       .hero-cta .btn, .hero-text .btn, .perso-cta .btn { width: 100%; justify-content: center; white-space: normal; padding-inline: 16px; }
       .nav-cta .btn { padding: 8px 12px; font-size: 0.78rem; }
-      .logo-img { height: 36px; }
+      .logo-img { height: 28px; }
     }
 
     .menu-toggle { display: none; width: 40px; height: 40px; }
@@ -4161,11 +4161,10 @@
   <header class="navbar" id="navbar" role="banner">
     <div class="navbar-inner">
       <a href="#hero" class="logo" aria-label="XPlanium - Home">
-        <!-- Solo simbolo dove il logo esteso non ci sta: nella fascia
-             1101-1220px (menu orizzontale ancora attivo) e sotto i 560px.
-             In mezzo c'è l'hamburger, quindi il wordmark torna per esteso. -->
+        <!-- Solo simbolo nella fascia 1101-1220px, dove il menu orizzontale
+             è ancora attivo e il wordmark gli ruberebbe spazio. Sotto i
+             1100px c'è l'hamburger, quindi il logo resta sempre completo. -->
         <picture>
-          <source media="(max-width: 560px)" srcset="assets/logo-xplanium-mark.svg" />
           <source media="(min-width: 1101px) and (max-width: 1220px)" srcset="assets/logo-xplanium-mark.svg" />
           <img src="assets/logo-xplanium.svg" alt="XPlanium - Plan, Strike, Finish" class="logo-img" />
         </picture>

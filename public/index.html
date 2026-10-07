@@ -56,18 +56,6 @@
     "applicationCategory": "BusinessApplication",
     "applicationSubCategory": "Field Service Management",
     "operatingSystem": "Web, Android",
-    "offers": {
-      "@type": "Offer",
-      "price": "650",
-      "priceCurrency": "EUR",
-      "priceSpecification": {
-        "@type": "UnitPriceSpecification",
-        "price": "650",
-        "priceCurrency": "EUR",
-        "billingDuration": "P1M",
-        "unitText": "MONTH"
-      }
-    },
     "publisher": {
       "@type": "Organization",
       "name": "Kriseides S.r.l.",
@@ -101,7 +89,7 @@
         "name": "Cosa significa che XPlanium è modulare?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Significa che parti dal modulo Core (backoffice web + app mobile per chi opera sul campo, sempre incluso) e attivi solo i moduli opzionali che ti servono (Vendite, Marketing, Cliente, Statistiche), aggiungendone altri in futuro senza dover migrare i dati o cambiare strumento."
+          "text": "Significa che parti dal modulo Core (backoffice web + app mobile per chi opera sul campo, sempre incluso, con le statistiche già dentro) e attivi solo i moduli opzionali che ti servono (Vendite, Manutenzione), aggiungendone altri in futuro senza dover migrare i dati o cambiare strumento."
         }
       },
       {
@@ -1756,7 +1744,7 @@
     .modules-nav { display: none; }
 
     @media (max-width: 900px) {
-      /* Nav a chip: vanno a capo (flex-wrap) così tutti i 5 moduli sono sempre visibili */
+      /* Nav a chip: vanno a capo (flex-wrap) così tutte le schede dei moduli sono sempre visibili */
       .modules-nav {
         display: flex;
         flex-wrap: wrap;
@@ -1902,6 +1890,35 @@
       box-shadow: 0 0 12px rgba(236,72,153,0.3);
     }
     .module-tag-ai svg { width: 11px; height: 11px; flex-shrink: 0; }
+    /* Tag "Incluse nel Core": le Statistiche non sono un modulo a parte,
+       arrivano col Core. Stesso arancione del Core. */
+    .module-tag-included {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      background: rgba(249,115,22,0.14);
+      border: 1px solid #f97316;
+      color: #fdba74;
+      font-family: var(--font-display);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 999px;
+    }
+    /* Statistiche su due colonne: chiude la seconda riga accanto a Manutenzione.
+       Sotto i 900px il grid diventa carousel (flex) e lo span non conta. */
+    .module.module-included { grid-column: span 2; }
+    /* Manutenzione (6 ott 2026): due colonne su tre nella seconda riga,
+       accanto a Vendite, sotto il Core a tutta larghezza; Base e Avanzata
+       affiancate. Sotto i 900px il grid diventa carousel
+       (flex): lo span non conta e le due versioni vanno una sotto l'altra. */
+    .module.module-wide { grid-column: span 2; }
+    .module-versions { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media (max-width: 900px) {
+      .module.module-wide { grid-column: span 2; }
+      .module-versions { grid-template-columns: 1fr; gap: 8px; }
+    }
     /* Icona modulo disattivata: ridotto contenuto dei box (mobile-first). */
     .module-icon-large { display: none; }
     .module h3 { margin-bottom: 10px; }
@@ -2034,29 +2051,31 @@
       z-index: 3;
       white-space: nowrap;
     }
-    /* Override per Vendite: mantiene il badge "Più richiesto" ma tema verde
-       coerente col colore del modulo (invece del viola default di .featured). */
+    /* Override per Vendite: tema verde coerente col colore del modulo
+       (invece del viola default di .featured). */
     .module.m-sales.featured {
       background: linear-gradient(135deg, rgba(132,204,22,0.12), rgba(34,211,238,0.06));
       border-color: var(--accent-lime);
       box-shadow: 0 0 40px rgba(132, 204, 22, 0.18);
     }
-    .module.m-sales.featured::after {
-      background: linear-gradient(135deg, var(--accent-lime), #22d3ee);
-      color: var(--bg-0);
-      box-shadow: 0 6px 20px -4px rgba(132, 204, 22, 0.5);
-    }
+    /* 6 ott 2026 (Alf): niente badge «Più richiesto» su Vendite. */
+    .module.m-sales.featured::after { content: none; }
 
     /* Modulo Core — la base incluso sempre, evidenziato con arancione.
-       Usa span 2: con 5 moduli totali (Core doppio + 4 singoli) il grid
-       3-col riempie 2 righe pulite senza orfani. */
+       Tutta la prima riga (6 ott 2026, Alf), con tre colonne interne; sotto
+       Vendite e Manutenzione (`module-wide`). Le Statistiche sono nel Core. */
     .module.featured-core {
       background: linear-gradient(135deg, rgba(249,115,22,0.12), rgba(251,191,36,0.06));
       border-color: #f97316;
       box-shadow: 0 0 40px rgba(249, 115, 22, 0.18);
-      grid-column: span 2;
+      grid-column: 1 / -1;
     }
-    @media (max-width: 900px) { .module.featured-core { grid-column: span 2; } }
+    /* Le tre sezioni del Core affiancate: Backoffice, Planner automatico, App mobile. */
+    .core-columns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    @media (max-width: 900px) {
+      .module.featured-core { grid-column: 1 / -1; }
+      .core-columns { grid-template-columns: 1fr; gap: 8px; }
+    }
     @media (max-width: 600px) { .module.featured-core { grid-column: span 1; } }
     /* Badge dentro il box invece che a cavallo del bordo (evita clipping quando
        il modulo è dentro il carousel mobile con overflow-x: auto). */
@@ -2187,8 +2206,7 @@
     .module.m-tech { --module-accent: var(--accent-purple); }
     .module.m-sales { --module-accent: var(--accent-lime); } /* Vendite: verde */
     .module.m-stats { --module-accent: #ef4444; }         /* Statistiche: rosso */
-    .module.m-client { --module-accent: var(--accent-blue); }
-    .module.m-mkt { --module-accent: #a855f7; }           /* Marketing: viola */
+    .module.m-maintenance { --module-accent: var(--accent-blue); }
     .module.m-cloud { --module-accent: var(--accent-magenta); }
 
     /* ============================
@@ -4447,7 +4465,7 @@
         <div class="section-header reveal">
           <div class="eyebrow">COSA COMPRENDE</div>
           <h2>Una piattaforma che copre <span class="gradient-text">tutto il ciclo di lavoro</span></h2>
-          <p>Dal primo contatto commerciale all'attivit&agrave; conclusa e fatturata: vendite, progetti, lavoro sul campo, clienti e statistiche vivono nello stesso posto, configurati sui processi che hai gi&agrave;.</p>
+          <p>Dal primo contatto commerciale all'attivit&agrave; conclusa e fatturata: vendite, progetti, turni, lavoro sul campo, clienti e statistiche vivono nello stesso posto, configurati sui processi che hai gi&agrave;.</p>
         </div>
         <!-- Cosa comprende la piattaforma, oltre al planner -->
         <div class="platform-grid reveal-stagger">
@@ -4474,13 +4492,6 @@
           </article>
           <article class="platform-card">
             <div class="platform-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
-            </div>
-            <h3>Portale clienti</h3>
-            <p>Richieste, documenti e comunicazioni in un unico posto, sempre accessibile.</p>
-          </article>
-          <article class="platform-card">
-            <div class="platform-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
             </div>
             <h3>Statistiche</h3>
@@ -4488,10 +4499,17 @@
           </article>
           <article class="platform-card">
             <div class="platform-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-7-8-3z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg>
             </div>
-            <h3>Marketing</h3>
-            <p>Landing page, campagne ed email, con QR-Code per l'accesso diretto.</p>
+            <h3>Manutenzioni</h3>
+            <p>Programmate e su richiesta, con avvisi automatici al cliente.</p>
+          </article>
+          <article class="platform-card">
+            <div class="platform-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h3M13 14h3M8 18h3"/></svg>
+            </div>
+            <h3>Turni lavorativi</h3>
+            <p>Fissi o a rotazione, organizzati in automatico: il planner assegna il lavoro solo a chi &egrave; di turno.</p>
           </article>
         </div>
 
@@ -4613,7 +4631,7 @@
         </div>
         <div class="app-show-wrap app-show-wrap--stacked reveal">
           <div class="app-show-content">
-            <p class="lead">Ogni lead entra in piattaforma da una landing page, dal sito, da un agente. Viene <strong>qualificato, assegnato e seguito</strong> fino alla chiusura, senza che tu debba ricordartene.</p>
+            <p class="lead">Ogni lead entra in piattaforma dal form di contatto del tuo sito o da un agente. Viene <strong>qualificato, assegnato e seguito</strong> fino alla chiusura, senza che tu debba ricordartene.</p>
             <p>La <strong>vista kanban</strong> è completamente personalizzabile: definisci tu gli stati del tuo processo commerciale e <strong>trascini le trattative</strong> da una fase all'altra con drag &amp; drop. Crei offerte da inviare al cliente tramite un editor con <strong>modelli pre-composti</strong> riutilizzabili, e in qualsiasi momento consulti lo storico di tutte le offerte già inviate.</p>
             <div class="app-show-tags">
               <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>Kanban drag &amp; drop</span>
@@ -4775,7 +4793,7 @@
             <div class="step-label">LEAD</div>
             <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div>
             <h4>Il cliente ti contatta</h4>
-            <p>Da landing page, social, agente di commercio. La piattaforma crea automaticamente un contatto e notifica chi di dovere.</p>
+            <p>Dal form di contatto del tuo sito o da un agente di commercio. La piattaforma crea automaticamente un contatto e notifica chi di dovere.</p>
           </div>
           <div class="workflow-step" id="wf-02">
             <div class="step-badge">02</div>
@@ -4830,17 +4848,9 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
             Vendite
           </button>
-          <button type="button" class="modules-nav-chip" data-target="mod-cliente" role="tab" aria-selected="false" style="--chip-accent: var(--accent-blue);">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            Cliente
-          </button>
-          <button type="button" class="modules-nav-chip" data-target="mod-statistiche" role="tab" aria-selected="false" style="--chip-accent: #ef4444;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-            Statistiche
-          </button>
-          <button type="button" class="modules-nav-chip" data-target="mod-marketing" role="tab" aria-selected="false" style="--chip-accent: #a855f7;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 11-5.8-1.6"/></svg>
-            Marketing
+          <button type="button" class="modules-nav-chip" data-target="mod-manutenzione" role="tab" aria-selected="false" style="--chip-accent: var(--accent-blue);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+            Manutenzione
           </button>
         </nav>
         <div class="modules-grid reveal-stagger" id="modulesGrid">
@@ -4860,26 +4870,51 @@
                 Anche Offline
               </span>
             </div>
-            <h3>Tutto il flusso operativo</h3>
-            <h4 class="module-subtitle">Backoffice web</h4>
-            <ul class="module-features">
-              <li>Gestione operatori e team</li>
-              <li>Planner automatico dei compiti</li>
-              <li>Gestione progetti e attività</li>
-              <li>Planner automatico e Gantt</li>
-              <li>Clienti internazionali, trasferte e fusi orari</li>
-            </ul>
-            <h4 class="module-subtitle">App mobile per il team</h4>
-            <ul class="module-features">
-              <li class="li-multi"><div>
-                <strong>Funziona anche offline</strong>
-                <span>I dati vengono sincronizzati appena torna online</span>
-              </div></li>
-              <li>Calendario dei compiti e notifiche</li>
-              <li>Foto, checklist e ore lavorate</li>
-              <li>Verbale di intervento firmato dal cliente</li>
-              <li>Gestione assenze, ferie e malattie</li>
-            </ul>
+            <h3>Tutto il flusso operativo, statistiche comprese</h3>
+            <div class="core-columns">
+              <div>
+                <h4 class="module-subtitle">Backoffice</h4>
+                <ul class="module-features">
+                  <li>Clienti, progetti e attivit&agrave;</li>
+                  <li>Operatori, team, assenze e turni</li>
+                  <li>Clienti internazionali, trasferte e fusi orari</li>
+                  <li class="li-multi"><div>
+                    <strong>Area riservata del cliente</strong>
+                    <span>Progetti, documenti, offerte e appuntamenti da confermare</span>
+                  </div></li>
+                  <li class="li-multi"><div>
+                    <strong>Statistiche incluse</strong>
+                    <span>Vendite e fatturato, conversione, tempi e carichi di lavoro, analisi temporale e geografica</span>
+                  </div></li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="module-subtitle">Planner automatico</h4>
+                <ul class="module-features">
+                  <li class="li-multi"><div>
+                    <strong>Chi va, che giorno e a che ora</strong>
+                    <span>Il planner compone le squadre per competenze, certificazioni e distanza</span>
+                  </div></li>
+                  <li>Concorda le date con i clienti via email</li>
+                  <li>Rispetta orari, turni, assenze e chiusure</li>
+                  <li>Gantt per la pianificazione di progetti e attivit&agrave;</li>
+                  <li>Modelli riutilizzabili e duplicazione in un clic</li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="module-subtitle">App mobile</h4>
+                <ul class="module-features">
+                  <li class="li-multi"><div>
+                    <strong>Funziona anche offline</strong>
+                    <span>I dati vengono sincronizzati appena torna online</span>
+                  </div></li>
+                  <li>Calendario dei compiti e notifiche</li>
+                  <li>Foto, checklist e ore lavorate</li>
+                  <li>Verbale firmato dal cliente</li>
+                  <li>Richieste di ferie e permessi</li>
+                </ul>
+              </div>
+            </div>
           </div>
           <div class="module m-sales featured" id="mod-vendite">
             <div class="module-badge module-name">Vendite</div>
@@ -4904,68 +4939,60 @@
                 <strong>Editor offerte con modelli riutilizzabili</strong>
                 <span>Genera l'offerta dal modello, la invii al cliente via email, la firma online</span>
               </div></li>
+              <li>Form di contatto da mettere nel tuo sito, che crea il lead da solo</li>
               <li>Listini, sconti riservati e catalogo prodotti</li>
               <li>Calendario appuntamenti e promemoria</li>
             </ul>
           </div>
-          <div class="module m-client" id="mod-cliente">
+          <!-- Manutenzione (6 ott 2026): prende il posto del vecchio modulo
+               «Cliente». L'area riservata del cliente è passata nel Core; qui
+               restano contratti, visite, chiamate e ticket (Base) e impianti,
+               pronto intervento e allarmi (Avanzata). Niente prezzi: il sito
+               pubblico non ne mostra. Vedi docs/claude/moduli-riordino.md. -->
+          <div class="module m-maintenance module-wide" id="mod-manutenzione">
             <div class="module-badges">
-              <div class="module-badge module-name">Cliente</div>
+              <div class="module-badge module-name">Manutenzione</div>
               <span class="module-tag-ai" title="Include funzionalità AI">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg>
                 AI
               </span>
             </div>
-            <div class="module-icon-large"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-            <h3>Area cliente self-service</h3>
-            <p>Riduci telefonate ed email. Il cliente vede lo stato del suo impianto e richiede assistenza da solo, e l'AI ti aiuta a generare le risposte più efficaci.</p>
-            <ul class="module-features">
-              <li>Dettaglio impianto, richiesta di nuovi lavori e storico</li>
-              <li>Verbali di intervento ricevuti automaticamente</li>
-              <li class="li-multi"><div>
-                <strong>Supporto con sistema di ticket</strong>
-                <span>Il cliente apre una richiesta di assistenza dall'area riservata</span>
-              </div></li>
-              <li>Stato evolutivo e roadmap del progetto</li>
-              <li class="li-multi"><div>
-                <strong>Gestione delle manutenzioni</strong>
-                <span>Programmate e su richiesta, con notifiche automatiche al cliente</span>
-              </div></li>
-            </ul>
-          </div>
-          <div class="module m-stats" id="mod-statistiche">
-            <div class="module-badge module-name">Statistiche</div>
-            <div class="module-icon-large"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
-            <h3>Decision intelligence</h3>
-            <p>Vedi dove perdi clienti, dove guadagni di più, chi vende meglio e quanto sei veloce davvero.</p>
-            <ul class="module-features">
-              <li>Preventivi, vendite e fatturato stimato</li>
-              <li>Tasso di conversione e valore medio</li>
-              <li>Performance commerciali e tempi di installazione</li>
-              <li>Impianti più remunerativi</li>
-              <li>Analisi temporale e geografica</li>
-            </ul>
-          </div>
-          <div class="module m-mkt" id="mod-marketing">
-            <div class="module-badges">
-              <div class="module-badge module-name">Marketing</div>
-              <span class="module-tag-ai" title="Include funzionalità AI">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg>
-                AI
-              </span>
+            <div class="module-icon-large"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
+            <h3>Manutenzioni, assistenza e pronto intervento</h3>
+            <p>Due versioni: la Base per i contratti e l'assistenza di tutti i giorni, l'Avanzata per chi gestisce impianti e risponde ai guasti urgenti.</p>
+            <div class="module-versions">
+              <div>
+                <h4 class="module-subtitle">Base</h4>
+                <ul class="module-features">
+                  <li>Contratti di manutenzione</li>
+                  <li>Visite periodiche pianificate in automatico</li>
+                  <li>Chiamate dei clienti</li>
+                  <li class="li-multi"><div>
+                    <strong>Ticket di assistenza</strong>
+                    <span>L'AI propone le risposte, tu le rivedi e le invii</span>
+                  </div></li>
+                </ul>
+              </div>
+              <div>
+                <h4 class="module-subtitle">Avanzata</h4>
+                <ul class="module-features">
+                  <li>Tutto quello che c'&egrave; nella Base</li>
+                  <li class="li-multi"><div>
+                    <strong>Registro impianti con QR</strong>
+                    <span>Il cliente inquadra il QR sull'impianto e invia una richiesta di intervento</span>
+                  </div></li>
+                  <li class="li-multi"><div>
+                    <strong>Pronto intervento automatico</strong>
+                    <span>XPlanium sceglie da solo il tecnico reperibile pi&ugrave; adatto all'intervento, per competenze, certificazioni e distanza, e gli chiede di accettare. Se rifiuta, passa al successivo</span>
+                  </div></li>
+                  <li class="li-multi"><div>
+                    <strong>Tempi sempre documentati</strong>
+                    <span>Rapporto mensile al cliente con i tempi impiegati, dalla segnalazione all'arrivo e alla risoluzione. L'orario di inizio &egrave; scritto nel verbale</span>
+                  </div></li>
+                  <li>Allarmi automatici dai sistemi di monitoraggio, via webhook ed email</li>
+                </ul>
+              </div>
             </div>
-            <div class="module-icon-large"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 11-5.8-1.6"/></svg></div>
-            <h3>Marketing, landing page e social</h3>
-            <p>Attiri, coinvolgi, converti: landing page generate con AI, campagne email a segmenti, <strong>post sui canali social schedulati</strong>, sondaggi e feedback. Tutto governato dalla stessa base dati.</p>
-            <ul class="module-features">
-              <li>Post social generati con AI</li>
-              <li>Facebook, Instagram, LinkedIn: lo stesso post su più canali con date e orari diversi</li>
-              <li>Calendario editoriale visuale con anteprima per canale</li>
-              <li>Generazione landing page con AI</li>
-              <li>QR-Code per accesso diretto alle landing page</li>
-              <li>Campagne email a segmenti di contatti</li>
-              <li>Sondaggi per raccolta feedback</li>
-            </ul>
           </div>
         </div>
         <div class="carousel-dots" id="modulesDots" aria-hidden="true"></div>
@@ -5112,13 +5139,13 @@
           <details class="faq-item" open>
             <summary>Cosa significa che XPlanium &egrave; modulare?</summary>
             <div class="faq-answer">
-              Significa che <strong>non sei costretto ad acquistare tutto subito</strong>. Il modulo <strong>Core</strong> (backoffice web + app mobile per chi opera sul campo) &egrave; la base sempre inclusa; gli altri (Vendite, Marketing, Cliente, Statistiche) li attivi quando ti servono, senza dover migrare dati o cambiare piattaforma. I moduli sono integrati nativamente: parlano tra loro, condividono la stessa base dati e si sbloccano semplicemente abilitandoli.
+              Significa che <strong>non sei costretto ad acquistare tutto subito</strong>. Il modulo <strong>Core</strong> (backoffice web + app mobile per chi opera sul campo) &egrave; la base sempre inclusa, e porta con s&eacute; anche le <strong>Statistiche</strong>; gli altri (Vendite, Manutenzione) li attivi quando ti servono, senza dover migrare dati o cambiare piattaforma. I moduli sono integrati nativamente: parlano tra loro, condividono la stessa base dati e si sbloccano semplicemente abilitandoli.
             </div>
           </details>
           <details class="faq-item">
             <summary>Cos'&egrave; il modulo Core e perch&eacute; &egrave; sempre incluso?</summary>
             <div class="faq-answer">
-              Il <strong>modulo Core</strong> &egrave; l'ossatura di XPlanium: unisce il <strong>backoffice web</strong> (clienti, progetti, attivit&agrave;, <strong>planner automatico</strong>, Gantt, gestione operatori e team) e l'<strong>app mobile nativa per chi opera sul campo</strong> (calendario dei compiti, foto, checklist, ore lavorate, verbale firmato dal cliente, funzionamento offline). Tutti gli altri moduli opzionali (Vendite, Cliente, Statistiche, Marketing) leggono e scrivono sulla stessa base dati del Core: senza di esso non avrebbero contesto su cui operare. Per questo &egrave; incluso sempre di default.
+              Il <strong>modulo Core</strong> &egrave; l'ossatura di XPlanium: unisce il <strong>backoffice web</strong> (clienti, progetti, attivit&agrave;, <strong>planner automatico</strong>, Gantt, gestione operatori e team) e l'<strong>app mobile nativa per chi opera sul campo</strong> (calendario dei compiti, foto, checklist, ore lavorate, verbale firmato dal cliente, funzionamento offline) e include le <strong>Statistiche</strong> e l'<strong>area riservata del cliente</strong> (progetti, documenti, offerte, appuntamenti da confermare). I moduli opzionali (Vendite, Manutenzione) leggono e scrivono sulla stessa base dati del Core: senza di esso non avrebbero contesto su cui operare. Per questo &egrave; incluso sempre di default.
             </div>
           </details>
           <details class="faq-item">
@@ -5296,14 +5323,11 @@
             <div class="form-group">
               <label>Moduli opzionali di interesse <span style="font-weight:400; color:var(--text-3); font-size:0.78rem;">(il modulo Core &egrave; sempre incluso)</span></label>
               <div class="modules-check">
-                <label class="module-check checked locked" title="Modulo Core sempre incluso: backoffice web + app mobile per chi opera sul campo">
-                  <input type="checkbox" name="modules" value="Core (incluso)" checked disabled />
-                  Core &#128274;
-                </label>
                 <label class="module-check"><input type="checkbox" name="modules" value="Vendite" /> Vendite</label>
-                <label class="module-check"><input type="checkbox" name="modules" value="Statistiche" /> Statistiche</label>
-                <label class="module-check"><input type="checkbox" name="modules" value="Cliente" /> Area Cliente</label>
-                <label class="module-check"><input type="checkbox" name="modules" value="Marketing" /> Marketing</label>
+                <!-- ⚠️ Il valore resta «Cliente» di proposito: è quello che l'enum
+                     del servizio che riceve il form (api.kriseides.com) accetta
+                     oggi. Si cambia in «Manutenzione» insieme a quell'enum. -->
+                <label class="module-check"><input type="checkbox" name="modules" value="Cliente" /> Manutenzione</label>
               </div>
             </div>
             <div class="form-group">
@@ -5461,7 +5485,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
             </div>
             <h3>Scegli i moduli che ti servono</h3>
-            <p>Parti dal modulo <strong>Core</strong> (backoffice + app tecnici, sempre incluso) e aggiungi solo i moduli opzionali che ti servono: Vendite, Marketing, Cliente, Statistiche. Niente pacchetti gonfiati con feature che non userai mai.</p>
+            <p>Parti dal modulo <strong>Core</strong> (backoffice + app tecnici + statistiche, sempre incluso) e aggiungi solo i moduli opzionali che ti servono: Vendite, Manutenzione. Niente pacchetti gonfiati con feature che non userai mai.</p>
           </article>
 
           <article class="promise-card lvl-2">
@@ -6034,7 +6058,7 @@
             <span class="emo-eyebrow">IL TUO CLIENTE A CASA</span>
             <h2>Mentre lui è sul divano, <em>tu stai già lavorando</em></h2>
             <p class="lead">L'area cliente di XPlanium accoglie il tuo cliente quando ha tempo: di sera, nel weekend, dopo cena. E gli risponde anche quando tu sei a tavola.</p>
-            <p>Il cliente vede lo stato del suo impianto, scarica i documenti, prenota un intervento di manutenzione, apre un ticket di assistenza. Tutto in autonomia, tutto tracciato.</p>
+            <p>Il cliente segue i suoi progetti, scarica i documenti, guarda le offerte e conferma gli appuntamenti. Con la Manutenzione apre anche i ticket di assistenza e, nella versione Avanzata, vede i suoi impianti. Tutto in autonomia, tutto tracciato.</p>
           </div>
         </div>
       </div>
@@ -6058,7 +6082,7 @@
           </div>
           <div class="hero-stat">
             <div class="num">Modulare</div>
-            <div class="lbl">Core + 4 moduli opzionali</div>
+            <div class="lbl">Core + 2 moduli opzionali</div>
           </div>
         </div>
 
@@ -6761,10 +6785,12 @@
         email:   (fd.get('email')   || '').toString().trim(),
         phone:   (fd.get('phone')   || '').toString().trim(),
         sector:  (fd.get('sector')  || '').toString(),
-        // Filtriamo l'opzione "Core (incluso)" che e' solo per UX,
-        // il backend non la accetta nell'enum (Core e' sempre incluso di default).
+        // Solo i moduli opzionali: il Core e' sempre incluso (statistiche comprese)
+        // e dal 6 ott 2026 non ha piu' una casella. Marketing non si vende piu'.
+        // 'Cliente' e' la casella «Manutenzione» (6 ott 2026): il nome sul filo
+        // resta quello vecchio finche' non cambia l'enum del servizio che riceve.
         modules: fd.getAll('modules').map(m => m.toString()).filter(m =>
-          ['Vendite', 'Statistiche', 'Cliente', 'Marketing'].includes(m)
+          ['Vendite', 'Cliente'].includes(m)
         ),
         message: (fd.get('message') || '').toString().trim(),
         privacy: !!fd.get('privacy'),

@@ -142,7 +142,7 @@ Payload atteso (JSON):
   "email":   "string (email valid, required)",
   "phone":   "string (opt, max 40 char)",
   "sector":  "string (required, enum — vedi sotto)",
-  "modules": ["Vendite", "Marketing", "Cliente", "Statistiche"],
+  "modules": ["Vendite", "Cliente"],
   "message": "string (10-4000 char, required)",
   "privacy": true,
   "marketing": "boolean (opt) — consenso al marketing gruppo Kriseides",
@@ -155,9 +155,15 @@ Payload atteso (JSON):
 `Videosorveglianza` · `Domotica e automatismi` · `Infissi e serramenti` ·
 `Edilizia e finiture` · `Piscine e SPA` · `Altro`
 
-**Valori enum `modules`** (max 4): `Vendite`, `Statistiche`, `Cliente`,
-`Marketing`. Il modulo Core è sempre incluso di default e NON viene mai
-inviato dal form.
+**Valori enum `modules`** (max 2): `Vendite`, `Cliente`. Il modulo Core è
+sempre incluso di default e NON viene mai inviato dal form. Dal 5 ott 2026:
+le **Statistiche** sono incluse nel Core (niente casella, niente prezzo a
+parte) e il modulo **Marketing** non si vende più (scheda, casella e FAQ
+tolte dal sito). Il form di contatto che crea lead, col suo widget per il
+sito, ora fa parte del modulo **Vendite**. Il backend può continuare ad
+accettare anche `Statistiche` e `Marketing` nell'enum: il sito non li manda
+più. Il campo `marketing` qui sopra è il consenso alle comunicazioni del
+gruppo Kriseides, non il modulo: resta.
 
 Response attesa:
 - `200 OK` + `{ "ok": true }` → notifica al cliente "Grazie, ti ricontattiamo"

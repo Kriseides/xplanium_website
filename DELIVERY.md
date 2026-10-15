@@ -317,3 +317,13 @@ Per problemi tecnici sul form contatti verificare in ordine:
 2. Credenziali SMTP valide (test da pannello Brevo)
 3. Record SPF/DKIM/DMARC del dominio ancora attivi (mxtoolbox)
 4. CORS del backend accetta `https://xplanium.it`
+
+---
+
+## Statistiche di visita (15 ott 2026)
+
+Tutte le pagine caricano **Cloudflare Web Analytics** con lo script inserito a mano prima di `</body>` (token `024a0ca1…`): Cloudflare → Web Analytics → xplanium.it, modalità «Enable with JS Snippet installation».
+- L'inserimento automatico non funziona, perché i record DNS del sito non passano dal proxy di Cloudflare (nuvola grigia).
+- È senza cookie e senza localStorage, quindi non passa dal banner del consenso. Base giuridica: legittimo interesse.
+- L'informativa (`privacy.html`) e la cookie policy (`cookie.html`) sono alla versione 1.1.
+- **Ogni pagina nuova del sito deve includere lo stesso script.**

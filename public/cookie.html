@@ -257,7 +257,7 @@
   <main id="main-content" role="main">
     <div class="eyebrow">Informativa estesa</div>
     <h1>Cookie Policy</h1>
-    <p class="updated">Ultimo aggiornamento: 27 maggio 2026 — Versione 1.0</p>
+    <p class="updated">Ultimo aggiornamento: 15 ottobre 2026 — Versione 1.1</p>
 
     <p class="lead">
       Questa pagina spiega in modo trasparente quali cookie utilizza il sito <strong>xplanium.it</strong>, a cosa servono e come puoi gestire le tue preferenze in qualsiasi momento.
@@ -301,7 +301,7 @@
       <tbody>
         <tr>
           <td colspan="4" style="text-align:center; color: var(--text-2); font-style: italic;">
-            Al momento il sito non installa cookie analitici. Quando attiveremo un servizio (es. Plausible, Google Analytics) aggiorneremo questa sezione e la versione della policy.
+            Al momento il sito non installa cookie analitici. Le statistiche di visita sono raccolte <strong>senza cookie</strong> con Cloudflare Web Analytics: vedi la sezione «Servizi di terze parti».
           </td>
         </tr>
       </tbody>
@@ -328,6 +328,7 @@
     <p>Il sito carica alcune risorse da fornitori esterni:</p>
     <ul>
       <li><strong>Google Fonts</strong> &mdash; caricamento dei font Inter e Space Grotesk. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Policy Google</a></li>
+      <li><strong>Cloudflare Web Analytics</strong> &mdash; statistiche aggregate delle visite (pagine viste, pagina di provenienza, tipo di dispositivo, paese, tempi di caricamento). <strong>Non usa cookie né localStorage</strong>, non usa il tuo indirizzo IP o altri dati per riconoscerti e non crea profili individuali: per questo non richiede il tuo consenso. Lo script si carica da <code>static.cloudflareinsights.com</code> e puoi bloccarlo dalle impostazioni del browser. <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Policy Cloudflare</a></li>
       <li><strong>Brevo (Sendinblue)</strong> &mdash; invio email transazionali (conferma form preventivo). Non installa cookie nel browser del visitatore. <a href="https://www.brevo.com/legal/privacypolicy/" target="_blank" rel="noopener noreferrer">Policy Brevo</a></li>
     </ul>
 
@@ -397,5 +398,6 @@
       window.location.href = 'index.html#open-cookie-prefs';
     });
   </script>
+  <!-- Cloudflare Web Analytics: statistiche di visita aggregate, senza cookie (vedi privacy.html §1.2 e cookie.html §3) --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "024a0ca1acbd4fe3bb4ab89556003132"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

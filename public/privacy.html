@@ -214,7 +214,7 @@
   <main id="main-content" role="main">
     <div class="eyebrow">Informativa GDPR</div>
     <h1>Privacy Policy</h1>
-    <p class="updated">Ultimo aggiornamento: 27 maggio 2026 — Versione 1.0</p>
+    <p class="updated">Ultimo aggiornamento: 15 ottobre 2026 — Versione 1.1</p>
 
     <p class="lead">
       Questa informativa descrive come <strong>Kriseides S.r.l.</strong>, titolare del trattamento, raccoglie e tratta i dati personali dei visitatori del sito <strong>xplanium.it</strong> ai sensi del Regolamento (UE) 2016/679 (GDPR).
@@ -246,6 +246,7 @@
     <h3>1.2 Dati raccolti automaticamente durante la navigazione</h3>
     <ul>
       <li><strong>Dati di log</strong>: indirizzo IP (registrato temporaneamente per finalità di sicurezza e anti-abuso del form), data e ora della richiesta</li>
+      <li><strong>Statistiche di visita</strong> (Cloudflare Web Analytics): pagina visitata, pagina di provenienza, tipo di browser e di dispositivo, paese, tempi di caricamento della pagina. La raccolta avviene <strong>senza cookie</strong> né altri identificativi salvati sul tuo dispositivo, e non crea profili individuali: i dati sono usati solo in forma aggregata (per esempio «quante visite ha avuto la home questa settimana»).</li>
       <li><strong>Cookie tecnici</strong>: vedi <a href="cookie.html">Cookie Policy</a> per il dettaglio</li>
     </ul>
 
@@ -275,6 +276,11 @@
           <td>90 giorni (log IP)</td>
         </tr>
         <tr>
+          <td>Statistiche aggregate sulle visite al sito, per capire quali pagine sono utili e migliorarlo (Cloudflare Web Analytics, senza cookie)</td>
+          <td>Legittimo interesse del titolare (art. 6.1.f GDPR)</td>
+          <td>Solo in forma aggregata, senza profili individuali</td>
+        </tr>
+        <tr>
           <td>Cookie analitici (se hai dato consenso)</td>
           <td>Consenso (art. 6.1.a GDPR)</td>
           <td>Vedi cookie policy</td>
@@ -296,7 +302,7 @@
     <h2>4. Comunicazione dei dati a terzi</h2>
     <p>I tuoi dati possono essere comunicati a:</p>
     <ul>
-      <li><strong>Fornitori tecnici (responsabili del trattamento)</strong>: DigitalOcean (hosting infrastruttura), Brevo (invio email transazionali), Google Fonts (caricamento font del sito). Ognuno di essi è vincolato da un accordo di trattamento ex art. 28 GDPR.</li>
+      <li><strong>Fornitori tecnici (responsabili del trattamento)</strong>: DigitalOcean (hosting infrastruttura), Brevo (invio email transazionali), Google Fonts (caricamento font del sito), Cloudflare (gestione del dominio, protezione e statistiche di visita aggregate del sito). Ognuno di essi è vincolato da un accordo di trattamento ex art. 28 GDPR.</li>
       <li><strong>Autorità pubbliche</strong> quando richiesto dalla legge.</li>
     </ul>
     <p>I dati <strong>non vengono mai venduti</strong> né ceduti a terzi per finalità di marketing.</p>
@@ -304,6 +310,9 @@
     <h2>5. Trasferimento dei dati extra-UE</h2>
     <p>
       Alcuni fornitori (es. Google Fonts) potrebbero trattare dati su server al di fuori dell'Unione Europea. In questi casi il trasferimento avviene esclusivamente verso Paesi con decisione di adeguatezza della Commissione Europea o con Clausole Contrattuali Standard (SCC).
+    </p>
+    <p>
+      In particolare, <strong>Cloudflare, Inc.</strong> (Stati Uniti), che fornisce le statistiche di visita, ha aderito all'<strong>EU-U.S. Data Privacy Framework</strong>; il suo accordo di trattamento dei dati include inoltre le Clausole Contrattuali Standard. <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Policy Cloudflare</a>.
     </p>
 
     <h2>6. Diritti dell'interessato</h2>
@@ -314,7 +323,7 @@
       <li><strong>Cancellazione</strong> ("diritto all'oblio", art. 17)</li>
       <li><strong>Limitazione</strong> del trattamento (art. 18)</li>
       <li><strong>Portabilità</strong> in formato strutturato (art. 20)</li>
-      <li><strong>Opposizione</strong> al trattamento basato su legittimo interesse (art. 21)</li>
+      <li><strong>Opposizione</strong> al trattamento basato su legittimo interesse (art. 21). Per le statistiche di visita puoi anche bloccare direttamente lo script <code>static.cloudflareinsights.com</code> con le impostazioni o un'estensione del tuo browser.</li>
       <li><strong>Revoca del consenso</strong> in qualsiasi momento (per i trattamenti basati sul consenso)</li>
       <li><strong>Reclamo</strong> al Garante per la Protezione dei Dati Personali (<a href="https://www.garanteprivacy.it">www.garanteprivacy.it</a>)</li>
     </ul>
@@ -324,7 +333,7 @@
 
     <h2>7. Cookie</h2>
     <p>
-      Il sito utilizza cookie tecnici (sempre attivi, indispensabili al funzionamento) e — solo previo consenso — cookie analitici. Non utilizziamo cookie di profilazione di terze parti per finalità di marketing. Per il dettaglio consulta la <a href="cookie.html">Cookie Policy</a>.
+      Il sito utilizza cookie tecnici (sempre attivi, indispensabili al funzionamento) e — solo previo consenso — cookie analitici. Le statistiche di visita (Cloudflare Web Analytics) non usano cookie. Non utilizziamo cookie di profilazione di terze parti per finalità di marketing. Per il dettaglio consulta la <a href="cookie.html">Cookie Policy</a>.
     </p>
 
     <h2>8. Minori</h2>
@@ -356,5 +365,6 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+  <!-- Cloudflare Web Analytics: statistiche di visita aggregate, senza cookie (vedi privacy.html §1.2 e cookie.html §3) --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "024a0ca1acbd4fe3bb4ab89556003132"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

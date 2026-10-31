@@ -1909,16 +1909,9 @@
     /* Statistiche su due colonne: chiude la seconda riga accanto a Manutenzione.
        Sotto i 900px il grid diventa carousel (flex) e lo span non conta. */
     .module.module-included { grid-column: span 2; }
-    /* Manutenzione (6 ott 2026): due colonne su tre nella seconda riga,
-       accanto a Vendite, sotto il Core a tutta larghezza; Base e Avanzata
-       affiancate. Sotto i 900px il grid diventa carousel
-       (flex): lo span non conta e le due versioni vanno una sotto l'altra. */
-    .module.module-wide { grid-column: span 2; }
-    .module-versions { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    @media (max-width: 900px) {
-      .module.module-wide { grid-column: span 2; }
-      .module-versions { grid-template-columns: 1fr; gap: 8px; }
-    }
+    /* Manutenzione (31 ott 2026, Alf): un box come gli altri, nella stessa riga
+       di Core e Vendite; Base e Avanzata una sotto l'altra. */
+    .module-versions { display: grid; grid-template-columns: 1fr; gap: 8px; }
     /* Icona modulo disattivata: ridotto contenuto dei box (mobile-first). */
     .module-icon-large { display: none; }
     .module h3 { margin-bottom: 10px; }
@@ -2062,21 +2055,15 @@
     .module.m-sales.featured::after { content: none; }
 
     /* Modulo Core — la base incluso sempre, evidenziato con arancione.
-       Tutta la prima riga (6 ott 2026, Alf), con tre colonne interne; sotto
-       Vendite e Manutenzione (`module-wide`). Le Statistiche sono nel Core. */
+       31 ott 2026 (Alf): i tre moduli in tre box affiancati, Core, Vendite e
+       Manutenzione; nel Core le tre sezioni (Backoffice, Planner automatico,
+       App mobile) vanno una sotto l'altra. Le Statistiche sono nel Core. */
     .module.featured-core {
       background: linear-gradient(135deg, rgba(249,115,22,0.12), rgba(251,191,36,0.06));
       border-color: #f97316;
       box-shadow: 0 0 40px rgba(249, 115, 22, 0.18);
-      grid-column: 1 / -1;
     }
-    /* Le tre sezioni del Core affiancate: Backoffice, Planner automatico, App mobile. */
-    .core-columns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-    @media (max-width: 900px) {
-      .module.featured-core { grid-column: 1 / -1; }
-      .core-columns { grid-template-columns: 1fr; gap: 8px; }
-    }
-    @media (max-width: 600px) { .module.featured-core { grid-column: span 1; } }
+    .core-columns { display: grid; grid-template-columns: 1fr; gap: 8px; }
     /* Badge dentro il box invece che a cavallo del bordo (evita clipping quando
        il modulo è dentro il carousel mobile con overflow-x: auto). */
     /* "Incluso sempre" ancorato in alto-centro sopra il bordo del modulo,
@@ -4950,7 +4937,7 @@
                pronto intervento (Avanzata). Gli allarmi dai sistemi di monitoraggio
                non ci sono finché non esistono (Alf, 31 ott 2026). Niente prezzi: il sito
                pubblico non ne mostra. Vedi docs/claude/moduli-riordino.md. -->
-          <div class="module m-maintenance module-wide" id="mod-manutenzione">
+          <div class="module m-maintenance" id="mod-manutenzione">
             <div class="module-badges">
               <div class="module-badge module-name">Manutenzione</div>
               <span class="module-tag-ai" title="Include funzionalità AI">
